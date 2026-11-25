@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- CSS class completions and hovers now use the Bootstrap `6.0.0-alpha.2` stylesheet, adding classes such as `bg-opacity-*`, `fg-opacity-*`, `combobox`, `dialog-2xl` and `font-tabular-nums`, and dropping ones alpha.2 removed such as `bg-10` and `chip-input`.
+
 ## 0.9.0
 
 - Warnings in the Problems panel when `package.json` depends on `bootstrap` or `bootstrap-ng` `6.0.0-alpha.1`, with a quick fix that updates the version to `6.0.0-alpha.2`.

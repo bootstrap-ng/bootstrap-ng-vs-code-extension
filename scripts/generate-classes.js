@@ -4,8 +4,8 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const CSS_URL =
-  "https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.css";
-const VERSION = "6.0.0-alpha.1";
+  "https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.2/dist/css/bootstrap.css";
+const VERSION = "6.0.0-alpha.2";
 
 function classExpression() {
   return /\.(?<raw>(?:\\[0-9a-fA-F]{1,6}[ \t]?|\\.|[A-Za-z0-9_-])+)/gu;

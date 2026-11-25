@@ -5,6 +5,7 @@ const { classes, documentationForClass } = require("./classes");
 const { analyze } = require("./context");
 const { translate } = require("./l10n");
 const { documentationFor } = require("./markdown");
+const { templateSnippets } = require("./snippets");
 
 function namesOf(attributes) {
   return (attributes ?? []).map((attribute) => attribute.name).filter(Boolean);
@@ -280,7 +281,7 @@ function classCompletions(context) {
   const present = new Set(context.present ?? []);
   const items = [];
 
-  for (const entry of classes) {
+  for (const entry of classes()) {
     if (present.has(entry.name) || !matchesClass(entry.name, context.prefix)) {
       continue;
     }
@@ -405,6 +406,27 @@ function textCompletions(context) {
   return dedupe(items, (item) => `${item.label}\n${item.insertText}`);
 }
 
+/* The component snippets are only contributed to HTML files, so offer them
+   here for inline templates in TypeScript components. */
+function templateSnippetCompletions(context) {
+  if (!/^bs/iu.test(context.prefix)) {
+    return [];
+  }
+
+  return templateSnippets().map((entry) =>
+    located(context, {
+      detail: entry.description,
+      documentation: `\`\`\`html\n${entry.body}\n\`\`\``,
+      filterText: entry.prefix,
+      insertText: entry.body,
+      kind: "Snippet",
+      label: entry.prefix,
+      snippet: true,
+      sortText: `0-${entry.prefix}`,
+    }),
+  );
+}
+
 function entryFilter(specifier) {
   if (!specifier || specifier === "bootstrap-ng") {
     return null;
@@ -481,7 +503,11 @@ function complete(text, offset, languageId) {
   }
 
   if (context.kind === "text") {
-    return textCompletions(context);
+    const items = textCompletions(context);
+
+    return languageId === "typescript"
+      ? [...items, ...templateSnippetCompletions(context)]
+      : items;
   }
 
   return [];

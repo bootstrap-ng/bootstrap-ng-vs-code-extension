@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   run:
-    name: Node 22 on ubuntu-slim
+    name: Node (.nvmrc) on ubuntu-slim
     runs-on: ubuntu-slim
 
     steps:

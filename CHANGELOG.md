@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+- The extension no longer activates in every Node.js project. It activates for HTML, JSON and TypeScript files, and in workspaces with an `angular.json`.
+- The directive catalog and class data load on first use instead of at activation.
+- Component snippets are no longer offered everywhere in TypeScript files. In TypeScript they appear only inside inline Angular `template` strings.
+
 ## 0.9.0
 
 - Warnings in the Problems panel when `package.json` depends on `bootstrap` or `bootstrap-ng` `6.0.0-alpha.1`, with a quick fix that updates the version to `6.0.0-alpha.2`.

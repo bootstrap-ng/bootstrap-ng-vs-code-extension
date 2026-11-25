@@ -1,9 +1,9 @@
 # Bootstrap-ng
 
-[![VS Code Marketplace version](https://badgen.net/vs-marketplace/v/coliff.-vs-code-extension?label=VS%20Code%20Marketplace)](https://marketplace.visualstudio.com/items?itemName=coliff.bootstrap-ng-vs-code-extension)
-[![VS Code Marketplace installs](https://badgen.net/vs-marketplace/i/coliff.bootstrap-ng-vs-code-extension)](https://marketplace.visualstudio.com/items?itemName=coliff.bootstrap-ng-vs-code-extension)
-[![Open VSX version](https://img.shields.io/open-vsx/v/coliff/bootstrap-ng-vs-code-extension?label=Open%20VSX)](https://open-vsx.org/extension/coliff/bootstrap-ng-vs-code-extension)
-[![Open VSX downloads](https://img.shields.io/open-vsx/dt/coliff/bootstrap-ng-vs-code-extension)](https://open-vsx.org/extension/coliff/bootstrap-ng-vs-code-extension)
+[![VS Code Marketplace version](https://badgen.net/vs-marketplace/v/coliff.bootstrap-ng?label=VS%20Code%20Marketplace)](https://marketplace.visualstudio.com/items?itemName=coliff.bootstrap-ng)
+[![VS Code Marketplace installs](https://badgen.net/vs-marketplace/i/coliff.bootstrap-ng)](https://marketplace.visualstudio.com/items?itemName=coliff.bootstrap-ng)
+[![Open VSX version](https://img.shields.io/open-vsx/v/coliff/bootstrap-ng?label=Open%20VSX)](https://open-vsx.org/extension/coliff/bootstrap-ng)
+[![Open VSX downloads](https://img.shields.io/open-vsx/dt/coliff/bootstrap-ng)](https://open-vsx.org/extension/coliff/bootstrap-ng)
 
 Editor support for [bootstrap-ng](https://bootstrap-ng.com/), the Angular components for Bootstrap 6.
 

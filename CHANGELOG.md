@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.9.1 (2026-11-25)
 
 - A `source.fixAll.bootstrap-ng` code action, so `editor.codeActionsOnSave` can add missing imports for inline templates on save.
 - Completions and hovers for Bootstrap 6 CSS classes in Angular class bindings: string literals in `[class]` and `[ngClass]` (including object keys and arrays), and the class name in `[class.name]`.
@@ -12,9 +12,6 @@
 - Quick fix for invalid attribute values that suggests the closest documented value, such as `theme="primray"` to `theme="primary"`.
 - Quick fix that replaces Bootstrap 5 `data-bs-dismiss="modal"`, `"offcanvas"`, and `"toast"` with `bsDialogClose`, `bsDrawerClose`, and `bsToastClose`, and `data-bs-toggle="tooltip"` or `"popover"` with `bsTooltip` or `bsPopover`, carrying over `title`, `data-bs-title`, `data-bs-content`, `data-bs-placement`, and `data-bs-trigger`.
 - Warnings in the Problems panel when a standalone component template uses a `bs*` directive that is not imported, with the import quick fix attached. Turn them off with `bootstrap-ng.validateImports`.
-
-## 0.9.1
-
 - Clear Problems-panel diagnostics when `package.json` is closed.
 - Component snippets are no longer offered everywhere in TypeScript files. In TypeScript they appear only inside inline Angular `template` strings.
 - CSS class completions and hovers now use the Bootstrap `6.0.0-alpha.2` stylesheet, adding classes such as `bg-opacity-*`, `fg-opacity-*`, `combobox`, `dialog-2xl` and `font-tabular-nums`, and dropping ones alpha.2 removed such as `bg-10` and `chip-input`.
@@ -24,7 +21,7 @@
 - The directive catalog and class data load on first use instead of at activation.
 - The extension no longer activates in every Node.js project. It activates for HTML, JSON and TypeScript files, and in workspaces with an `angular.json`.
 
-## 0.9.0
+## 0.9.0 (2026-11-24)
 
 - Warnings in the Problems panel when `package.json` depends on `bootstrap` or `bootstrap-ng` `6.0.0-alpha.1`, with a quick fix that updates the version to `6.0.0-alpha.2`.
 - Completions for `bs*` directives, their inputs and outputs, and documented values such as `theme` and `bsButton="outline"`, in HTML templates and inline Angular `template` strings.

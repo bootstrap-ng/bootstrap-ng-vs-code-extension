@@ -1,8 +1,4 @@
 .cspell.json
-.vscode-test/
-htmlhint/out/
-htmlhint/server/
 out/
 package-lock.json
-*.html
 **/._*

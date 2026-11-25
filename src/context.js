@@ -197,31 +197,21 @@ function commentEnd(text, start) {
   return end === -1 ? text.length : end + 3;
 }
 
-function insideComment(text, index) {
-  const start = text.lastIndexOf("<!--", index);
+const RAW_ELEMENTS = ["script", "style", "textarea"];
 
-  if (start === -1) {
-    return false;
-  }
+function rawElementEnd(text, lower, start) {
+  const match = /<(?<name>script|style|textarea)(?![\w-])/iuy;
+  match.lastIndex = start;
+  const found = match.exec(text);
 
-  const end = text.indexOf("-->", start + 4);
-
-  return end === -1 || end >= index;
-}
-
-function rawElementEnd(text, start) {
-  const match = /^<(?<name>script|style|textarea)(?![\w-])/iu.exec(
-    text.slice(start),
-  );
-
-  if (!match) {
+  if (!found) {
     return -1;
   }
 
-  const { name } = match.groups;
-  const close = text
-    .toLowerCase()
-    .indexOf(`</${name.toLowerCase()}`, start + match[0].length);
+  const close = lower.indexOf(
+    `</${found.groups.name.toLowerCase()}`,
+    start + found[0].length,
+  );
 
   if (close === -1) {
     return text.length;
@@ -232,33 +222,103 @@ function rawElementEnd(text, start) {
   return end === -1 ? text.length : end + 1;
 }
 
-function insideRawElement(text, index) {
-  const lower = text.toLowerCase();
+function mergeRanges(ranges) {
+  const merged = [];
 
-  for (const name of ["script", "style", "textarea"]) {
-    let open = lower.lastIndexOf(`<${name}`, index);
+  for (const range of ranges.sort((left, right) => left.start - right.start)) {
+    const last = merged.at(-1);
 
-    while (open !== -1) {
-      const boundary = lower[open + name.length + 1];
-      const opened =
-        (!boundary || !/[\w-]/u.test(boundary)) && !insideComment(text, open);
+    if (last && range.start <= last.end) {
+      last.end = Math.max(last.end, range.end);
+    } else {
+      merged.push({ ...range });
+    }
+  }
 
-      if (opened) {
-        const close = lower.indexOf(`</${name}`, open + name.length + 2);
+  return merged;
+}
 
-        if (close === -1 || close > index) {
-          return true;
-        }
-      }
+function rangesContain(ranges, index) {
+  let low = 0;
+  let high = ranges.length - 1;
 
-      open = lower.lastIndexOf(`<${name}`, open - 1);
+  while (low <= high) {
+    const middle = Math.floor((low + high) / 2);
+
+    if (ranges[middle].start > index) {
+      high = middle - 1;
+    } else if (ranges[middle].end <= index) {
+      low = middle + 1;
+    } else {
+      return true;
     }
   }
 
   return false;
 }
 
+function commentRanges(text) {
+  const ranges = [];
+  let close = -1;
+  let open = text.indexOf("<!--");
+
+  while (open !== -1) {
+    if (close !== text.length && close < open + 4) {
+      close = text.indexOf("-->", open + 4);
+      close = close === -1 ? text.length : close;
+    }
+
+    ranges.push({ end: close + 1, start: open });
+    open = text.indexOf("<!--", open + 1);
+  }
+
+  return mergeRanges(ranges);
+}
+
+function rawRanges(lower, comments) {
+  const ranges = [];
+
+  for (const name of RAW_ELEMENTS) {
+    let close = -1;
+    let open = lower.indexOf(`<${name}`);
+
+    while (open !== -1) {
+      const boundary = lower[open + name.length + 1];
+
+      if (
+        (!boundary || !/[\w-]/u.test(boundary)) &&
+        !rangesContain(comments, open)
+      ) {
+        if (close !== Infinity && close < open + name.length + 2) {
+          close = lower.indexOf(`</${name}`, open + name.length + 2);
+          close = close === -1 ? Infinity : close;
+        }
+
+        ranges.push({ end: close, start: open });
+      }
+
+      open = lower.indexOf(`<${name}`, open + 1);
+    }
+  }
+
+  return ranges;
+}
+
+/*
+ * Every offset that sits inside an HTML comment or a script, style or
+ * textarea element, worked out in one pass so callers can check each "<"
+ * without searching the whole text again.
+ */
+function skippedRanges(text, lower = text.toLowerCase()) {
+  const comments = commentRanges(text);
+  const ranges = mergeRanges([...comments, ...rawRanges(lower, comments)]);
+
+  return (index) => rangesContain(ranges, index);
+}
+
 function parseTags(text) {
+  const lower = text.toLowerCase();
+  const skipped = skippedRanges(text, lower);
   const tags = [];
   let index = 0;
 
@@ -270,14 +330,14 @@ function parseTags(text) {
     }
 
     const comment = commentEnd(text, start);
-    const rawEnd = comment === -1 ? rawElementEnd(text, start) : -1;
+    const rawEnd = comment === -1 ? rawElementEnd(text, lower, start) : -1;
 
     if (comment !== -1 || rawEnd !== -1) {
       index = comment === -1 ? rawEnd : comment;
       continue;
     }
 
-    if (insideComment(text, start) || insideRawElement(text, start)) {
+    if (skipped(start)) {
       index = start + 1;
       continue;
     }
@@ -294,6 +354,7 @@ function parseTags(text) {
 }
 
 function enclosingTag(text, offset) {
+  const skipped = skippedRanges(text);
   let searchFrom = offset;
 
   while (searchFrom > 0) {
@@ -303,7 +364,7 @@ function enclosingTag(text, offset) {
       return null;
     }
 
-    if (insideComment(text, start) || insideRawElement(text, start)) {
+    if (skipped(start)) {
       searchFrom = start;
       continue;
     }

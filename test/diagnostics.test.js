@@ -212,4 +212,22 @@ export class App {}
 
     assert.deepEqual(alert.fixes, []);
   });
+
+  it("does not hang on templates that start with a script-like tag name", () => {
+    assert.deepEqual(diagnose("<styled-box></styled-box>", "html"), []);
+    assert.deepEqual(diagnose("<scripts></scripts>", "html"), []);
+  });
+
+  it("scales linearly with template size", () => {
+    const block = `<div class="card" bsAlert theme="success">
+  <!-- a comment <b> -->
+  <button bsButton="outline" data-bs-toggle="tooltip">{{ name }}</button>
+</div>
+`;
+    const html = block.repeat(5000);
+    const started = performance.now();
+
+    assert.equal(diagnose(html, "html").length, 5000);
+    assert.ok(performance.now() - started < 2000);
+  });
 });

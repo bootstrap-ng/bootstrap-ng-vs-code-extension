@@ -5,7 +5,9 @@
 - A `source.fixAll.bootstrap-ng` code action, so `editor.codeActionsOnSave` can add missing imports for inline templates on save.
 - Completions and hovers for Bootstrap 6 CSS classes in Angular class bindings: string literals in `[class]` and `[ngClass]` (including object keys and arrays), and the class name in `[class.name]`.
 - Fix `package.json` warnings disappearing from the Problems panel a few minutes after startup. Closing a `package.json` now re-checks the saved file instead of clearing its warnings.
+- Fix diagnostics and completions slowing down on large templates. Each keystroke in a 3,000-line template took about 0.4 seconds or more, and now takes a few milliseconds.
 - Fix the Bootstrap 5 `data-bs-toggle` hints for `collapse`, `dropdown` and `offcanvas`, which named `bsCollapse`, `bsMenu` and `bsDrawer` instead of the `bsCollapseToggle`, `bsMenuToggle` and `bsDrawerToggle` trigger directives.
+- Fix the extension hanging on an HTML template that starts with a tag such as `<styled-box>` or `<scripts>`.
 - Fix the extension failing to activate with "Cannot find module './impl/format'" since 0.9.1.
 - Quick fix for invalid attribute values that suggests the closest documented value, such as `theme="primray"` to `theme="primary"`.
 - Quick fix that replaces Bootstrap 5 `data-bs-dismiss="modal"`, `"offcanvas"`, and `"toast"` with `bsDialogClose`, `bsDrawerClose`, and `bsToastClose`, and `data-bs-toggle="tooltip"` or `"popover"` with `bsTooltip` or `bsPopover`, carrying over `title`, `data-bs-title`, `data-bs-content`, `data-bs-placement`, and `data-bs-trigger`.

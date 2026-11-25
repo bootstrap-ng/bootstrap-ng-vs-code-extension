@@ -58,6 +58,23 @@ describe("completions", () => {
     assert.match(alert.insertText, /^<div bsAlert>/u);
   });
 
+  it("offers component snippets in inline templates only", () => {
+    const source = "@Component({ template: `\n  bs-acc\n` })";
+    const accordion = complete(source, at(source, "bs-acc"), "typescript").find(
+      (item) => item.label === "bs-accordion",
+    );
+    const html = "\nbs-acc";
+
+    assert.equal(accordion.snippet, true);
+    assert.match(accordion.insertText, /^<div bsAccordion>/u);
+    assert.equal(
+      complete(html, html.length, "html").some(
+        (item) => item.label === "bs-accordion",
+      ),
+      false,
+    );
+  });
+
   it("completes root and entry-point imports", () => {
     const root = "import { BsAl } from 'bootstrap-ng';";
     const entry = "import { Bs } from 'bootstrap-ng/button';";

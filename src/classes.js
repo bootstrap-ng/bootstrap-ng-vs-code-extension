@@ -1,6 +1,5 @@
 "use strict";
 
-const data = require("./data/classes.json");
 const { translate } = require("./l10n");
 
 const DOCS_ROOT = "https://getbootstrap.com/docs/6.0/";
@@ -241,13 +240,29 @@ const DOC_LINKS = DOC_PREFIXES.toSorted(
     right[0].length - left[0].length || left[0].localeCompare(right[0]),
 );
 
-const classes = data.classes.map((entry, index) => ({
-  detail: entry.detail,
-  name: entry.name,
-  sortText: String(index).padStart(4, "0"),
-}));
+let loaded = null;
 
-const byName = new Map(classes.map((entry) => [entry.name, entry]));
+// Load the class list on first use so activation does not parse it up front.
+function load() {
+  if (!loaded) {
+    const list = require("./data/classes.json").classes.map((entry, index) => ({
+      detail: entry.detail,
+      name: entry.name,
+      sortText: String(index).padStart(4, "0"),
+    }));
+
+    loaded = {
+      byName: new Map(list.map((entry) => [entry.name, entry])),
+      list,
+    };
+  }
+
+  return loaded;
+}
+
+function classes() {
+  return load().list;
+}
 
 function baseName(name) {
   const variant = VARIANTS.find((item) => name.startsWith(`${item}:`));
@@ -277,7 +292,7 @@ function documentationForClass(entry) {
 }
 
 function classByName(name) {
-  return byName.get(name) ?? null;
+  return load().byName.get(name) ?? null;
 }
 
 module.exports = {

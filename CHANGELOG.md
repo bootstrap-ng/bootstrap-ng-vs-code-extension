@@ -3,10 +3,13 @@
 ## Unreleased
 
 - Clear Problems-panel diagnostics when `package.json` is closed.
+- Component snippets are no longer offered everywhere in TypeScript files. In TypeScript they appear only inside inline Angular `template` strings.
 - CSS class completions and hovers now use the Bootstrap `6.0.0-alpha.2` stylesheet, adding classes such as `bg-opacity-*`, `fg-opacity-*`, `combobox`, `dialog-2xl` and `font-tabular-nums`, and dropping ones alpha.2 removed such as `bg-10` and `chip-input`.
 - Harden `@Component` template discovery against comments, quoted metadata keys, and nested `template` properties.
 - Parse commented and trailing-comma `package.json` files when checking bootstrap dependency versions.
 - Scope TypeScript diagnostics, completions, hovers, and import quick fixes to inline `@Component` templates instead of every backtick literal.
+- The directive catalog and class data load on first use instead of at activation.
+- The extension no longer activates in every Node.js project. It activates for HTML, JSON and TypeScript files, and in workspaces with an `angular.json`.
 
 ## 0.9.0
 

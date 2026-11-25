@@ -1,7 +1,5 @@
 "use strict";
 
-const catalog = require("./data/catalog.json");
-
 function pushMap(map, key, symbol) {
   const list = map.get(key) ?? [];
   list.push(symbol);
@@ -71,7 +69,32 @@ function createIndex(data) {
   };
 }
 
-const index = createIndex(catalog);
+let loaded = null;
+
+/* Build the index on first use, so activation from a package.json does not
+   parse the bundled catalog until it is needed. */
+function load() {
+  loaded ??= createIndex(require("./data/catalog.json"));
+  return loaded;
+}
+
+const index = {
+  attribute(name) {
+    return load().attribute(name);
+  },
+  directivesFor(tagName, attributeNames) {
+    return load().directivesFor(tagName, attributeNames);
+  },
+  element(name) {
+    return load().element(name);
+  },
+  symbol(name) {
+    return load().symbol(name);
+  },
+  get symbols() {
+    return load().symbols;
+  },
+};
 
 module.exports = {
   createIndex,

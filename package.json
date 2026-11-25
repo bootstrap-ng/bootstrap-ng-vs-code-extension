@@ -27,7 +27,7 @@
     "onLanguage:html",
     "onLanguage:json",
     "onLanguage:typescript",
-    "workspaceContains:package.json"
+    "workspaceContains:**/angular.json"
   ],
   "l10n": "./l10n",
   "main": "./out/extension.js",
@@ -92,10 +92,6 @@
     "snippets": [
       {
         "language": "html",
-        "path": "./snippets/bootstrap-ng.code-snippets"
-      },
-      {
-        "language": "typescript",
         "path": "./snippets/bootstrap-ng.code-snippets"
       }
     ]

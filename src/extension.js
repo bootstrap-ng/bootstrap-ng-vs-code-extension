@@ -212,6 +212,36 @@ function setPackageDiagnostics(collection, document) {
   );
 }
 
+// Stands in for a TextDocument's positionAt when the text came from disk.
+function textPositions(text) {
+  const lineStarts = [0];
+
+  for (let index = 0; index < text.length; index += 1) {
+    if (text[index] === "\n") {
+      lineStarts.push(index + 1);
+    }
+  }
+
+  return {
+    positionAt(offset) {
+      let low = 0;
+      let high = lineStarts.length - 1;
+
+      while (low < high) {
+        const middle = Math.ceil((low + high) / 2);
+
+        if (lineStarts[middle] <= offset) {
+          low = middle;
+        } else {
+          high = middle - 1;
+        }
+      }
+
+      return new vscode.Position(low, offset - lineStarts[low]);
+    },
+  };
+}
+
 function refreshDiagnostics(collection, document) {
   if (isPackageJson(document)) {
     setPackageDiagnostics(collection, document);
@@ -254,6 +284,17 @@ function watchDiagnostics(context, collection) {
       refresh(event.document),
     ),
     vscode.workspace.onDidCloseTextDocument((document) => {
+      if (isPackageJson(document)) {
+        /*
+         * VS Code also closes the package.json files the startup scan read,
+         * so fall back to the saved file instead of dropping its warnings.
+         */
+        readPackageFile(collection, document.uri).catch(() => {
+          collection.delete(document.uri);
+        });
+        return;
+      }
+
       collection.delete(document.uri);
     }),
     vscode.workspace.onDidChangeConfiguration((event) => {
@@ -272,15 +313,37 @@ function watchDiagnostics(context, collection) {
   }
 }
 
+async function readPackageFile(collection, uri) {
+  const bytes = await vscode.workspace.fs.readFile(uri);
+  const text = new TextDecoder().decode(bytes);
+  const positions = textPositions(text);
+
+  collection.set(
+    uri,
+    diagnoseDependencies(text).map((item) => toDiagnostic(positions, item)),
+  );
+}
+
 async function refreshPackageFile(collection, uri) {
   if (!isPackageUri(uri)) {
     return;
   }
 
-  try {
-    const document = await vscode.workspace.openTextDocument(uri);
+  const open = vscode.workspace.textDocuments.find(
+    (document) => document.uri.toString() === uri.toString(),
+  );
 
-    setPackageDiagnostics(collection, document);
+  if (open) {
+    setPackageDiagnostics(collection, open);
+    return;
+  }
+
+  try {
+    /*
+     * Read from disk rather than opening a document: VS Code closes documents
+     * it opened in the background, which would fire onDidCloseTextDocument.
+     */
+    await readPackageFile(collection, uri);
   } catch {
     collection.delete(uri);
   }

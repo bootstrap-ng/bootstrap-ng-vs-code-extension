@@ -68,19 +68,24 @@ export class App {}`;
     );
   });
 
-  it("clears diagnostics when any document closes, including package.json", () => {
+  it("re-reads package.json from disk when it closes instead of clearing it", () => {
     const extension = fs.readFileSync(
       path.join(__dirname, "../src/extension.js"),
       "utf8",
     );
-
-    assert.match(
-      extension,
-      /onDidCloseTextDocument\(\(document\) => \{\s*collection\.delete\(document\.uri\);/u,
+    const onClose = extension.slice(
+      extension.indexOf("onDidCloseTextDocument"),
+      extension.indexOf("onDidChangeConfiguration"),
     );
+
+    assert.match(onClose, /isPackageJson\(document\)[\s\S]*readPackageFile\(/u);
+    assert.match(onClose, /collection\.delete\(document\.uri\);/u);
     assert.doesNotMatch(
-      extension,
-      /onDidCloseTextDocument[\s\S]{0,120}isPackageJson\(document\)[\s\S]{0,40}return;/u,
+      extension.slice(
+        extension.indexOf("async function refreshPackageFile"),
+        extension.indexOf("function watchPackageFiles"),
+      ),
+      /openTextDocument/u,
     );
   });
 });

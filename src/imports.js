@@ -2,12 +2,12 @@
 
 const { index } = require("./catalog");
 const {
-  closingBacktick,
   componentTemplateRanges,
   componentsIn,
   findProperty,
   inlineTemplate,
   matchingBracket,
+  templateRange,
 } = require("./angular-component");
 const { parseTags } = require("./context");
 
@@ -352,28 +352,6 @@ function buildImportEdits(tsText, classNames, options = {}) {
   return edits.filter(Boolean);
 }
 
-function inlineTemplateRange(tsText, component) {
-  const open = findProperty(
-    tsText,
-    component.open,
-    component.close,
-    "template",
-    "`",
-  );
-
-  if (open === -1) {
-    return null;
-  }
-
-  const close = closingBacktick(tsText, open + 1);
-
-  if (close === -1 || close > component.close) {
-    return null;
-  }
-
-  return { content: tsText.slice(open + 1, close), start: open + 1 };
-}
-
 function isStandalone(tsText, component) {
   const body = tsText.slice(component.open, component.close + 1);
 
@@ -398,7 +376,7 @@ function missingInlineImports(tsText) {
   const missing = [];
 
   for (const component of componentsIn(tsText)) {
-    const template = inlineTemplateRange(tsText, component);
+    const template = templateRange(tsText, component);
 
     if (!template || !isStandalone(tsText, component)) {
       continue;

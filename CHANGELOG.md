@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Fix the import quick fix and fix-all on save writing broken code. In files without semicolons the new `bootstrap-ng` import landed inside the class body, and multiline `imports` arrays or import lists without a trailing comma lost the comma before the added name.
+- Inline templates written as single- or double-quoted strings, such as `template: '<div bsAlert></div>'`, now get the same warnings, completions, hovers and import fixes as template literals. Completions there stay on one line and escape the string's quote.
 
 ## 0.9.1 (2026-11-25)
 

@@ -1,5 +1,7 @@
 "use strict";
 
+const { parse, parseTree } = require("jsonc-parser");
+
 const { translate } = require("./l10n");
 
 const ALPHA1_CODE = "alpha1";
@@ -12,7 +14,6 @@ const SECTIONS = new Set([
   "peerDependencies",
   "resolutions",
 ]);
-const WHITESPACE = new Set(["\t", "\n", "\r", " "]);
 
 function alpha1Pattern() {
   return /(?<![\d.])6\.0\.0-alpha\.1(?![\d.-])/gu;
@@ -26,214 +27,75 @@ function updatedSpecifier(spec) {
   return spec.replace(alpha1Pattern(), "6.0.0-alpha.2");
 }
 
-function skipSpace(text, index) {
-  let cursor = index;
-
-  while (cursor < text.length && WHITESPACE.has(text[cursor])) {
-    cursor += 1;
-  }
-
-  return cursor;
+function nodeText(text, node) {
+  return text.slice(node.offset, node.offset + node.length);
 }
 
-function isDelimiter(char) {
-  return WHITESPACE.has(char) || char === "," || char === "}" || char === "]";
-}
-
-function readString(text, index) {
-  if (text[index] !== '"') {
+function nodeString(text, node) {
+  if (!node || node.type !== "string") {
     return null;
   }
 
-  let cursor = index + 1;
-  let raw = "";
-
-  while (cursor < text.length) {
-    const char = text[cursor];
-
-    if (char === '"') {
-      return {
-        contentEnd: cursor,
-        contentStart: index + 1,
-        end: cursor + 1,
-        kind: "string",
-        raw,
-      };
-    }
-
-    if (char === "\\") {
-      if (cursor + 1 >= text.length) {
-        return null;
-      }
-
-      raw += text.slice(cursor, cursor + 2);
-      cursor += 2;
-      continue;
-    }
-
-    if (char.charCodeAt(0) < 32) {
-      return null;
-    }
-
-    raw += char;
-    cursor += 1;
+  try {
+    return JSON.parse(nodeText(text, node));
+  } catch {
+    return null;
   }
-
-  return null;
 }
 
-function readLiteral(text, index) {
-  let cursor = index;
-
-  while (cursor < text.length && !isDelimiter(text[cursor])) {
-    cursor += 1;
-  }
-
-  if (cursor === index) {
+function versionDiagnostic(text, key, valueNode) {
+  if (!PACKAGES.has(key) || valueNode?.type !== "string") {
     return null;
   }
 
-  return { end: cursor, kind: "literal" };
-}
+  const spec = nodeString(text, valueNode);
 
-function readArray(text, index) {
-  if (text[index] !== "[") {
-    return null;
-  }
-
-  let depth = 0;
-
-  for (let cursor = index; cursor < text.length; cursor += 1) {
-    const char = text[cursor];
-
-    if (char === '"') {
-      const value = readString(text, cursor);
-
-      if (!value) {
-        return null;
-      }
-
-      cursor = value.end - 1;
-      continue;
-    }
-
-    if (char === "[" || char === "{") {
-      depth += 1;
-      continue;
-    }
-
-    if (char !== "]" && char !== "}") {
-      continue;
-    }
-
-    depth -= 1;
-
-    if (depth === 0) {
-      return { end: cursor + 1, kind: "array" };
-    }
-  }
-
-  return null;
-}
-
-function readValue(text, index) {
-  const char = text[index];
-
-  if (char === '"') {
-    return readString(text, index);
-  }
-
-  if (char === "{") {
-    return readObject(text, index);
-  }
-
-  if (char === "[") {
-    return readArray(text, index);
-  }
-
-  return readLiteral(text, index);
-}
-
-function readObject(text, index) {
-  if (text[index] !== "{") {
-    return null;
-  }
-
-  const properties = [];
-  let cursor = skipSpace(text, index + 1);
-
-  if (text[cursor] === "}") {
-    return { end: cursor + 1, kind: "object", properties };
-  }
-
-  while (cursor < text.length) {
-    const key = readString(text, cursor);
-
-    if (!key) {
-      return null;
-    }
-
-    cursor = skipSpace(text, key.end);
-
-    if (text[cursor] !== ":") {
-      return null;
-    }
-
-    const value = readValue(text, skipSpace(text, cursor + 1));
-
-    if (!value) {
-      return null;
-    }
-
-    properties.push({ key: key.raw, value });
-    cursor = skipSpace(text, value.end);
-
-    if (text[cursor] === ",") {
-      cursor = skipSpace(text, cursor + 1);
-      continue;
-    }
-
-    if (text[cursor] === "}") {
-      return { end: cursor + 1, kind: "object", properties };
-    }
-
-    return null;
-  }
-
-  return null;
-}
-
-function versionDiagnostic(property) {
-  if (property.value.kind !== "string" || !PACKAGES.has(property.key)) {
-    return null;
-  }
-
-  if (!isAlpha1(property.value.raw)) {
+  if (!spec || !isAlpha1(spec)) {
     return null;
   }
 
   return {
     code: ALPHA1_CODE,
-    end: property.value.contentEnd,
+    end: valueNode.offset + valueNode.length - 1,
     message: translate(
       "{0} 6.0.0-alpha.1 is out of date. Update to 6.0.0-alpha.2.",
-      property.key,
+      key,
     ),
     severity: "warning",
-    start: property.value.contentStart,
+    start: valueNode.offset + 1,
   };
 }
 
-function versionsIn(section) {
+function versionsInObject(text, objectNode) {
   const found = [];
 
-  for (const property of section.properties) {
-    if (property.value.kind === "object") {
-      found.push(...versionsIn(property.value));
+  if (!objectNode || objectNode.type !== "object") {
+    return found;
+  }
+
+  for (const child of objectNode.children ?? []) {
+    if (child.type !== "property") {
       continue;
     }
 
-    const item = versionDiagnostic(property);
+    const key = nodeString(text, child.children?.[0]);
+
+    if (!key) {
+      continue;
+    }
+
+    const value = child.children?.[1];
+
+    if (!value) {
+      continue;
+    }
+
+    if (value.type === "object") {
+      found.push(...versionsInObject(text, value));
+      continue;
+    }
+
+    const item = versionDiagnostic(text, key, value);
 
     if (item) {
       found.push(item);
@@ -243,34 +105,46 @@ function versionsIn(section) {
   return found;
 }
 
-function diagnosticsIn(root) {
+function diagnosticsIn(text, root) {
   const found = [];
 
-  for (const property of root.properties) {
-    if (!SECTIONS.has(property.key) || property.value.kind !== "object") {
+  for (const child of root.children ?? []) {
+    if (child.type !== "property") {
       continue;
     }
 
-    found.push(...versionsIn(property.value));
+    const key = nodeString(text, child.children?.[0]);
+    const value = child.children?.[1];
+
+    if (!key || !value || !SECTIONS.has(key) || value.type !== "object") {
+      continue;
+    }
+
+    found.push(...versionsInObject(text, value));
   }
 
   return found;
 }
 
 function diagnoseDependencies(text) {
-  try {
-    JSON.parse(text);
-  } catch {
+  const errors = [];
+
+  parse(text, errors, {
+    allowTrailingComma: true,
+    disallowComments: false,
+  });
+
+  if (errors.length > 0) {
     return [];
   }
 
-  const root = readObject(text, skipSpace(text, 0));
+  const root = parseTree(text);
 
-  if (!root) {
+  if (!root || root.type !== "object") {
     return [];
   }
 
-  return diagnosticsIn(root);
+  return diagnosticsIn(text, root);
 }
 
 module.exports = {

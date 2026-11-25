@@ -71,6 +71,17 @@ describe("diagnostics", () => {
     );
   });
 
+  it("ignores bootstrap-ng markup in unrelated TypeScript template literals", () => {
+    const source = `const tpl = \`<div bsAlert theme="bad"></div>\`;
+
+@Component({
+  template: \`<motion.div bsAlert theme="success"></motion.div>\`,
+})
+export class App {}
+`;
+    assert.deepEqual(diagnose(source, "typescript"), []);
+  });
+
   it("can turn each diagnostic off", () => {
     const theme = '<button type="button" bsButton theme="blue"></button>';
     const toggle = '<button data-bs-toggle="modal"></button>';

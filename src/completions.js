@@ -477,6 +477,21 @@ function importCompletions(context) {
     );
 }
 
+/*
+ * Fits a completion into a single- or double-quoted inline template: joins
+ * multiline snippets onto one line and escapes the quote, so the insertion
+ * does not end the TypeScript string. Snippet text needs the backslash itself
+ * escaped.
+ */
+function fitTemplateString(item, quote) {
+  const escaped = item.snippet ? `\\\\${quote}` : `\\${quote}`;
+  const insertText = item.insertText
+    .replace(/\n[ \t]*/gu, "")
+    .replaceAll(quote, escaped);
+
+  return insertText === item.insertText ? item : { ...item, insertText };
+}
+
 function complete(text, offset, languageId) {
   const context = analyze(text, offset, languageId);
 
@@ -484,6 +499,14 @@ function complete(text, offset, languageId) {
     return [];
   }
 
+  const items = contextCompletions(context, languageId);
+
+  return context.templateQuote
+    ? items.map((item) => fitTemplateString(item, context.templateQuote))
+    : items;
+}
+
+function contextCompletions(context, languageId) {
   if (context.kind === "import") {
     return importCompletions(context);
   }

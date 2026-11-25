@@ -839,10 +839,14 @@ function analyzeTypeScript(text, offset) {
   );
 
   if (range) {
-    return shiftContext(
+    const context = shiftContext(
       htmlContext(range.content, offset - range.start),
       range.start,
     );
+
+    return range.quote === "`"
+      ? context
+      : { ...context, templateQuote: range.quote };
   }
 
   return importContext(text, offset) ?? identifierContext(text, offset);

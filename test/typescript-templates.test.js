@@ -68,6 +68,40 @@ export class App {}`;
     );
   });
 
+  it("checks templates written as single- or double-quoted strings", () => {
+    for (const quote of ["'", '"']) {
+      const attr = quote === "'" ? '"' : "'";
+      const source = `@Component({ selector: 'app-root', template: ${quote}<div bsAlert theme=${attr}primray${attr}></div>${quote} })
+export class App {}`;
+      const found = diagnose(source, "typescript");
+
+      assert.deepEqual(found.map((item) => item.code).sort(), [
+        "invalid-value",
+        "missing-import",
+      ]);
+      assert.equal(
+        source.slice(found[0].start, found[0].end),
+        "primray",
+        quote,
+      );
+    }
+  });
+
+  it("keeps completions inside a quoted template string", () => {
+    const source = `@Component({ selector: 'app-root', template: "<div [ngClass]='{}'></div> bs-alert" })
+export class App {}`;
+    const snippet = complete(
+      source,
+      source.indexOf("bs-alert") + 8,
+      "typescript",
+    ).find((item) => item.label === "bs-alert");
+    const key = complete(source, source.indexOf("{}") + 1, "typescript")[0];
+
+    assert.doesNotMatch(snippet.insertText, /\n/u);
+    assert.doesNotMatch(snippet.insertText, /[^\\]"/u);
+    assert.match(key.insertText, /^\\".+\\"$/u);
+  });
+
   it("re-reads package.json from disk when it closes instead of clearing it", () => {
     const extension = fs.readFileSync(
       path.join(__dirname, "../src/extension.js"),

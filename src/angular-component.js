@@ -398,7 +398,7 @@ function findProperty(text, from, to, property, bracket) {
       continue;
     }
 
-    valueStart = skipTrivia(text, valueStart + 1);
+    valueStart = skipBeforeProperty(text, valueStart + 1);
 
     if (
       key.name === property &&
@@ -413,58 +413,66 @@ function findProperty(text, from, to, property, bracket) {
   return -1;
 }
 
-function inlineTemplate(tsText, component) {
-  const start = findProperty(
+function closingQuote(text, start, quote) {
+  let index = start;
+
+  while (index < text.length && text[index] !== quote) {
+    if (text[index] === "\n") {
+      return -1;
+    }
+
+    index += text[index] === "\\" ? 2 : 1;
+  }
+
+  return index < text.length ? index : -1;
+}
+
+/*
+ * The inline template of a component, written as a template literal or as a
+ * single- or double-quoted string.
+ */
+function templateRange(tsText, component) {
+  const open = findProperty(
     tsText,
     component.open,
     component.close,
     "template",
-    "`",
+    null,
   );
 
-  if (start === -1) {
+  if (open === -1) {
     return null;
   }
 
-  const end = closingBacktick(tsText, start + 1);
+  const quote = tsText[open];
+  let close = -1;
 
-  if (end === -1 || end > component.close) {
+  if (quote === "`") {
+    close = closingBacktick(tsText, open + 1);
+  } else if (quote === "'" || quote === '"') {
+    close = closingQuote(tsText, open + 1, quote);
+  }
+
+  if (close === -1 || close > component.close) {
     return null;
   }
 
-  return tsText.slice(start + 1, end);
+  return {
+    content: tsText.slice(open + 1, close),
+    end: close,
+    quote,
+    start: open + 1,
+  };
+}
+
+function inlineTemplate(tsText, component) {
+  return templateRange(tsText, component)?.content ?? null;
 }
 
 function componentTemplateRanges(tsText) {
-  const ranges = [];
-
-  for (const component of componentsIn(tsText)) {
-    const open = findProperty(
-      tsText,
-      component.open,
-      component.close,
-      "template",
-      "`",
-    );
-
-    if (open === -1) {
-      continue;
-    }
-
-    const close = closingBacktick(tsText, open + 1);
-
-    if (close === -1 || close > component.close) {
-      continue;
-    }
-
-    ranges.push({
-      content: tsText.slice(open + 1, close),
-      end: close,
-      start: open + 1,
-    });
-  }
-
-  return ranges;
+  return componentsIn(tsText)
+    .map((component) => templateRange(tsText, component))
+    .filter(Boolean);
 }
 
 module.exports = {
@@ -475,4 +483,5 @@ module.exports = {
   inlineTemplate,
   matchingBracket,
   skipCode,
+  templateRange,
 };

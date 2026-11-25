@@ -1,0 +1,21 @@
+{
+  "**{0}** on `{1}`": "`{1}` の **{0}**",
+  "[Docs]({0})": "[ドキュメント]({0})",
+  "Bootstrap 5 {0}=\"{1}\" is handled by {2} in bootstrap-ng.": "Bootstrap 5 の {0}=\"{1}\" は、bootstrap-ng では {2} で扱います。",
+  "Default: `{0}`.": "既定値: `{0}`。",
+  "Import {0} from bootstrap-ng": "{0} を bootstrap-ng からインポート",
+  "Import bootstrap-ng directives": "bootstrap-ng のディレクティブをインポート",
+  "Open bootstrap-ng documentation": "bootstrap-ng のドキュメントを開く",
+  "Selector: `{0}`": "セレクター: `{0}`",
+  "Supports `[({0})]`.": "`[({0})]` に対応しています。",
+  "Update to 6.0.0-alpha.2": "6.0.0-alpha.2 に更新",
+  "{0} 6.0.0-alpha.1 is out of date. Update to 6.0.0-alpha.2.": "{0} の 6.0.0-alpha.1 は古くなっています。6.0.0-alpha.2 に更新してください。",
+  "{0}=\"{1}\" is not a documented bootstrap-ng value. Expected {2}.": "{0}=\"{1}\" は bootstrap-ng のドキュメントにある値ではありません。使用できる値: {2}。",
+  "bsAlert with dismissible": "dismissible を付けた bsAlert",
+  "config": "設定関数",
+  "constant": "定数",
+  "directive": "ディレクティブ",
+  "function": "関数",
+  "service": "サービス",
+  "type": "型"
+}

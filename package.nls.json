@@ -1,0 +1,6 @@
+{
+  "command.openDocs.title": "Open Documentation",
+  "description": "Autocomplete, hovers, snippets, and diagnostics for bootstrap-ng in Angular templates.",
+  "setting.hintBootstrap5DataApi.description": "Hint when a Bootstrap 5 data-bs-toggle or data-bs-dismiss attribute should be a bootstrap-ng directive.",
+  "setting.validateAttributeValues.description": "Warn when a bootstrap-ng attribute uses a value outside its documented set."
+}

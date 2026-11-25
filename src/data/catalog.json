@@ -1,0 +1,5799 @@
+{
+  "symbols": [
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/getting-started/services/",
+      "entry": null,
+      "exportAs": null,
+      "inputs": [],
+      "kind": "constant",
+      "name": "BOOTSTRAP_NG",
+      "outputs": [],
+      "selector": null,
+      "summary": "An array of every component and directive, to add to a component's imports while prototyping. Import single components in production code so unused ones are removed from your bundle. See Conventions.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/getting-started/services/",
+      "entry": null,
+      "exportAs": null,
+      "inputs": [],
+      "kind": "function",
+      "name": "bootstrapIcons",
+      "outputs": [],
+      "selector": null,
+      "summary": "Built-in icon library factory for bootstrapIcons.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsAccordion"],
+      "docUrl": "https://bootstrap-ng.com/components/accordion/#api",
+      "entry": "accordion",
+      "exportAs": "bsAccordion",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Theme color of open items.",
+          "model": false,
+          "name": "theme",
+          "type": "BsTheme | null",
+          "values": [
+            "primary",
+            "accent",
+            "success",
+            "danger",
+            "warning",
+            "info",
+            "inverse",
+            "secondary"
+          ]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'md'",
+          "description": "Accordion size.",
+          "model": false,
+          "name": "size",
+          "type": "'sm' | 'md'",
+          "values": ["sm", "md"]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Removes the outer borders and rounded corners.",
+          "model": false,
+          "name": "flush",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Allows only one item to be open at a time.",
+          "model": false,
+          "name": "exclusive",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "generated",
+          "description": "Group name shared by the <details> elements.",
+          "model": false,
+          "name": "name",
+          "type": "string",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsAccordion",
+      "outputs": [],
+      "selector": "[bsAccordion]",
+      "summary": "Vertically collapsing sections built on native <details> and <summary> elements.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsAccordionBody"],
+      "docUrl": "https://bootstrap-ng.com/components/accordion/#api",
+      "entry": "accordion",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "directive",
+      "name": "BsAccordionBody",
+      "outputs": [],
+      "selector": "[bsAccordionBody]",
+      "summary": "Vertically collapsing sections built on native <details> and <summary> elements.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsAccordionHeader"],
+      "docUrl": "https://bootstrap-ng.com/components/accordion/#api",
+      "entry": "accordion",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "directive",
+      "name": "BsAccordionHeader",
+      "outputs": [],
+      "selector": "summary[bsAccordionHeader]",
+      "summary": "Vertically collapsing sections built on native <details> and <summary> elements.",
+      "tags": ["summary"]
+    },
+    {
+      "attributes": ["bsAccordionItem"],
+      "docUrl": "https://bootstrap-ng.com/components/accordion/#api",
+      "entry": "accordion",
+      "exportAs": "bsAccordionItem",
+      "inputs": [
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Whether the item is open. Supports [(open)].",
+          "model": true,
+          "name": "open",
+          "type": "boolean",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsAccordionItem",
+      "outputs": [
+        {
+          "description": "Emits when the user opens or closes the item.",
+          "name": "openChange",
+          "type": "boolean"
+        }
+      ],
+      "selector": "details[bsAccordionItem]",
+      "summary": "Vertically collapsing sections built on native <details> and <summary> elements.",
+      "tags": ["details"]
+    },
+    {
+      "attributes": ["bsAlert"],
+      "docUrl": "https://bootstrap-ng.com/components/alert/#api",
+      "entry": "alert",
+      "exportAs": "bsAlert",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Theme color of the alert.",
+          "model": false,
+          "name": "theme",
+          "type": "BsTheme | null",
+          "values": [
+            "primary",
+            "accent",
+            "success",
+            "danger",
+            "warning",
+            "info",
+            "inverse",
+            "secondary"
+          ]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Shows a close button.",
+          "model": false,
+          "name": "dismissible",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Close'",
+          "description": "Accessible label of the close button.",
+          "model": false,
+          "name": "closeLabel",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Fades the alert out when it closes.",
+          "model": false,
+          "name": "animation",
+          "type": "boolean",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsAlert",
+      "outputs": [
+        {
+          "description": "Emits when the alert starts to close.",
+          "name": "closing",
+          "type": "void"
+        },
+        {
+          "description": "Emits after the alert is closed and its transition has finished.",
+          "name": "closed",
+          "type": "void"
+        }
+      ],
+      "selector": "[bsAlert]",
+      "summary": "Contextual feedback messages for typical user actions.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsAvatar"],
+      "docUrl": "https://bootstrap-ng.com/components/avatar/#api",
+      "entry": "avatar",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Image URL. Without it, the content (initials) shows.",
+          "model": false,
+          "name": "src",
+          "type": "string | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "''",
+          "description": "Text alternative of the image.",
+          "model": false,
+          "name": "alt",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'md'",
+          "description": "Size of the avatar.",
+          "model": false,
+          "name": "size",
+          "type": "'xs' | 'sm' | 'md' | 'lg' | 'xl'",
+          "values": ["xs", "sm", "md", "lg", "xl"]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Theme color for initials.",
+          "model": false,
+          "name": "theme",
+          "type": "BsTheme | null",
+          "values": [
+            "primary",
+            "accent",
+            "success",
+            "danger",
+            "warning",
+            "info",
+            "inverse",
+            "secondary"
+          ]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Uses a subtle background.",
+          "model": false,
+          "name": "subtle",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Presence indicator.",
+          "model": false,
+          "name": "status",
+          "type": "'online' | 'offline' | 'busy' | 'away' | null",
+          "values": ["online", "offline", "busy", "away"]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Accessible label of the status. Defaults to its name.",
+          "model": false,
+          "name": "statusLabel",
+          "type": "string | null",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsAvatar",
+      "outputs": [],
+      "selector": "span[bsAvatar], div[bsAvatar], a[bsAvatar]",
+      "summary": "Users or entities shown as an image or initials, with sizes, status indicators and stacks.",
+      "tags": ["span", "div", "a"]
+    },
+    {
+      "attributes": ["bsBadge"],
+      "docUrl": "https://bootstrap-ng.com/components/badge/#api",
+      "entry": "badge",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Theme color of the badge.",
+          "model": false,
+          "name": "theme",
+          "type": "BsTheme | null",
+          "values": [
+            "primary",
+            "accent",
+            "success",
+            "danger",
+            "warning",
+            "info",
+            "inverse",
+            "secondary"
+          ]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'solid'",
+          "description": "Visual style.",
+          "model": false,
+          "name": "variant",
+          "type": "'solid' | 'subtle' | 'outline'",
+          "values": ["solid", "subtle", "outline"]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Gives the badge fully rounded ends.",
+          "model": false,
+          "name": "pill",
+          "type": "boolean",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsBadge",
+      "outputs": [],
+      "selector": "[bsBadge]",
+      "summary": "Small components for counts and labels.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsBreadcrumb"],
+      "docUrl": "https://bootstrap-ng.com/components/breadcrumb/#api",
+      "entry": "breadcrumb",
+      "exportAs": "bsBreadcrumb",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "required",
+          "description": "Pages from the top level down to the current page: { label, href? }.",
+          "model": false,
+          "name": "items",
+          "type": "BsBreadcrumbItem[]",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "''",
+          "description": "Divider text. Empty uses Bootstrap’s chevron icon.",
+          "model": false,
+          "name": "divider",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Breadcrumb'",
+          "description": "Accessible name of the navigation landmark.",
+          "model": false,
+          "name": "label",
+          "type": "string",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsBreadcrumb",
+      "outputs": [],
+      "selector": "nav[bsBreadcrumb]",
+      "summary": "Shows the current page’s location within the site’s hierarchy.",
+      "tags": ["nav"]
+    },
+    {
+      "attributes": ["bsBreadcrumbLink"],
+      "docUrl": "https://bootstrap-ng.com/components/breadcrumb/#api",
+      "entry": "breadcrumb",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "directive",
+      "name": "BsBreadcrumbLink",
+      "outputs": [],
+      "selector": "ng-template[bsBreadcrumbLink]",
+      "summary": "Shows the current page’s location within the site’s hierarchy.",
+      "tags": ["ng-template"]
+    },
+    {
+      "attributes": ["bsButton"],
+      "docUrl": "https://bootstrap-ng.com/components/button/#api",
+      "entry": "button",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "'solid'",
+          "description": "Visual style.",
+          "model": false,
+          "name": "bsButton",
+          "type": "'solid' | 'outline' | 'subtle' | 'text' | 'link' | 'base'",
+          "values": ["solid", "outline", "subtle", "text", "link", "base"]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Theme color.",
+          "model": false,
+          "name": "theme",
+          "type": "BsTheme | null",
+          "values": [
+            "primary",
+            "accent",
+            "success",
+            "danger",
+            "warning",
+            "info",
+            "inverse",
+            "secondary"
+          ]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'md'",
+          "description": "Button size.",
+          "model": false,
+          "name": "size",
+          "type": "'xs' | 'sm' | 'md' | 'lg'",
+          "values": ["xs", "sm", "md", "lg"]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Square button for a single icon.",
+          "model": false,
+          "name": "icon",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Adds a gradient and shadow.",
+          "model": false,
+          "name": "styled",
+          "type": "boolean",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsButton",
+      "outputs": [],
+      "selector": "button[bsButton], a[bsButton], input[bsButton]",
+      "summary": "Bootstrap button styles for <button>, <a> and <input> elements.",
+      "tags": ["button", "a", "input"]
+    },
+    {
+      "attributes": ["bsButtonGroup"],
+      "docUrl": "https://bootstrap-ng.com/components/button-group/#api",
+      "entry": "button-group",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "'md'",
+          "description": "Size of every button in the group.",
+          "model": false,
+          "name": "size",
+          "type": "'xs' | 'sm' | 'md' | 'lg'",
+          "values": ["xs", "sm", "md", "lg"]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Stacks the buttons.",
+          "model": false,
+          "name": "vertical",
+          "type": "boolean",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsButtonGroup",
+      "outputs": [],
+      "selector": "[bsButtonGroup]",
+      "summary": "Group a series of buttons on one line, stack them in a column, or combine groups in a toolbar.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsButtonToolbar"],
+      "docUrl": "https://bootstrap-ng.com/components/button-group/#api",
+      "entry": "button-group",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "directive",
+      "name": "BsButtonToolbar",
+      "outputs": [],
+      "selector": "[bsButtonToolbar]",
+      "summary": "Group a series of buttons on one line, stack them in a column, or combine groups in a toolbar.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsCalendar"],
+      "docUrl": "https://bootstrap-ng.com/forms/datepicker/#api",
+      "entry": "datepicker",
+      "exportAs": "bsCalendar",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "ISO date, or an array of them with multiple and range. Supports [(value)].",
+          "model": true,
+          "name": "value",
+          "type": "BsDateValue",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'single'",
+          "description": "How dates are selected.",
+          "model": false,
+          "name": "selectionMode",
+          "type": "'single' | 'multiple' | 'range'",
+          "values": ["single", "multiple", "range"]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Earliest selectable date, as YYYY-MM-DD.",
+          "model": false,
+          "name": "min",
+          "type": "string | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Latest selectable date, as YYYY-MM-DD.",
+          "model": false,
+          "name": "max",
+          "type": "string | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Returns true for dates that can’t be selected.",
+          "model": false,
+          "name": "dateDisabled",
+          "type": "((iso: string) => boolean) | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "1",
+          "description": "First day of the week: 0 for Sunday, 1 for Monday.",
+          "model": false,
+          "name": "firstWeekday",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "1",
+          "description": "Number of months shown side by side.",
+          "model": false,
+          "name": "monthsCount",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Shows the week numbers before each week.",
+          "model": false,
+          "name": "weekNumbers",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'iso'",
+          "description": "How weeks are numbered: ISO 8601, or from the week holding 1 January.",
+          "model": false,
+          "name": "weekNumbering",
+          "type": "'iso' | 'simple'",
+          "values": ["iso", "simple"]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Shows years as Japanese era years, such as 令和8年（2026）.",
+          "model": false,
+          "name": "wareki",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "LOCALE_ID",
+          "description": "Locale for dates and month and day names. Set undefined to use the browser’s language.",
+          "model": false,
+          "name": "locale",
+          "type": "string | undefined",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Forces a color mode for the calendar.",
+          "model": false,
+          "name": "colorMode",
+          "type": "'light' | 'dark' | null",
+          "values": ["light", "dark"]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Previous month'",
+          "description": "Accessible name of the previous month button.",
+          "model": false,
+          "name": "prevLabel",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Next month'",
+          "description": "Accessible name of the next month button.",
+          "model": false,
+          "name": "nextLabel",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Hides the neighboring months’ days. Always hidden with several months.",
+          "model": false,
+          "name": "hideOutsideDays",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Week'",
+          "description": "Accessible name of the week numbers column.",
+          "model": false,
+          "name": "weekLabel",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Makes the month in the header a button that shows the months to pick from.",
+          "model": false,
+          "name": "monthSelection",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Makes the year in the header a button that shows the years to pick from.",
+          "model": false,
+          "name": "yearSelection",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Choose month'",
+          "description": "Description of the month button in the header.",
+          "model": false,
+          "name": "monthSelectionLabel",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Choose year'",
+          "description": "Description of the year button in the header.",
+          "model": false,
+          "name": "yearSelectionLabel",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Previous years'",
+          "description": "Accessible name of the previous button while years are shown.",
+          "model": false,
+          "name": "prevYearsLabel",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Next years'",
+          "description": "Accessible name of the next button while years are shown.",
+          "model": false,
+          "name": "nextYearsLabel",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Disables the control. Forms also disable it through the form control.",
+          "model": false,
+          "name": "disabled",
+          "type": "boolean",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsCalendar",
+      "outputs": [
+        {
+          "description": "Emits the value when the user picks a date.",
+          "name": "valueChange",
+          "type": "BsDateValue"
+        },
+        {
+          "description": "Emits when a date, or a range’s end date, is picked.",
+          "name": "selectionComplete",
+          "type": "BsDateValue"
+        }
+      ],
+      "selector": "[bsCalendar]",
+      "summary": "A calendar and date picker popup, opened from an input or a button, with range selection, multiple months and more.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsCarousel"],
+      "docUrl": "https://bootstrap-ng.com/components/carousel/#api",
+      "entry": "carousel",
+      "exportAs": "bsCarousel",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "0",
+          "description": "Index of the active slide. Supports [(active)].",
+          "model": true,
+          "name": "active",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Cycles through the slides.",
+          "model": false,
+          "name": "autoplay",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "5000",
+          "description": "Milliseconds between slides while playing.",
+          "model": false,
+          "name": "interval",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Pauses autoplay while the pointer is over the carousel.",
+          "model": false,
+          "name": "pauseOnHover",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'loop'",
+          "description": "What happens past the first and last slide.",
+          "model": false,
+          "name": "ends",
+          "type": "'loop' | 'wrap' | 'stop'",
+          "values": ["loop", "wrap", "stop"]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Moves between slides with the arrow keys.",
+          "model": false,
+          "name": "keyboard",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "generated",
+          "description": "Element id, used by the controls for aria-controls.",
+          "model": false,
+          "name": "id",
+          "type": "string",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsCarousel",
+      "outputs": [
+        {
+          "description": "Emits the new active slide index.",
+          "name": "activeChange",
+          "type": "number"
+        }
+      ],
+      "selector": "[bsCarousel]",
+      "summary": "A slideshow built on CSS scroll snapping: the browser handles sliding, swiping and momentum, and bootstrap-ng handles the active slide, controls, keyboard and autoplay.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsCarouselIndicator"],
+      "docUrl": "https://bootstrap-ng.com/components/carousel/#api",
+      "entry": "carousel",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "required",
+          "description": "Index of the slide it shows.",
+          "model": false,
+          "name": "bsCarouselIndicator",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "Slide n",
+          "description": "Accessible label.",
+          "model": false,
+          "name": "aria-label",
+          "type": "string",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsCarouselIndicator",
+      "outputs": [],
+      "selector": "[bsCarouselIndicator]",
+      "summary": "A slideshow built on CSS scroll snapping: the browser handles sliding, swiping and momentum, and bootstrap-ng handles the active slide, controls, keyboard and autoplay.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsCarouselItem"],
+      "docUrl": "https://bootstrap-ng.com/components/carousel/#api",
+      "entry": "carousel",
+      "exportAs": "bsCarouselItem",
+      "inputs": [],
+      "kind": "directive",
+      "name": "BsCarouselItem",
+      "outputs": [],
+      "selector": "[bsCarouselItem]",
+      "summary": "A slideshow built on CSS scroll snapping: the browser handles sliding, swiping and momentum, and bootstrap-ng handles the active slide, controls, keyboard and autoplay.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsCarouselNext"],
+      "docUrl": "https://bootstrap-ng.com/components/carousel/#api",
+      "entry": "carousel",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "directive",
+      "name": "BsCarouselNext",
+      "outputs": [],
+      "selector": "[bsCarouselNext]",
+      "summary": "A slideshow built on CSS scroll snapping: the browser handles sliding, swiping and momentum, and bootstrap-ng handles the active slide, controls, keyboard and autoplay.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsCarouselPlayPause"],
+      "docUrl": "https://bootstrap-ng.com/components/carousel/#api",
+      "entry": "carousel",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "'Pause'",
+          "description": "Accessible label while playing.",
+          "model": false,
+          "name": "pauseLabel",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Play'",
+          "description": "Accessible label while paused.",
+          "model": false,
+          "name": "playLabel",
+          "type": "string",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsCarouselPlayPause",
+      "outputs": [],
+      "selector": "[bsCarouselPlayPause]",
+      "summary": "A slideshow built on CSS scroll snapping: the browser handles sliding, swiping and momentum, and bootstrap-ng handles the active slide, controls, keyboard and autoplay.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsCarouselPrev"],
+      "docUrl": "https://bootstrap-ng.com/components/carousel/#api",
+      "entry": "carousel",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "directive",
+      "name": "BsCarouselPrev",
+      "outputs": [],
+      "selector": "[bsCarouselPrev]",
+      "summary": "A slideshow built on CSS scroll snapping: the browser handles sliding, swiping and momentum, and bootstrap-ng handles the active slide, controls, keyboard and autoplay.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsCheck"],
+      "docUrl": "https://bootstrap-ng.com/forms/checkbox/#api",
+      "entry": "checkbox",
+      "exportAs": "bsCheck",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Theme color of the checked checkbox.",
+          "model": false,
+          "name": "theme",
+          "type": "BsTheme | null",
+          "values": [
+            "primary",
+            "accent",
+            "success",
+            "danger",
+            "warning",
+            "info",
+            "inverse",
+            "secondary"
+          ]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'md'",
+          "description": "Size of the checkbox.",
+          "model": false,
+          "name": "size",
+          "type": "'sm' | 'md' | 'lg'",
+          "values": ["sm", "md", "lg"]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Shows the indeterminate mark. Supports [(indeterminate)].",
+          "model": true,
+          "name": "indeterminate",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "generated",
+          "description": "Element id. Generated when not set, and used for the field’s label.",
+          "model": false,
+          "name": "id",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'auto'",
+          "description": "Validation styles. auto follows the bound Angular form control.",
+          "model": false,
+          "name": "validation",
+          "type": "'auto' | 'valid' | 'invalid' | 'none'",
+          "values": ["auto", "valid", "invalid", "none"]
+        }
+      ],
+      "kind": "directive",
+      "name": "BsCheck",
+      "outputs": [
+        {
+          "description": "Emits false when the user toggles an indeterminate checkbox.",
+          "name": "indeterminateChange",
+          "type": "boolean"
+        }
+      ],
+      "selector": "input[type=checkbox][bsCheck]",
+      "summary": "Native checkboxes with theme colors, sizes and an indeterminate state.",
+      "tags": ["input"]
+    },
+    {
+      "attributes": ["bsChip"],
+      "docUrl": "https://bootstrap-ng.com/forms/chips/#api",
+      "entry": "chips",
+      "exportAs": "bsChip",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Theme color of the chip.",
+          "model": false,
+          "name": "theme",
+          "type": "BsTheme | null",
+          "values": [
+            "primary",
+            "accent",
+            "success",
+            "danger",
+            "warning",
+            "info",
+            "inverse",
+            "secondary"
+          ]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Solid appearance, for example for a selected chip.",
+          "model": false,
+          "name": "active",
+          "type": "boolean",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsChip",
+      "outputs": [],
+      "selector": "[bsChip]",
+      "summary": "Small interactive elements for people, places, tags or values, and a chip input for multi-value fields like skills, categories or email recipients.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsChipDismiss"],
+      "docUrl": "https://bootstrap-ng.com/forms/chips/#api",
+      "entry": "chips",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "'Remove'",
+          "description": "Accessible name of the button. Name the chip in it.",
+          "model": false,
+          "name": "aria-label",
+          "type": "string",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsChipDismiss",
+      "outputs": [],
+      "selector": "button[bsChipDismiss]",
+      "summary": "Small interactive elements for people, places, tags or values, and a chip input for multi-value fields like skills, categories or email recipients.",
+      "tags": ["button"]
+    },
+    {
+      "attributes": ["bsChipInput"],
+      "docUrl": "https://bootstrap-ng.com/forms/chips/#api",
+      "entry": "chips",
+      "exportAs": "bsChipInput",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "[]",
+          "description": "The chips. Supports two-way binding with [(value)].",
+          "model": true,
+          "name": "value",
+          "type": "string[]",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Theme color of the chips.",
+          "model": false,
+          "name": "theme",
+          "type": "BsTheme | null",
+          "values": [
+            "primary",
+            "accent",
+            "success",
+            "danger",
+            "warning",
+            "info",
+            "inverse",
+            "secondary"
+          ]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "','",
+          "description": "Character that adds a chip when typed. Enter always adds one.",
+          "model": false,
+          "name": "separator",
+          "type": "string | null",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Allows the same value more than once.",
+          "model": false,
+          "name": "allowDuplicates",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Maximum number of chips.",
+          "model": false,
+          "name": "maxChips",
+          "type": "number | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "''",
+          "description": "Placeholder of the input.",
+          "model": false,
+          "name": "placeholder",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Shows a remove button on each chip.",
+          "model": false,
+          "name": "dismissible",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Adds the typed text as a chip when focus leaves the input.",
+          "model": false,
+          "name": "createOnBlur",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Remove'",
+          "description": "Start of the remove buttons’ accessible names, followed by the chip.",
+          "model": false,
+          "name": "removeLabel",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Accessible name of the input, when it has no visible label.",
+          "model": false,
+          "name": "aria-label",
+          "type": "string | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'auto'",
+          "description": "Validation styles of the input.",
+          "model": false,
+          "name": "validation",
+          "type": "'auto' | 'valid' | 'invalid' | 'none'",
+          "values": ["auto", "valid", "invalid", "none"]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Disables the control. Forms also disable it through the form control.",
+          "model": false,
+          "name": "disabled",
+          "type": "boolean",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsChipInput",
+      "outputs": [
+        {
+          "description": "Emits the chips when the user adds or removes one.",
+          "name": "valueChange",
+          "type": "string[]"
+        }
+      ],
+      "selector": "div[bsChipInput]",
+      "summary": "Small interactive elements for people, places, tags or values, and a chip input for multi-value fields like skills, categories or email recipients.",
+      "tags": ["div"]
+    },
+    {
+      "attributes": ["bsCloseButton"],
+      "docUrl": "https://bootstrap-ng.com/components/close-button/#api",
+      "entry": "close-button",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "'Close'",
+          "description": "Accessible label of the button.",
+          "model": false,
+          "name": "aria-label",
+          "type": "string",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsCloseButton",
+      "outputs": [],
+      "selector": "button[bsCloseButton]",
+      "summary": "A generic close button for dialogs, alerts and more.",
+      "tags": ["button"]
+    },
+    {
+      "attributes": ["bsCollapse"],
+      "docUrl": "https://bootstrap-ng.com/components/collapse/#api",
+      "entry": "collapse",
+      "exportAs": "bsCollapse",
+      "inputs": [
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Whether the content is shown. Supports [(open)].",
+          "model": true,
+          "name": "open",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Animates the width instead of the height.",
+          "model": false,
+          "name": "horizontal",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "generated",
+          "description": "Element id, used for aria-controls.",
+          "model": false,
+          "name": "id",
+          "type": "string",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsCollapse",
+      "outputs": [
+        {
+          "description": "Emits when a method or toggle changes the state.",
+          "name": "openChange",
+          "type": "boolean"
+        },
+        {
+          "description": "Emits after the content is shown.",
+          "name": "shown",
+          "type": "void"
+        },
+        {
+          "description": "Emits after the content is hidden.",
+          "name": "hidden",
+          "type": "void"
+        }
+      ],
+      "selector": "[bsCollapse]",
+      "summary": "Show and hide content. Bootstrap 6 animates the size in CSS, so there is no JavaScript animation code.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsCollapseToggle"],
+      "docUrl": "https://bootstrap-ng.com/components/collapse/#api",
+      "entry": "collapse",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "required",
+          "description": "The collapse to toggle.",
+          "model": false,
+          "name": "bsCollapseToggle",
+          "type": "BsCollapse",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsCollapseToggle",
+      "outputs": [],
+      "selector": "[bsCollapseToggle]",
+      "summary": "Show and hide content. Bootstrap 6 animates the size in CSS, so there is no JavaScript animation code.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsCombobox"],
+      "docUrl": "https://bootstrap-ng.com/forms/combobox/#api",
+      "entry": "combobox",
+      "exportAs": "bsCombobox",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "",
+          "description": "The menu of options. Required.",
+          "model": false,
+          "name": "menu",
+          "type": "BsComboboxMenu",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Selected option value, or an array with multiple. Supports [(value)].",
+          "model": true,
+          "name": "value",
+          "type": "unknown",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Selects several options.",
+          "model": false,
+          "name": "multiple",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "''",
+          "description": "Text shown when nothing is selected.",
+          "model": false,
+          "name": "placeholder",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Name of a hidden input that submits the value with a native form.",
+          "model": false,
+          "name": "name",
+          "type": "string | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'md'",
+          "description": "Size of the button.",
+          "model": false,
+          "name": "size",
+          "type": "'sm' | 'md' | 'lg'",
+          "values": ["sm", "md", "lg"]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "Object.is",
+          "description": "Compares option values with the value.",
+          "model": false,
+          "name": "compareWith",
+          "type": "(a, b) => boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "` `${count} selected` `",
+          "description": "Text shown when several options are selected.",
+          "model": false,
+          "name": "countText",
+          "type": "(count: number) => string",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Disables the control. Forms also disable it through the form control.",
+          "model": false,
+          "name": "disabled",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "generated",
+          "description": "Element id. Generated when not set, and used for the field’s label.",
+          "model": false,
+          "name": "id",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'auto'",
+          "description": "Validation styles. auto follows the bound Angular form control.",
+          "model": false,
+          "name": "validation",
+          "type": "'auto' | 'valid' | 'invalid' | 'none'",
+          "values": ["auto", "valid", "invalid", "none"]
+        }
+      ],
+      "kind": "directive",
+      "name": "BsCombobox",
+      "outputs": [
+        {
+          "description": "Emits the value when the user selects an option.",
+          "name": "valueChange",
+          "type": "unknown"
+        }
+      ],
+      "selector": "button[bsCombobox]",
+      "summary": "A select-like button with rich options, search and multiple selection, built on the menu.",
+      "tags": ["button"]
+    },
+    {
+      "attributes": ["bsComboboxMenu"],
+      "docUrl": "https://bootstrap-ng.com/forms/combobox/#api",
+      "entry": "combobox",
+      "exportAs": "bsComboboxMenu",
+      "inputs": [
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Shows check marks on selected options. Always on with multiple.",
+          "model": false,
+          "name": "check",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'bottom-start'",
+          "description": "Where the menu opens.",
+          "model": false,
+          "name": "placement",
+          "type": "BsPlacement",
+          "values": [
+            "top",
+            "top-start",
+            "top-end",
+            "bottom",
+            "bottom-start",
+            "bottom-end",
+            "left",
+            "left-start",
+            "left-end",
+            "right",
+            "right-start",
+            "right-end",
+            "start",
+            "start-start",
+            "start-end",
+            "end",
+            "end-start",
+            "end-end"
+          ]
+        }
+      ],
+      "kind": "directive",
+      "name": "BsComboboxMenu",
+      "outputs": [],
+      "selector": "[bsComboboxMenu]",
+      "summary": "A select-like button with rich options, search and multiple selection, built on the menu.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsComboboxNoResults"],
+      "docUrl": "https://bootstrap-ng.com/forms/combobox/#api",
+      "entry": "combobox",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "directive",
+      "name": "BsComboboxNoResults",
+      "outputs": [],
+      "selector": "[bsComboboxNoResults]",
+      "summary": "A select-like button with rich options, search and multiple selection, built on the menu.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsComboboxOption"],
+      "docUrl": "https://bootstrap-ng.com/forms/combobox/#api",
+      "entry": "combobox",
+      "exportAs": "bsComboboxOption",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "",
+          "description": "Value of the option. Required.",
+          "model": false,
+          "name": "value",
+          "type": "unknown",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "undefined",
+          "description": "Text shown in the combobox when selected. Defaults to the first .menu-item-content span, or the text.",
+          "model": false,
+          "name": "label",
+          "type": "string | undefined",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Disables the option.",
+          "model": false,
+          "name": "disabled",
+          "type": "boolean",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsComboboxOption",
+      "outputs": [],
+      "selector": "button[bsComboboxOption]",
+      "summary": "A select-like button with rich options, search and multiple selection, built on the menu.",
+      "tags": ["button"]
+    },
+    {
+      "attributes": ["bsComboboxSearch"],
+      "docUrl": "https://bootstrap-ng.com/forms/combobox/#api",
+      "entry": "combobox",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "directive",
+      "name": "BsComboboxSearch",
+      "outputs": [],
+      "selector": "input[bsComboboxSearch]",
+      "summary": "A select-like button with rich options, search and multiple selection, built on the menu.",
+      "tags": ["input"]
+    },
+    {
+      "attributes": ["bsControl"],
+      "docUrl": "https://bootstrap-ng.com/forms/form-control/#api",
+      "entry": "form-control",
+      "exportAs": "bsControl",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "generated",
+          "description": "Element id. Generated when not set, and used for the field’s label.",
+          "model": false,
+          "name": "id",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'auto'",
+          "description": "Validation styles. auto follows the bound Angular form control.",
+          "model": false,
+          "name": "validation",
+          "type": "'auto' | 'valid' | 'invalid' | 'none'",
+          "values": ["auto", "valid", "invalid", "none"]
+        }
+      ],
+      "kind": "directive",
+      "name": "BsControl",
+      "outputs": [],
+      "selector": "[bsControl]",
+      "summary": "Text inputs, textareas and selects with sizes, states and validation styles.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsDatepicker"],
+      "docUrl": "https://bootstrap-ng.com/forms/datepicker/#api",
+      "entry": "datepicker",
+      "exportAs": "bsDatepicker",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "ISO date, or an array of them with multiple and range. Supports [(value)].",
+          "model": true,
+          "name": "value",
+          "type": "BsDateValue",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'single'",
+          "description": "How dates are selected.",
+          "model": false,
+          "name": "selectionMode",
+          "type": "'single' | 'multiple' | 'range'",
+          "values": ["single", "multiple", "range"]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Earliest selectable date, as YYYY-MM-DD.",
+          "model": false,
+          "name": "min",
+          "type": "string | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Latest selectable date, as YYYY-MM-DD.",
+          "model": false,
+          "name": "max",
+          "type": "string | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Returns true for dates that can’t be selected.",
+          "model": false,
+          "name": "dateDisabled",
+          "type": "((iso: string) => boolean) | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "1",
+          "description": "First day of the week: 0 for Sunday, 1 for Monday.",
+          "model": false,
+          "name": "firstWeekday",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "1",
+          "description": "Number of months shown side by side.",
+          "model": false,
+          "name": "monthsCount",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Shows the week numbers before each week.",
+          "model": false,
+          "name": "weekNumbers",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'iso'",
+          "description": "How weeks are numbered: ISO 8601, or from the week holding 1 January.",
+          "model": false,
+          "name": "weekNumbering",
+          "type": "'iso' | 'simple'",
+          "values": ["iso", "simple"]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Shows years as Japanese era years, such as 令和8年（2026）.",
+          "model": false,
+          "name": "wareki",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "LOCALE_ID",
+          "description": "Locale for dates and month and day names. Set undefined to use the browser’s language.",
+          "model": false,
+          "name": "locale",
+          "type": "string | undefined",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Forces a color mode for the calendar.",
+          "model": false,
+          "name": "colorMode",
+          "type": "'light' | 'dark' | null",
+          "values": ["light", "dark"]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "How dates are shown. Inputs show ISO dates by default, buttons the locale’s medium date.",
+          "model": false,
+          "name": "dateFormat",
+          "type": "Intl.DateTimeFormatOptions | ((date, locale) => string) | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'bottom-start'",
+          "description": "Where the calendar opens.",
+          "model": false,
+          "name": "placement",
+          "type": "BsPlacement",
+          "values": [
+            "top",
+            "top-start",
+            "top-end",
+            "bottom",
+            "bottom-start",
+            "bottom-end",
+            "left",
+            "left-start",
+            "left-end",
+            "right",
+            "right-start",
+            "right-end",
+            "start",
+            "start-start",
+            "start-end",
+            "end",
+            "end-start",
+            "end-end"
+          ]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Choose date'",
+          "description": "Accessible name of the calendar popup.",
+          "model": false,
+          "name": "calendarLabel",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'md'",
+          "description": "Size of an input: adds .form-control-sm or .form-control-lg.",
+          "model": false,
+          "name": "size",
+          "type": "'sm' | 'md' | 'lg'",
+          "values": ["sm", "md", "lg"]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Opens the calendar.",
+          "model": false,
+          "name": "open",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Disables the control. Forms also disable it through the form control.",
+          "model": false,
+          "name": "disabled",
+          "type": "boolean",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsDatepicker",
+      "outputs": [
+        {
+          "description": "Emits the value when the user picks or types dates.",
+          "name": "valueChange",
+          "type": "BsDateValue"
+        },
+        {
+          "description": "Emits when the calendar opens or closes.",
+          "name": "openChange",
+          "type": "boolean"
+        }
+      ],
+      "selector": "input[bsDatepicker], button[bsDatepicker]",
+      "summary": "A calendar and date picker popup, opened from an input or a button, with range selection, multiple months and more.",
+      "tags": ["input", "button"]
+    },
+    {
+      "attributes": ["bsDatepickerDisplay"],
+      "docUrl": "https://bootstrap-ng.com/forms/datepicker/#api",
+      "entry": "datepicker",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "directive",
+      "name": "BsDatepickerDisplay",
+      "outputs": [],
+      "selector": "[bsDatepickerDisplay]",
+      "summary": "A calendar and date picker popup, opened from an input or a button, with range selection, multiple months and more.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsDialog"],
+      "docUrl": "https://bootstrap-ng.com/components/dialog/#api",
+      "entry": "dialog",
+      "exportAs": "bsDialog",
+      "inputs": [
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Whether the dialog is open. Supports [(open)].",
+          "model": true,
+          "name": "open",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Opens as a modal with a backdrop and focus trap.",
+          "model": false,
+          "name": "modal",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "true closes on backdrop click, 'static' bounces, false ignores the click.",
+          "model": false,
+          "name": "backdrop",
+          "type": "boolean | 'static'",
+          "values": ["static"]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Closes the dialog on Escape.",
+          "model": false,
+          "name": "keyboard",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Animates opening and closing.",
+          "model": false,
+          "name": "animation",
+          "type": "boolean",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsDialog",
+      "outputs": [
+        {
+          "description": "Emits when the dialog opens or closes from inside.",
+          "name": "openChange",
+          "type": "boolean"
+        },
+        {
+          "description": "Emits after the dialog is shown.",
+          "name": "shown",
+          "type": "void"
+        },
+        {
+          "description": "Emits after the dialog is hidden.",
+          "name": "hidden",
+          "type": "void"
+        },
+        {
+          "description": "Emits when the user dismisses the dialog.",
+          "name": "dismissed",
+          "type": "'escape' | 'backdrop'"
+        }
+      ],
+      "selector": "dialog[bsDialog]",
+      "summary": "Dialogs built on the native <dialog> element, which replaces Bootstrap’s old modal.",
+      "tags": ["dialog"]
+    },
+    {
+      "attributes": ["bsDialogClose", "bsDrawerClose"],
+      "docUrl": "https://bootstrap-ng.com/components/dialog/#api",
+      "entry": "dialog",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "directive",
+      "name": "BsDialogClose",
+      "outputs": [],
+      "selector": "[bsDrawerClose], [bsDialogClose]",
+      "summary": "Dialogs built on the native <dialog> element, which replaces Bootstrap’s old modal.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/components/dialog/#api",
+      "entry": "dialog",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "service",
+      "name": "BsDialogRef",
+      "outputs": [],
+      "selector": "inject(BsDialogRef)",
+      "summary": "Dialogs built on the native <dialog> element, which replaces Bootstrap’s old modal.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/components/dialog/#api",
+      "entry": "dialog",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "service",
+      "name": "BsDialogService",
+      "outputs": [],
+      "selector": "inject(BsDialogService)",
+      "summary": "Dialogs built on the native <dialog> element, which replaces Bootstrap’s old modal.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsDrawer"],
+      "docUrl": "https://bootstrap-ng.com/components/drawer/#api",
+      "entry": "drawer",
+      "exportAs": "bsDrawer",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "'start'",
+          "description": "Edge the drawer slides in from.",
+          "model": false,
+          "name": "placement",
+          "type": "'start' | 'end' | 'top' | 'bottom' | 'fullscreen'",
+          "values": ["start", "end", "top", "bottom", "fullscreen"]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Shows the content inline from this breakpoint up.",
+          "model": false,
+          "name": "responsive",
+          "type": "'sm' | 'md' | 'lg' | 'xl' | '2xl' | null",
+          "values": ["sm", "md", "lg", "xl", "2xl"]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Keeps the page scrollable while the drawer is open.",
+          "model": false,
+          "name": "scroll",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Flush-to-edge sheet. Use with placement=\"bottom\" for a bottom sheet.",
+          "model": false,
+          "name": "sheet",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Whether the drawer is open. Supports [(open)].",
+          "model": true,
+          "name": "open",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Shows a backdrop. static keeps the drawer open on backdrop clicks.",
+          "model": false,
+          "name": "backdrop",
+          "type": "boolean | 'static'",
+          "values": ["static"]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Closes the drawer on Escape.",
+          "model": false,
+          "name": "keyboard",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Slides the drawer in and out.",
+          "model": false,
+          "name": "animation",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "generated",
+          "description": "Element id, used by toggles for aria-controls.",
+          "model": false,
+          "name": "id",
+          "type": "string",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsDrawer",
+      "outputs": [
+        {
+          "description": "Emits when the drawer opens or closes from inside.",
+          "name": "openChange",
+          "type": "boolean"
+        },
+        {
+          "description": "Emits after the drawer is shown.",
+          "name": "shown",
+          "type": "void"
+        },
+        {
+          "description": "Emits after the drawer is hidden.",
+          "name": "hidden",
+          "type": "void"
+        },
+        {
+          "description": "Emits when the user dismisses the drawer.",
+          "name": "dismissed",
+          "type": "'escape' | 'backdrop'"
+        }
+      ],
+      "selector": "dialog[bsDrawer]",
+      "summary": "A panel that slides in from an edge of the screen, built on the native dialog element. Bootstrap 6’s replacement for offcanvas.",
+      "tags": ["dialog"]
+    },
+    {
+      "attributes": ["bsDrawerToggle"],
+      "docUrl": "https://bootstrap-ng.com/components/drawer/#api",
+      "entry": "drawer",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "required",
+          "description": "The drawer to open and close.",
+          "model": false,
+          "name": "bsDrawerToggle",
+          "type": "BsDrawer",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsDrawerToggle",
+      "outputs": [],
+      "selector": "[bsDrawerToggle]",
+      "summary": "A panel that slides in from an edge of the screen, built on the native dialog element. Bootstrap 6’s replacement for offcanvas.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsFileDropzone"],
+      "docUrl": "https://bootstrap-ng.com/forms/file-dropzone/#api",
+      "entry": "file-dropzone",
+      "exportAs": "bsFileDropzone",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "[]",
+          "description": "The selected files. Supports [(value)].",
+          "model": true,
+          "name": "value",
+          "type": "File[]",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Allows more than one file. Without it, a new file replaces the selected one.",
+          "model": false,
+          "name": "multiple",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "''",
+          "description": "Accepted file types: MIME types, wildcards such as image/* or extensions.",
+          "model": false,
+          "name": "accept",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Maximum number of files.",
+          "model": false,
+          "name": "maxFiles",
+          "type": "number | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Maximum size of each file, in bytes.",
+          "model": false,
+          "name": "maxFileSize",
+          "type": "number | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Maximum size of all files together, in bytes.",
+          "model": false,
+          "name": "maxTotalSize",
+          "type": "number | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Maximum length of a file name, in characters.",
+          "model": false,
+          "name": "maxNameLength",
+          "type": "number | null",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Sets required on the native input, for native validation.",
+          "model": false,
+          "name": "required",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Name of the native input, so a native form submits the files.",
+          "model": false,
+          "name": "name",
+          "type": "string | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Camera to use on mobile devices.",
+          "model": false,
+          "name": "capture",
+          "type": "'user' | 'environment' | null",
+          "values": ["user", "environment"]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Lists the selected files under the zone.",
+          "model": false,
+          "name": "fileList",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Shows a preview of selected images in the file list.",
+          "model": false,
+          "name": "thumbnails",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'md'",
+          "description": "Padding of the zone.",
+          "model": false,
+          "name": "size",
+          "type": "'sm' | 'md' | 'lg'",
+          "values": ["sm", "md", "lg"]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Disables the dropzone. Forms set this through disable().",
+          "model": false,
+          "name": "disabled",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Accessible name of the input, when it has no visible label.",
+          "model": false,
+          "name": "aria-label",
+          "type": "string | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Remove'",
+          "description": "Start of the remove buttons’ accessible names, followed by the file name.",
+          "model": false,
+          "name": "removeLabel",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Selected files'",
+          "description": "Accessible name of the file list.",
+          "model": false,
+          "name": "fileListLabel",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "“1.5 MB”",
+          "description": "Formats file sizes in the file list and messages.",
+          "model": false,
+          "name": "formatSize",
+          "type": "(bytes: number) => string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "“a.txt isn’t an accepted file type.”",
+          "description": "Text shown and announced for a file that wasn’t added.",
+          "model": false,
+          "name": "rejectionText",
+          "type": "(rejection: BsFileRejection) => string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'auto'",
+          "description": "Validation styles. auto follows the bound Angular form control.",
+          "model": false,
+          "name": "validation",
+          "type": "'auto' | 'valid' | 'invalid' | 'none'",
+          "values": ["auto", "valid", "invalid", "none"]
+        }
+      ],
+      "kind": "directive",
+      "name": "BsFileDropzone",
+      "outputs": [
+        {
+          "description": "Emits the files when they change.",
+          "name": "valueChange",
+          "type": "File[]"
+        },
+        {
+          "description": "Emits the files left out of a selection or drop, with a reason (type, size, total-size, count or name-length) and the limit.",
+          "name": "rejected",
+          "type": "BsFileRejection[]"
+        }
+      ],
+      "selector": "div[bsFileDropzone]",
+      "summary": "Drag-and-drop file upload built on a native file input, with type and size limits, image previews and a removable file list.",
+      "tags": ["div"]
+    },
+    {
+      "attributes": ["bsFormAdorn"],
+      "docUrl": "https://bootstrap-ng.com/forms/form-adorn/#api",
+      "entry": "form-adorn",
+      "exportAs": "bsFormAdorn",
+      "inputs": [
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Shows adornments after the input.",
+          "model": false,
+          "name": "end",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'md'",
+          "description": "Size of the wrapper.",
+          "model": false,
+          "name": "size",
+          "type": "'sm' | 'md' | 'lg'",
+          "values": ["sm", "md", "lg"]
+        }
+      ],
+      "kind": "directive",
+      "name": "BsFormAdorn",
+      "outputs": [],
+      "selector": "label[bsFormAdorn]",
+      "summary": "Icons and text inside a form control, next to the input.",
+      "tags": ["label"]
+    },
+    {
+      "attributes": ["bsFormAdornIcon"],
+      "docUrl": "https://bootstrap-ng.com/forms/form-adorn/#api",
+      "entry": "form-adorn",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "directive",
+      "name": "BsFormAdornIcon",
+      "outputs": [],
+      "selector": "[bsFormAdornIcon]",
+      "summary": "Icons and text inside a form control, next to the input.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsFormAdornText"],
+      "docUrl": "https://bootstrap-ng.com/forms/form-adorn/#api",
+      "entry": "form-adorn",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "directive",
+      "name": "BsFormAdornText",
+      "outputs": [],
+      "selector": "[bsFormAdornText]",
+      "summary": "Icons and text inside a form control, next to the input.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsFormControl"],
+      "docUrl": "https://bootstrap-ng.com/forms/form-control/#api",
+      "entry": "form-control",
+      "exportAs": "bsFormControl",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "'control'",
+          "description": "Style of the control. An empty value means control.",
+          "model": false,
+          "name": "bsFormControl",
+          "type": "'control' | 'plaintext' | 'ghost' | ''",
+          "values": ["control", "plaintext", "ghost"]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'md'",
+          "description": "Size of the control. A number is set as the native size attribute.",
+          "model": false,
+          "name": "size",
+          "type": "'sm' | 'md' | 'lg' | number",
+          "values": ["sm", "md", "lg"]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Shows a caret, for example on an input with a datalist.",
+          "model": false,
+          "name": "caret",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Shows a button that clears the value of an input or textarea while it has one.",
+          "model": false,
+          "name": "clearable",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Clear'",
+          "description": "Accessible label of the clear button.",
+          "model": false,
+          "name": "clearLabel",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "generated",
+          "description": "Element id. Generated when not set, and used for the field’s label.",
+          "model": false,
+          "name": "id",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'auto'",
+          "description": "Validation styles. auto follows the bound Angular form control.",
+          "model": false,
+          "name": "validation",
+          "type": "'auto' | 'valid' | 'invalid' | 'none'",
+          "values": ["auto", "valid", "invalid", "none"]
+        }
+      ],
+      "kind": "directive",
+      "name": "BsFormControl",
+      "outputs": [
+        {
+          "description": "Emits after the clear button cleared the value.",
+          "name": "cleared",
+          "type": "void"
+        }
+      ],
+      "selector": "input[bsFormControl], textarea[bsFormControl], select[bsFormControl]",
+      "summary": "Text inputs, textareas and selects with sizes, states and validation styles.",
+      "tags": ["input", "textarea", "select"]
+    },
+    {
+      "attributes": ["bsFormField"],
+      "docUrl": "https://bootstrap-ng.com/forms/field/#api",
+      "entry": "field",
+      "exportAs": "bsFormField",
+      "inputs": [
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Card style that highlights the selected checkbox or radio.",
+          "model": false,
+          "name": "card",
+          "type": "boolean",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsFormField",
+      "outputs": [],
+      "selector": "[bsFormField]",
+      "summary": "A layout wrapper that places a control’s label, description and validation feedback.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsFormFloating"],
+      "docUrl": "https://bootstrap-ng.com/forms/floating-labels/#api",
+      "entry": "floating-labels",
+      "exportAs": "bsFormFloating",
+      "inputs": [
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Keeps the label floated and the placeholder visible.",
+          "model": false,
+          "name": "always",
+          "type": "boolean",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsFormFloating",
+      "outputs": [],
+      "selector": "[bsFormFloating]",
+      "summary": "Labels that float over their form controls.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsFormLabel"],
+      "docUrl": "https://bootstrap-ng.com/forms/field/#api",
+      "entry": "field",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "directive",
+      "name": "BsFormLabel",
+      "outputs": [],
+      "selector": "label[bsFormLabel]",
+      "summary": "A layout wrapper that places a control’s label, description and validation feedback.",
+      "tags": ["label"]
+    },
+    {
+      "attributes": ["bsFormText"],
+      "docUrl": "https://bootstrap-ng.com/forms/field/#api",
+      "entry": "field",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "generated",
+          "description": "Element id. Generated when not set.",
+          "model": false,
+          "name": "id",
+          "type": "string",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsFormText",
+      "outputs": [],
+      "selector": "[bsFormText]",
+      "summary": "A layout wrapper that places a control’s label, description and validation feedback.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/components/icon/#api",
+      "entry": "icon",
+      "exportAs": "bsIcon",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Name of the icon in its library.",
+          "model": false,
+          "name": "name",
+          "type": "string | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Icon library. Defaults to the registry's default library, 'bootstrap'.",
+          "model": false,
+          "name": "library",
+          "type": "string | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Style of the icon within its library, such as 'regular' in Font Awesome.",
+          "model": false,
+          "name": "variant",
+          "type": "string | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "URL of an SVG file to show instead of a named icon.",
+          "model": false,
+          "name": "src",
+          "type": "string | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Accessible name. Without it the icon is hidden from screen readers.",
+          "model": false,
+          "name": "label",
+          "type": "string | null",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsIcon",
+      "outputs": [
+        {
+          "description": "Emits when the icon has loaded.",
+          "name": "loaded",
+          "type": "void"
+        },
+        {
+          "description": "Emits the error when the icon fails to load or its library is unknown.",
+          "name": "loadError",
+          "type": "unknown"
+        }
+      ],
+      "selector": "bs-icon",
+      "summary": "SVG icons from Bootstrap Icons, Font Awesome, Material Symbols, Modus Icons, Phosphor Icons or your own icon set, loaded one at a time and sized and colored like text.",
+      "tags": ["bs-icon"]
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/getting-started/services/",
+      "entry": null,
+      "exportAs": null,
+      "inputs": [],
+      "kind": "service",
+      "name": "BsIconRegistry",
+      "outputs": [],
+      "selector": null,
+      "summary": "The icon libraries that bs-icon loads from, and a cache of the icons it has loaded. bootstrap (the default), font-awesome, material, modus and phosphor are built in and load from jsDelivr. Set the default library and add your own with provideBsIcons(), self-host a built-in set by passing a baseUrl to its factory, such as bootstrapIcons(), fontAwesomeIcons(), materialSymbols(), modusIcons() or phosphorIcons(), or bundle icons as SVG markup in a library’s icons. Bundled icons need no request and render on the server; each factory takes icons too, which are used before its files.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsInputGroup"],
+      "docUrl": "https://bootstrap-ng.com/forms/input-group/#api",
+      "entry": "input-group",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "'md'",
+          "description": "Size of everything in the group.",
+          "model": false,
+          "name": "size",
+          "type": "'sm' | 'md' | 'lg'",
+          "values": ["sm", "md", "lg"]
+        }
+      ],
+      "kind": "directive",
+      "name": "BsInputGroup",
+      "outputs": [],
+      "selector": "[bsInputGroup]",
+      "summary": "Text, buttons and menus attached to either side of a form control.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsInputGroupText"],
+      "docUrl": "https://bootstrap-ng.com/forms/input-group/#api",
+      "entry": "input-group",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "directive",
+      "name": "BsInputGroupText",
+      "outputs": [],
+      "selector": "[bsInputGroupText]",
+      "summary": "Text, buttons and menus attached to either side of a form control.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsInvalidFeedback"],
+      "docUrl": "https://bootstrap-ng.com/forms/validation/#api",
+      "entry": "validation",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Shows the feedback as a tooltip.",
+          "model": false,
+          "name": "tooltip",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "generated",
+          "description": "Element id. Generated when not set.",
+          "model": false,
+          "name": "id",
+          "type": "string",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsInvalidFeedback",
+      "outputs": [],
+      "selector": "[bsInvalidFeedback]",
+      "summary": "Validation styles that follow Angular form state, native constraints or the server.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsLabel"],
+      "docUrl": "https://bootstrap-ng.com/forms/field/#api",
+      "entry": "field",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "directive",
+      "name": "BsLabel",
+      "outputs": [],
+      "selector": "label[bsLabel]",
+      "summary": "A layout wrapper that places a control’s label, description and validation feedback.",
+      "tags": ["label"]
+    },
+    {
+      "attributes": ["bsListGroup"],
+      "docUrl": "https://bootstrap-ng.com/components/list-group/#api",
+      "entry": "list-group",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Removes the outer borders and rounded corners.",
+          "model": false,
+          "name": "flush",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Numbers the items.",
+          "model": false,
+          "name": "numbered",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Lays the items out in a row, from a breakpoint up.",
+          "model": false,
+          "name": "horizontal",
+          "type": "boolean | 'sm' | 'md' | 'lg' | 'xl' | '2xl'",
+          "values": ["sm", "md", "lg", "xl", "2xl"]
+        }
+      ],
+      "kind": "directive",
+      "name": "BsListGroup",
+      "outputs": [],
+      "selector": "[bsListGroup]",
+      "summary": "Lists of items, links or buttons, with active, disabled and theme states.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsListGroupItem"],
+      "docUrl": "https://bootstrap-ng.com/components/list-group/#api",
+      "entry": "list-group",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Marks the current selection.",
+          "model": false,
+          "name": "active",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Disables the item.",
+          "model": false,
+          "name": "disabled",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Theme color of the item.",
+          "model": false,
+          "name": "theme",
+          "type": "BsTheme | null",
+          "values": [
+            "primary",
+            "accent",
+            "success",
+            "danger",
+            "warning",
+            "info",
+            "inverse",
+            "secondary"
+          ]
+        }
+      ],
+      "kind": "directive",
+      "name": "BsListGroupItem",
+      "outputs": [],
+      "selector": "[bsListGroupItem]",
+      "summary": "Lists of items, links or buttons, with active, disabled and theme states.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/getting-started/services/",
+      "entry": null,
+      "exportAs": null,
+      "inputs": [],
+      "kind": "service",
+      "name": "BsLiveAnnouncer",
+      "outputs": [],
+      "selector": null,
+      "summary": "Reads a message out to screen reader users through visually hidden live regions that stay on the page. Use it for changes that happen without moving focus, such as search results updating. Toasts and the carousel already announce through it.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsMenu"],
+      "docUrl": "https://bootstrap-ng.com/components/menu/#api",
+      "entry": "menu",
+      "exportAs": "bsMenu",
+      "inputs": [
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Whether the menu is open. Supports [(open)].",
+          "model": true,
+          "name": "open",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'bottom-start'",
+          "description": "Where the menu appears next to its toggle.",
+          "model": false,
+          "name": "placement",
+          "type": "BsPlacement",
+          "values": [
+            "top",
+            "top-start",
+            "top-end",
+            "bottom",
+            "bottom-start",
+            "bottom-end",
+            "left",
+            "left-start",
+            "left-end",
+            "right",
+            "right-start",
+            "right-end",
+            "start",
+            "start-start",
+            "start-end",
+            "end",
+            "end-start",
+            "end-end"
+          ]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'absolute'",
+          "description": "CSS position of the menu. 'fixed' escapes ancestors with overflow: hidden.",
+          "model": false,
+          "name": "strategy",
+          "type": "'absolute' | 'fixed'",
+          "values": ["absolute", "fixed"]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Which clicks close the menu.",
+          "model": false,
+          "name": "autoClose",
+          "type": "boolean | 'inside' | 'outside'",
+          "values": ["inside", "outside"]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "generated",
+          "description": "Element id, used for aria-controls on the toggle.",
+          "model": false,
+          "name": "id",
+          "type": "string",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsMenu",
+      "outputs": [
+        {
+          "description": "Emits when the menu opens or closes from inside.",
+          "name": "openChange",
+          "type": "boolean"
+        },
+        {
+          "description": "Emits after the menu is shown.",
+          "name": "shown",
+          "type": "void"
+        },
+        {
+          "description": "Emits after the menu is hidden.",
+          "name": "hidden",
+          "type": "void"
+        }
+      ],
+      "selector": "[bsMenu]",
+      "summary": "Menus of actions and links, Bootstrap 6’s replacement for dropdowns, positioned with Floating UI.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsMenuToggle"],
+      "docUrl": "https://bootstrap-ng.com/components/menu/#api",
+      "entry": "menu",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "required",
+          "description": "The menu to toggle.",
+          "model": false,
+          "name": "bsMenuToggle",
+          "type": "BsMenu",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsMenuToggle",
+      "outputs": [],
+      "selector": "[bsMenuToggle]",
+      "summary": "Menus of actions and links, Bootstrap 6’s replacement for dropdowns, positioned with Floating UI.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsNav"],
+      "docUrl": "https://bootstrap-ng.com/components/nav/#api",
+      "entry": "nav",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Style of the links.",
+          "model": false,
+          "name": "variant",
+          "type": "'tabs' | 'pills' | 'underline' | null",
+          "values": ["tabs", "pills", "underline"]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Stacks the links.",
+          "model": false,
+          "name": "vertical",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Stretches the items, each as wide as its content.",
+          "model": false,
+          "name": "fill",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Stretches the items to the same width.",
+          "model": false,
+          "name": "justified",
+          "type": "boolean",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsNav",
+      "outputs": [],
+      "selector": "[bsNav]",
+      "summary": "Navigation lists styled as plain links, tabs, pills or underlines. To switch panels, use tabs instead.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsNavLink"],
+      "docUrl": "https://bootstrap-ng.com/components/nav/#api",
+      "entry": "nav",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Marks the current link.",
+          "model": false,
+          "name": "active",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Disables the link.",
+          "model": false,
+          "name": "disabled",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'page'",
+          "description": "Value of aria-current when active.",
+          "model": false,
+          "name": "current",
+          "type": "string",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsNavLink",
+      "outputs": [],
+      "selector": "a[bsNavLink], button[bsNavLink]",
+      "summary": "Navigation lists styled as plain links, tabs, pills or underlines. To switch panels, use tabs instead.",
+      "tags": ["a", "button"]
+    },
+    {
+      "attributes": ["bsNavOverflow"],
+      "docUrl": "https://bootstrap-ng.com/components/nav-overflow/#api",
+      "entry": "nav-overflow",
+      "exportAs": "bsNavOverflow",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "'More'",
+          "description": "Toggle text. Empty shows only the icon.",
+          "model": false,
+          "name": "moreText",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'More'",
+          "description": "Accessible label of an icon-only toggle.",
+          "model": false,
+          "name": "moreLabel",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'start'",
+          "description": "Side of the icon.",
+          "model": false,
+          "name": "iconPlacement",
+          "type": "'start' | 'end'",
+          "values": ["start", "end"]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "0",
+          "description": "Minimum number of links to keep visible.",
+          "model": false,
+          "name": "threshold",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Moves every link into the menu below this width.",
+          "model": false,
+          "name": "collapseBelow",
+          "type": "BsBreakpoint | number | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'absolute'",
+          "description": "CSS position of the menu. Use 'fixed' when an ancestor with overflow: hidden clips it.",
+          "model": false,
+          "name": "menuStrategy",
+          "type": "'absolute' | 'fixed'",
+          "values": ["absolute", "fixed"]
+        }
+      ],
+      "kind": "directive",
+      "name": "BsNavOverflow",
+      "outputs": [
+        {
+          "description": "Emits the number of links in the menu.",
+          "name": "overflowChange",
+          "type": "number"
+        }
+      ],
+      "selector": "[bsNavOverflow]",
+      "summary": "Moves navigation links that do not fit into a “More” menu, also known as the Priority+ pattern.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsOtp"],
+      "docUrl": "https://bootstrap-ng.com/forms/otp-input/#api",
+      "entry": "otp-input",
+      "exportAs": "bsOtp",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "'numeric'",
+          "description": "Characters the input accepts.",
+          "model": false,
+          "name": "type",
+          "type": "'numeric' | 'alphanumeric' | 'alpha'",
+          "values": ["numeric", "alphanumeric", "alpha"]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Shows a dot instead of each character.",
+          "model": false,
+          "name": "mask",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Group sizes, with a separator between groups.",
+          "model": false,
+          "name": "groups",
+          "type": "number[] | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'·'",
+          "description": "Character shown between groups.",
+          "model": false,
+          "name": "separator",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Merges the slots into one field.",
+          "model": false,
+          "name": "connected",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Size of the slots.",
+          "model": false,
+          "name": "size",
+          "type": "'sm' | 'lg' | null",
+          "values": ["sm", "lg"]
+        }
+      ],
+      "kind": "directive",
+      "name": "BsOtp",
+      "outputs": [
+        {
+          "description": "Emits the code when every slot is filled.",
+          "name": "complete",
+          "type": "string"
+        }
+      ],
+      "selector": "div[bsOtp]",
+      "summary": "One-time passwords, PIN codes and verification codes, in a single accessible input drawn as separate slots.",
+      "tags": ["div"]
+    },
+    {
+      "attributes": ["bsOtpInput"],
+      "docUrl": "https://bootstrap-ng.com/forms/otp-input/#api",
+      "entry": "otp-input",
+      "exportAs": "bsOtpInput",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "6",
+          "description": "Number of characters and slots.",
+          "model": false,
+          "name": "maxlength",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'one-time-code'",
+          "description": "The input’s autocomplete.",
+          "model": false,
+          "name": "autocomplete",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "generated",
+          "description": "Element id. Generated when not set, and used for the field’s label.",
+          "model": false,
+          "name": "id",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'auto'",
+          "description": "Validation styles. auto follows the bound Angular form control.",
+          "model": false,
+          "name": "validation",
+          "type": "'auto' | 'valid' | 'invalid' | 'none'",
+          "values": ["auto", "valid", "invalid", "none"]
+        }
+      ],
+      "kind": "directive",
+      "name": "BsOtpInput",
+      "outputs": [],
+      "selector": "input[bsOtpInput]",
+      "summary": "One-time passwords, PIN codes and verification codes, in a single accessible input drawn as separate slots.",
+      "tags": ["input"]
+    },
+    {
+      "attributes": ["bsPagination"],
+      "docUrl": "https://bootstrap-ng.com/components/pagination/#api",
+      "entry": "pagination",
+      "exportAs": "bsPagination",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "1",
+          "description": "Current page, starting at 1. Supports [(page)].",
+          "model": true,
+          "name": "page",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "required",
+          "description": "Number of pages.",
+          "model": false,
+          "name": "pageCount",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "7",
+          "description": "Most page buttons to show, including the first and last. At least 5.",
+          "model": false,
+          "name": "maxPages",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'md'",
+          "description": "Size of the pagination.",
+          "model": false,
+          "name": "size",
+          "type": "'sm' | 'md' | 'lg'",
+          "values": ["sm", "md", "lg"]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Theme color of the active page.",
+          "model": false,
+          "name": "theme",
+          "type": "BsTheme | null",
+          "values": [
+            "primary",
+            "accent",
+            "success",
+            "danger",
+            "warning",
+            "info",
+            "inverse",
+            "secondary"
+          ]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Previous'",
+          "description": "Visible text of the previous button.",
+          "model": false,
+          "name": "previousText",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Next'",
+          "description": "Visible text of the next button.",
+          "model": false,
+          "name": "nextText",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Accessible label of the previous button.",
+          "model": false,
+          "name": "previousLabel",
+          "type": "string | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Accessible label of the next button.",
+          "model": false,
+          "name": "nextLabel",
+          "type": "string | null",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsPagination",
+      "outputs": [
+        {
+          "description": "Emits the new page.",
+          "name": "pageChange",
+          "type": "number"
+        }
+      ],
+      "selector": "nav[bsPagination]",
+      "summary": "Page navigation for long lists and search results, with previous and next buttons and ellipses when there are many pages.",
+      "tags": ["nav"]
+    },
+    {
+      "attributes": ["bsPlaceholder"],
+      "docUrl": "https://bootstrap-ng.com/components/placeholder/#api",
+      "entry": "placeholder",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "12",
+          "description": "Width in grid columns, from 1 to 12.",
+          "model": false,
+          "name": "width",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'md'",
+          "description": "Height of the placeholder.",
+          "model": false,
+          "name": "size",
+          "type": "'xs' | 'sm' | 'md' | 'lg'",
+          "values": ["xs", "sm", "md", "lg"]
+        }
+      ],
+      "kind": "directive",
+      "name": "BsPlaceholder",
+      "outputs": [],
+      "selector": "[bsPlaceholder]",
+      "summary": "Loading placeholders, or skeletons, that show where content will appear.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/getting-started/services/",
+      "entry": null,
+      "exportAs": null,
+      "inputs": [],
+      "kind": "type",
+      "name": "BsPlacement",
+      "outputs": [],
+      "selector": null,
+      "summary": "Where a tooltip, popover or menu opens: 'top', 'bottom', 'left', 'right', 'start' or 'end', optionally followed by '-start' or '-end'.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsPopover"],
+      "docUrl": "https://bootstrap-ng.com/components/popover/#api",
+      "entry": "popover",
+      "exportAs": "bsPopover",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "undefined",
+          "description": "Content of the popover body.",
+          "model": false,
+          "name": "bsPopover",
+          "type": "string | TemplateRef",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "undefined",
+          "description": "Content of the header. Left out when empty.",
+          "model": false,
+          "name": "popoverTitle",
+          "type": "string | TemplateRef",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'top'",
+          "description": "Where the tip appears. start and end follow the text direction. Flips when there is no room.",
+          "model": false,
+          "name": "placement",
+          "type": "BsPlacement",
+          "values": [
+            "top",
+            "top-start",
+            "top-end",
+            "bottom",
+            "bottom-start",
+            "bottom-end",
+            "left",
+            "left-start",
+            "left-end",
+            "right",
+            "right-start",
+            "right-end",
+            "start",
+            "start-start",
+            "start-end",
+            "end",
+            "end-start",
+            "end-end"
+          ]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'click'",
+          "description": "Space-separated hover, focus, click, or manual.",
+          "model": false,
+          "name": "trigger",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "0",
+          "description": "Milliseconds before showing and hiding.",
+          "model": false,
+          "name": "delay",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Fades the tip in and out.",
+          "model": false,
+          "name": "animation",
+          "type": "boolean",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsPopover",
+      "outputs": [
+        {
+          "description": "Emits after the tip is shown.",
+          "name": "shown",
+          "type": "void"
+        },
+        {
+          "description": "Emits after the tip is hidden and removed.",
+          "name": "hidden",
+          "type": "void"
+        }
+      ],
+      "selector": "[bsPopover]",
+      "summary": "Popovers with an optional header, opened by clicking their trigger and positioned with Floating UI.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/components/progress/#api",
+      "entry": "progress",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "0",
+          "description": "Current value.",
+          "model": false,
+          "name": "value",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "0",
+          "description": "Minimum value.",
+          "model": false,
+          "name": "min",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "100",
+          "description": "Maximum value.",
+          "model": false,
+          "name": "max",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Theme color of the bar.",
+          "model": false,
+          "name": "theme",
+          "type": "BsTheme | null",
+          "values": [
+            "primary",
+            "accent",
+            "success",
+            "danger",
+            "warning",
+            "info",
+            "inverse",
+            "secondary"
+          ]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Adds stripes.",
+          "model": false,
+          "name": "striped",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Animates the stripes.",
+          "model": false,
+          "name": "animated",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Human-readable value for screen readers.",
+          "model": false,
+          "name": "valueText",
+          "type": "string | null",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsProgress",
+      "outputs": [],
+      "selector": "bs-progress",
+      "summary": "Progress bars with labels, themes, stripes and stacking.",
+      "tags": ["bs-progress"]
+    },
+    {
+      "attributes": ["bsProgressStacked"],
+      "docUrl": "https://bootstrap-ng.com/components/progress/#api",
+      "entry": "progress",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "directive",
+      "name": "BsProgressStacked",
+      "outputs": [],
+      "selector": "[bsProgressStacked]",
+      "summary": "Progress bars with labels, themes, stripes and stacking.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsRadio"],
+      "docUrl": "https://bootstrap-ng.com/forms/radio/#api",
+      "entry": "radio",
+      "exportAs": "bsRadio",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Theme color of the checked radio.",
+          "model": false,
+          "name": "theme",
+          "type": "BsTheme | null",
+          "values": [
+            "primary",
+            "accent",
+            "success",
+            "danger",
+            "warning",
+            "info",
+            "inverse",
+            "secondary"
+          ]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'md'",
+          "description": "Size of the radio.",
+          "model": false,
+          "name": "size",
+          "type": "'sm' | 'md' | 'lg'",
+          "values": ["sm", "md", "lg"]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "generated",
+          "description": "Element id. Generated when not set, and used for the field’s label.",
+          "model": false,
+          "name": "id",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'auto'",
+          "description": "Validation styles. auto follows the bound Angular form control.",
+          "model": false,
+          "name": "validation",
+          "type": "'auto' | 'valid' | 'invalid' | 'none'",
+          "values": ["auto", "valid", "invalid", "none"]
+        }
+      ],
+      "kind": "directive",
+      "name": "BsRadio",
+      "outputs": [],
+      "selector": "input[type=radio][bsRadio]",
+      "summary": "Native radios for choosing one option from many.",
+      "tags": ["input"]
+    },
+    {
+      "attributes": ["bsRange"],
+      "docUrl": "https://bootstrap-ng.com/forms/range/#api",
+      "entry": "range",
+      "exportAs": "bsRange",
+      "inputs": [
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Shows a bubble with the value above the thumb.",
+          "model": false,
+          "name": "bubble",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "String",
+          "description": "Formats the value in the bubble.",
+          "model": false,
+          "name": "formatter",
+          "type": "(value: number) => string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Theme color of the filled track and thumb. Primary when not set.",
+          "model": false,
+          "name": "theme",
+          "type": "BsTheme | null",
+          "values": [
+            "primary",
+            "accent",
+            "success",
+            "danger",
+            "warning",
+            "info",
+            "inverse",
+            "secondary"
+          ]
+        }
+      ],
+      "kind": "directive",
+      "name": "BsRange",
+      "outputs": [
+        {
+          "description": "Emits the numeric value when the user or a form changes it.",
+          "name": "valueChange",
+          "type": "number"
+        }
+      ],
+      "selector": "div[bsRange]",
+      "summary": "Range inputs with a filled track, a value bubble and tick marks.",
+      "tags": ["div"]
+    },
+    {
+      "attributes": ["bsRange"],
+      "docUrl": "https://bootstrap-ng.com/forms/range/#api",
+      "entry": "range",
+      "exportAs": "bsRangeInput",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "generated",
+          "description": "Element id. Generated when not set, and used for the field’s label.",
+          "model": false,
+          "name": "id",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'auto'",
+          "description": "Validation styles. auto follows the bound Angular form control.",
+          "model": false,
+          "name": "validation",
+          "type": "'auto' | 'valid' | 'invalid' | 'none'",
+          "values": ["auto", "valid", "invalid", "none"]
+        }
+      ],
+      "kind": "directive",
+      "name": "BsRangeInput",
+      "outputs": [],
+      "selector": "input[type=range][bsRange]",
+      "summary": "Range inputs with a filled track, a value bubble and tick marks.",
+      "tags": ["input"]
+    },
+    {
+      "attributes": ["bsRating"],
+      "docUrl": "https://bootstrap-ng.com/forms/rating/#api",
+      "entry": "rating",
+      "exportAs": "bsRating",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "0",
+          "description": "The rating, from 0 (not rated) to max. Supports [(value)].",
+          "model": true,
+          "name": "value",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "5",
+          "description": "Number of stars.",
+          "model": false,
+          "name": "max",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Lets pointer and keyboard pick half stars.",
+          "model": false,
+          "name": "allowHalf",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Shows the rating without letting it change.",
+          "model": false,
+          "name": "readonly",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Lets the rating be cleared by clicking the current rating, or with Home, Delete or Backspace.",
+          "model": false,
+          "name": "resettable",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Disables the rating. Forms set this through disable().",
+          "model": false,
+          "name": "disabled",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'warning'",
+          "description": "Theme color of the filled stars.",
+          "model": false,
+          "name": "theme",
+          "type": "BsTheme",
+          "values": [
+            "primary",
+            "accent",
+            "success",
+            "danger",
+            "warning",
+            "info",
+            "inverse",
+            "secondary"
+          ]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'md'",
+          "description": "Size of the stars.",
+          "model": false,
+          "name": "size",
+          "type": "'sm' | 'md' | 'lg'",
+          "values": ["sm", "md", "lg"]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "“3 out of 5”",
+          "description": "Text screen readers announce for a value.",
+          "model": false,
+          "name": "valueText",
+          "type": "(value: number, max: number) => string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "generated",
+          "description": "Element id.",
+          "model": false,
+          "name": "id",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'auto'",
+          "description": "Validation styles. auto follows the bound Angular form control.",
+          "model": false,
+          "name": "validation",
+          "type": "'auto' | 'valid' | 'invalid' | 'none'",
+          "values": ["auto", "valid", "invalid", "none"]
+        }
+      ],
+      "kind": "directive",
+      "name": "BsRating",
+      "outputs": [
+        {
+          "description": "Emits the rating when it changes.",
+          "name": "valueChange",
+          "type": "number"
+        }
+      ],
+      "selector": "div[bsRating]",
+      "summary": "Star ratings for reviews and feedback, with keyboard support, half stars and a read-only mode for averages.",
+      "tags": ["div"]
+    },
+    {
+      "attributes": ["bsRatingStar"],
+      "docUrl": "https://bootstrap-ng.com/forms/rating/#api",
+      "entry": "rating",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "directive",
+      "name": "BsRatingStar",
+      "outputs": [],
+      "selector": "ng-template[bsRatingStar]",
+      "summary": "Star ratings for reviews and feedback, with keyboard support, half stars and a read-only mode for averages.",
+      "tags": ["ng-template"]
+    },
+    {
+      "attributes": ["bsScrollspy"],
+      "docUrl": "https://bootstrap-ng.com/components/scrollspy/#api",
+      "entry": "scrollspy",
+      "exportAs": "bsScrollspy",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "required",
+          "description": "The element holding the links.",
+          "model": false,
+          "name": "bsScrollspy",
+          "type": "HTMLElement",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'12%'",
+          "description": "Position of the activation line, as a percentage or in pixels.",
+          "model": false,
+          "name": "topMargin",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Scrolls smoothly to a section when its link is clicked.",
+          "model": false,
+          "name": "smoothScroll",
+          "type": "boolean",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsScrollspy",
+      "outputs": [
+        {
+          "description": "Emits the id of each section that becomes active.",
+          "name": "activate",
+          "type": "string"
+        }
+      ],
+      "selector": "[bsScrollspy]",
+      "summary": "Highlights the navigation link of the section scrolled into view.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/components/spinner/#api",
+      "entry": "spinner",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "'border'",
+          "description": "Spinner style.",
+          "model": false,
+          "name": "type",
+          "type": "'border' | 'grow'",
+          "values": ["border", "grow"]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'md'",
+          "description": "Spinner size.",
+          "model": false,
+          "name": "size",
+          "type": "'sm' | 'md'",
+          "values": ["sm", "md"]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Loading…'",
+          "description": "Text for screen readers. Empty makes the spinner decorative.",
+          "model": false,
+          "name": "label",
+          "type": "string",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsSpinner",
+      "outputs": [],
+      "selector": "bs-spinner",
+      "summary": "Loading indicators built with HTML and CSS.",
+      "tags": ["bs-spinner"]
+    },
+    {
+      "attributes": ["bsStepper"],
+      "docUrl": "https://bootstrap-ng.com/components/stepper/#api",
+      "entry": "stepper",
+      "exportAs": "bsStepper",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "0",
+          "description": "Index of the current step. Supports [(step)].",
+          "model": true,
+          "name": "step",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Lays the steps out in a row, from a breakpoint up.",
+          "model": false,
+          "name": "horizontal",
+          "type": "boolean | 'sm' | 'md' | 'lg' | 'xl' | '2xl'",
+          "values": ["sm", "md", "lg", "xl", "2xl"]
+        }
+      ],
+      "kind": "directive",
+      "name": "BsStepper",
+      "outputs": [
+        {
+          "description": "Emits the new step.",
+          "name": "stepChange",
+          "type": "number"
+        }
+      ],
+      "selector": "[bsStepper]",
+      "summary": "Steps of a process, such as a sign-up flow or checkout, laid out vertically or in a row.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsStepperItem"],
+      "docUrl": "https://bootstrap-ng.com/components/stepper/#api",
+      "entry": "stepper",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Theme color of the step.",
+          "model": false,
+          "name": "theme",
+          "type": "BsTheme | null",
+          "values": [
+            "primary",
+            "accent",
+            "success",
+            "danger",
+            "warning",
+            "info",
+            "inverse",
+            "secondary"
+          ]
+        }
+      ],
+      "kind": "directive",
+      "name": "BsStepperItem",
+      "outputs": [],
+      "selector": "[bsStepperItem]",
+      "summary": "Steps of a process, such as a sign-up flow or checkout, laid out vertically or in a row.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsStrength"],
+      "docUrl": "https://bootstrap-ng.com/forms/password-strength/#api",
+      "entry": "password-strength",
+      "exportAs": "bsStrength",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "''",
+          "description": "A fixed level, for a static meter.",
+          "model": false,
+          "name": "bsStrength",
+          "type": "'weak' | 'fair' | 'good' | 'strong' | ''",
+          "values": ["weak", "fair", "good", "strong"]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'segments'",
+          "description": "Four segments, or a single bar.",
+          "model": false,
+          "name": "variant",
+          "type": "'segments' | 'bar'",
+          "values": ["segments", "bar"]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Password input to score as the user types.",
+          "model": false,
+          "name": "input",
+          "type": "HTMLInputElement | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Password to score. Takes precedence over input.",
+          "model": false,
+          "name": "password",
+          "type": "string | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "8",
+          "description": "Minimum length that earns the first point.",
+          "model": false,
+          "name": "minLength",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "{}",
+          "description": "Points per criterion. Set one to 0 to skip it.",
+          "model": false,
+          "name": "weights",
+          "type": "Partial<BsStrengthWeights>",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "[2, 4, 6]",
+          "description": "Highest scores for weak, fair and good.",
+          "model": false,
+          "name": "thresholds",
+          "type": "[number, number, number]",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Custom scoring that replaces the criteria.",
+          "model": false,
+          "name": "scorer",
+          "type": "((password: string) => number) | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "Weak, Fair, Good, Strong",
+          "description": "Text for each level.",
+          "model": false,
+          "name": "messages",
+          "type": "Partial<Record<BsStrengthLevel, string>>",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Password strength'",
+          "description": "Accessible name of the meter.",
+          "model": false,
+          "name": "aria-label",
+          "type": "string",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsStrength",
+      "outputs": [],
+      "selector": "div[bsStrength]",
+      "summary": "Feedback on password strength, with a segmented meter or a bar that updates as people type.",
+      "tags": ["div"]
+    },
+    {
+      "attributes": ["bsStrengthText"],
+      "docUrl": "https://bootstrap-ng.com/forms/password-strength/#api",
+      "entry": "password-strength",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "",
+          "description": "The meter to describe. Required.",
+          "model": false,
+          "name": "bsStrengthText",
+          "type": "BsStrength",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsStrengthText",
+      "outputs": [],
+      "selector": "[bsStrengthText]",
+      "summary": "Feedback on password strength, with a segmented meter or a bar that updates as people type.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsSubmenu"],
+      "docUrl": "https://bootstrap-ng.com/components/menu/#api",
+      "entry": "menu",
+      "exportAs": "bsSubmenu",
+      "inputs": [
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Opens the submenu on hover as well as on click and keyboard.",
+          "model": false,
+          "name": "hover",
+          "type": "boolean",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsSubmenu",
+      "outputs": [],
+      "selector": "[bsSubmenu]",
+      "summary": "Menus of actions and links, Bootstrap 6’s replacement for dropdowns, positioned with Floating UI.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsSwitch"],
+      "docUrl": "https://bootstrap-ng.com/forms/switch/#api",
+      "entry": "switch",
+      "exportAs": "bsSwitch",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Theme color of the checked switch.",
+          "model": false,
+          "name": "theme",
+          "type": "BsTheme | null",
+          "values": [
+            "primary",
+            "accent",
+            "success",
+            "danger",
+            "warning",
+            "info",
+            "inverse",
+            "secondary"
+          ]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'md'",
+          "description": "Size of the switch.",
+          "model": false,
+          "name": "size",
+          "type": "'sm' | 'md' | 'lg'",
+          "values": ["sm", "md", "lg"]
+        }
+      ],
+      "kind": "directive",
+      "name": "BsSwitch",
+      "outputs": [],
+      "selector": "div[bsSwitch]",
+      "summary": "A toggle switch built on a native checkbox.",
+      "tags": ["div"]
+    },
+    {
+      "attributes": ["bsSwitch"],
+      "docUrl": "https://bootstrap-ng.com/forms/switch/#api",
+      "entry": "switch",
+      "exportAs": "bsSwitchInput",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "generated",
+          "description": "Element id. Generated when not set, and used for the field’s label.",
+          "model": false,
+          "name": "id",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'auto'",
+          "description": "Validation styles. auto follows the bound Angular form control.",
+          "model": false,
+          "name": "validation",
+          "type": "'auto' | 'valid' | 'invalid' | 'none'",
+          "values": ["auto", "valid", "invalid", "none"]
+        }
+      ],
+      "kind": "directive",
+      "name": "BsSwitchInput",
+      "outputs": [],
+      "selector": "input[type=checkbox][bsSwitch]",
+      "summary": "A toggle switch built on a native checkbox.",
+      "tags": ["input"]
+    },
+    {
+      "attributes": ["bsTab"],
+      "docUrl": "https://bootstrap-ng.com/components/tab/#api",
+      "entry": "tab",
+      "exportAs": "bsTab",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "required",
+          "description": "Key of the tab.",
+          "model": false,
+          "name": "bsTab",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Disables the tab (disabled on buttons, aria-disabled and .disabled on links). A disabled active tab falls back to the first enabled tab.",
+          "model": false,
+          "name": "disabled",
+          "type": "boolean",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsTab",
+      "outputs": [],
+      "selector": "[bsTab]",
+      "summary": "Tabbed interfaces built on Bootstrap’s nav styles, with the WAI-ARIA tabs keyboard pattern.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsTabContent"],
+      "docUrl": "https://bootstrap-ng.com/components/tab/#api",
+      "entry": "tab",
+      "exportAs": "bsTabContent",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "required",
+          "description": "The tab list whose panes this element holds.",
+          "model": false,
+          "name": "bsTabContent",
+          "type": "BsTabs",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Fades panes in.",
+          "model": false,
+          "name": "animation",
+          "type": "boolean",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsTabContent",
+      "outputs": [],
+      "selector": "[bsTabContent]",
+      "summary": "Tabbed interfaces built on Bootstrap’s nav styles, with the WAI-ARIA tabs keyboard pattern.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsTable"],
+      "docUrl": "https://bootstrap-ng.com/components/table/#api",
+      "entry": "table",
+      "exportAs": "bsTable",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "required",
+          "description": "Rows of the table.",
+          "model": false,
+          "name": "data",
+          "type": "readonly T[]",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "required",
+          "description": "Column definitions. Supports [(columns)]; resizing and reordering write back.",
+          "model": true,
+          "name": "columns",
+          "type": "BsTableColumn<T>[]",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "row => row",
+          "description": "Returns a unique key for a row, used to track rows, selection and expansion.",
+          "model": false,
+          "name": "rowKey",
+          "type": "(row: T) => unknown",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Sorted column and direction. Supports [(sort)].",
+          "model": true,
+          "name": "sort",
+          "type": "BsTableSort | null",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Sorts by several columns, with sorts instead of sort.",
+          "model": false,
+          "name": "multiSort",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "[]",
+          "description": "Sorted columns, most important first, with multiSort. Supports [(sorts)].",
+          "model": true,
+          "name": "sorts",
+          "type": "BsTableSort[]",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "''",
+          "description": "Text filter matched against the text of every filterable, visible column.",
+          "model": false,
+          "name": "filter",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Custom filter, called with each row and the trimmed filter text.",
+          "model": false,
+          "name": "filterFn",
+          "type": "((row: T, filter: string) => boolean) | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "1",
+          "description": "Current page, starting at 1. Supports [(page)].",
+          "model": true,
+          "name": "page",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "0",
+          "description": "Rows per page. 0 shows every row.",
+          "model": false,
+          "name": "pageSize",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Leaves sorting, filtering and paging to you, such as on a server.",
+          "model": false,
+          "name": "manual",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Number of rows across all pages, in manual mode.",
+          "model": false,
+          "name": "total",
+          "type": "number | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'none'",
+          "description": "How rows can be selected.",
+          "model": false,
+          "name": "selection",
+          "type": "'none' | 'single' | 'multiple'",
+          "values": ["none", "single", "multiple"]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "[]",
+          "description": "Selected rows. Supports [(selected)].",
+          "model": true,
+          "name": "selected",
+          "type": "T[]",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "[]",
+          "description": "Expanded rows. Supports [(expanded)].",
+          "model": true,
+          "name": "expanded",
+          "type": "T[]",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Shows resize handles on every column.",
+          "model": false,
+          "name": "resizable",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Lets users drag column headers to reorder them.",
+          "model": false,
+          "name": "reorderable",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Keeps the header in view while the table scrolls in its container.",
+          "model": false,
+          "name": "stickyHeader",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Renders only the rows in view, for long tables.",
+          "model": false,
+          "name": "virtualScroll",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Row height in pixels with virtualScroll. Measured when not set.",
+          "model": false,
+          "name": "rowHeight",
+          "type": "number | null",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Shows a loading row and sets aria-busy.",
+          "model": false,
+          "name": "loading",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Zebra-stripes the rows.",
+          "model": false,
+          "name": "striped",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Highlights the row under the pointer.",
+          "model": false,
+          "name": "hover",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Adds borders on every side of the table and cells.",
+          "model": false,
+          "name": "bordered",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Removes all borders.",
+          "model": false,
+          "name": "borderless",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'md'",
+          "description": "Cell density.",
+          "model": false,
+          "name": "size",
+          "type": "'sm' | 'md'",
+          "values": ["sm", "md"]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Theme color of the table.",
+          "model": false,
+          "name": "theme",
+          "type": "BsTheme | null",
+          "values": [
+            "primary",
+            "accent",
+            "success",
+            "danger",
+            "warning",
+            "info",
+            "inverse",
+            "secondary"
+          ]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Stacks rows into blocks below a container breakpoint ('sm' to '2xl'), or 'always'.",
+          "model": false,
+          "name": "stacked",
+          "type": "BsTableStacked | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'No results'",
+          "description": "Text shown when there are no rows.",
+          "model": false,
+          "name": "emptyText",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Loading…'",
+          "description": "Text of the loading row.",
+          "model": false,
+          "name": "loadingText",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Select all rows'",
+          "description": "Accessible label of the select-all checkbox.",
+          "model": false,
+          "name": "selectAllLabel",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Select'",
+          "description": "Accessible name of the selection column header.",
+          "model": false,
+          "name": "selectHeader",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "first column text",
+          "description": "Accessible label of each row's checkbox or radio.",
+          "model": false,
+          "name": "rowLabel",
+          "type": "(row: T) => string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Details'",
+          "description": "Accessible name of the expand column header.",
+          "model": false,
+          "name": "detailHeader",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Show details'",
+          "description": "Accessible label of each row's expand button.",
+          "model": false,
+          "name": "expandLabel",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Resize'",
+          "description": "Start of each resize handle's label, followed by the column header.",
+          "model": false,
+          "name": "resizeLabel",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Sorted by Name, ascending' / 'Not sorted'",
+          "description": "Message announced after a sort button is used. Return '' to stay silent.",
+          "model": false,
+          "name": "sortAnnouncement",
+          "type": "(header: string, direction: BsSortDirection | null) => string",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsTable",
+      "outputs": [
+        {
+          "description": "Emits columns with new widths or order.",
+          "name": "columnsChange",
+          "type": "BsTableColumn<T>[]"
+        },
+        {
+          "description": "Emits the new sort.",
+          "name": "sortChange",
+          "type": "BsTableSort | null"
+        },
+        {
+          "description": "Emits the new sorts, with multiSort.",
+          "name": "sortsChange",
+          "type": "BsTableSort[]"
+        },
+        {
+          "description": "Emits the new page.",
+          "name": "pageChange",
+          "type": "number"
+        },
+        {
+          "description": "Emits the selected rows.",
+          "name": "selectedChange",
+          "type": "T[]"
+        },
+        {
+          "description": "Emits the expanded rows.",
+          "name": "expandedChange",
+          "type": "T[]"
+        }
+      ],
+      "selector": "table[bsTable]",
+      "summary": "Data tables on Bootstrap’s table styles, with sorting by one or several columns, search, pagination, row selection, expandable rows, virtual scrolling, and pinned, resizable and reorderable columns.",
+      "tags": ["table"]
+    },
+    {
+      "attributes": ["bsTableCell"],
+      "docUrl": "https://bootstrap-ng.com/components/table/#api",
+      "entry": "table",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "required",
+          "description": "Key of the column.",
+          "model": false,
+          "name": "bsTableCell",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "[]",
+          "description": "The rows, only to type the template context.",
+          "model": false,
+          "name": "bsTableCellOf",
+          "type": "readonly T[]",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsTableCell",
+      "outputs": [],
+      "selector": "ng-template[bsTableCell]",
+      "summary": "Data tables on Bootstrap’s table styles, with sorting by one or several columns, search, pagination, row selection, expandable rows, virtual scrolling, and pinned, resizable and reorderable columns.",
+      "tags": ["ng-template"]
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/components/table/#api",
+      "entry": "table",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "",
+          "description": "Unique key, and the row property shown by default.",
+          "model": false,
+          "name": "key",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "",
+          "description": "Header text.",
+          "model": false,
+          "name": "header",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "",
+          "description": "Reads the cell value from a row.",
+          "model": false,
+          "name": "value",
+          "type": "(row: T) => unknown",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "",
+          "description": "Formats the value as text.",
+          "model": false,
+          "name": "format",
+          "type": "(value: unknown, row: T) => string",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "",
+          "description": "Shows a sort button in the header.",
+          "model": false,
+          "name": "sortable",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "",
+          "description": "Compares two rows for sorting, ascending.",
+          "model": false,
+          "name": "compare",
+          "type": "(a: T, b: T) => number",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "",
+          "description": "Includes the column in the text filter. Defaults to true.",
+          "model": false,
+          "name": "filterable",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "",
+          "description": "Hides the column.",
+          "model": false,
+          "name": "hidden",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "",
+          "description": "Width and resize limits in pixels (defaults 48 and 1000).",
+          "model": false,
+          "name": "width / minWidth / maxWidth",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "",
+          "description": "Shows a resize handle, overriding the table's resizable.",
+          "model": false,
+          "name": "resizable",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "",
+          "description": "Text alignment of the header and cells.",
+          "model": false,
+          "name": "align",
+          "type": "'start' | 'center' | 'end'",
+          "values": ["start", "center", "end"]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "",
+          "description": "Classes added to the header cell and each cell.",
+          "model": false,
+          "name": "headerClass / cellClass",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "",
+          "description": "Keeps the column in view while the table scrolls sideways.",
+          "model": false,
+          "name": "pinned",
+          "type": "'start' | 'end'",
+          "values": ["start", "end"]
+        }
+      ],
+      "kind": "type",
+      "name": "BsTableColumn",
+      "outputs": [],
+      "selector": "interface (columns input)",
+      "summary": "Data tables on Bootstrap’s table styles, with sorting by one or several columns, search, pagination, row selection, expandable rows, virtual scrolling, and pinned, resizable and reorderable columns.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsTableDetail"],
+      "docUrl": "https://bootstrap-ng.com/components/table/#api",
+      "entry": "table",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "[]",
+          "description": "The rows, only to type the template context.",
+          "model": false,
+          "name": "bsTableDetailOf",
+          "type": "readonly T[]",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsTableDetail",
+      "outputs": [],
+      "selector": "ng-template[bsTableDetail]",
+      "summary": "Data tables on Bootstrap’s table styles, with sorting by one or several columns, search, pagination, row selection, expandable rows, virtual scrolling, and pinned, resizable and reorderable columns.",
+      "tags": ["ng-template"]
+    },
+    {
+      "attributes": ["bsTableEmpty"],
+      "docUrl": "https://bootstrap-ng.com/components/table/#api",
+      "entry": "table",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "directive",
+      "name": "BsTableEmpty",
+      "outputs": [],
+      "selector": "ng-template[bsTableEmpty]",
+      "summary": "Data tables on Bootstrap’s table styles, with sorting by one or several columns, search, pagination, row selection, expandable rows, virtual scrolling, and pinned, resizable and reorderable columns.",
+      "tags": ["ng-template"]
+    },
+    {
+      "attributes": ["bsTabPane"],
+      "docUrl": "https://bootstrap-ng.com/components/tab/#api",
+      "entry": "tab",
+      "exportAs": "bsTabPane",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "required",
+          "description": "Key of the tab that shows this pane.",
+          "model": false,
+          "name": "bsTabPane",
+          "type": "string",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsTabPane",
+      "outputs": [],
+      "selector": "[bsTabPane]",
+      "summary": "Tabbed interfaces built on Bootstrap’s nav styles, with the WAI-ARIA tabs keyboard pattern.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsTabs"],
+      "docUrl": "https://bootstrap-ng.com/components/tab/#api",
+      "entry": "tab",
+      "exportAs": "bsTabs",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "undefined",
+          "description": "Key of the shown tab. Supports [(active)].",
+          "model": true,
+          "name": "active",
+          "type": "string | undefined",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Sets aria-orientation=\"vertical\".",
+          "model": false,
+          "name": "vertical",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "generated",
+          "description": "Element id, used to build tab and pane ids.",
+          "model": false,
+          "name": "id",
+          "type": "string",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsTabs",
+      "outputs": [],
+      "selector": "[bsTabs]",
+      "summary": "Tabbed interfaces built on Bootstrap’s nav styles, with the WAI-ARIA tabs keyboard pattern.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/getting-started/services/",
+      "entry": null,
+      "exportAs": null,
+      "inputs": [],
+      "kind": "type",
+      "name": "BsTheme",
+      "outputs": [],
+      "selector": null,
+      "summary": "'primary' | 'accent' | 'success' | 'danger' | 'warning' | 'info' | 'inverse' | 'secondary'",
+      "tags": []
+    },
+    {
+      "attributes": ["bsToast"],
+      "docUrl": "https://bootstrap-ng.com/components/toasts/#api",
+      "entry": "toasts",
+      "exportAs": "bsToast",
+      "inputs": [
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Whether the toast is shown. Supports [(open)].",
+          "model": true,
+          "name": "open",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Hides the toast after delay.",
+          "model": false,
+          "name": "autohide",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "5000",
+          "description": "Milliseconds before the toast hides.",
+          "model": false,
+          "name": "delay",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'polite'",
+          "description": "How urgently screen readers read the toast out when it opens. Use assertive for errors. The text goes through BsLiveAnnouncer, because screen readers often miss a live region that appears with its text.",
+          "model": false,
+          "name": "live",
+          "type": "'polite' | 'assertive'",
+          "values": ["polite", "assertive"]
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Fades the toast in and out.",
+          "model": false,
+          "name": "animation",
+          "type": "boolean",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsToast",
+      "outputs": [
+        {
+          "description": "Emits when the toast opens or closes from inside.",
+          "name": "openChange",
+          "type": "boolean"
+        },
+        {
+          "description": "Emits after the toast is shown.",
+          "name": "shown",
+          "type": "void"
+        },
+        {
+          "description": "Emits after the toast is hidden.",
+          "name": "hidden",
+          "type": "void"
+        }
+      ],
+      "selector": "[bsToast]",
+      "summary": "Lightweight notifications that hide on their own, pausing while the pointer or focus is inside them.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsToastClose"],
+      "docUrl": "https://bootstrap-ng.com/components/toasts/#api",
+      "entry": "toasts",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "directive",
+      "name": "BsToastClose",
+      "outputs": [],
+      "selector": "[bsToastClose]",
+      "summary": "Lightweight notifications that hide on their own, pausing while the pointer or focus is inside them.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/getting-started/services/",
+      "entry": null,
+      "exportAs": null,
+      "inputs": [],
+      "kind": "service",
+      "name": "BsToaster",
+      "outputs": [],
+      "selector": "inject(BsToaster)",
+      "summary": "Shows toasts from code, without a toast in your template. The toasts stack in a fixed .toast-container that is added to the page the first time a toast is shown.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsToggler"],
+      "docUrl": "https://bootstrap-ng.com/components/toggler/#api",
+      "entry": "toggler",
+      "exportAs": "bsToggler",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "required",
+          "description": "Class name, or attribute value, to toggle.",
+          "model": false,
+          "name": "bsToggler",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'class'",
+          "description": "Attribute to toggle.",
+          "model": false,
+          "name": "attribute",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Elements to toggle instead of this one.",
+          "model": false,
+          "name": "target",
+          "type": "HTMLElement | HTMLElement[] | null",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsToggler",
+      "outputs": [
+        {
+          "description": "Emits the new state.",
+          "name": "toggled",
+          "type": "boolean"
+        }
+      ],
+      "selector": "[bsToggler]",
+      "summary": "Toggles a class or attribute on click, for small interactions that would otherwise need a one-off handler.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsTooltip"],
+      "docUrl": "https://bootstrap-ng.com/components/tooltip/#api",
+      "entry": "tooltip",
+      "exportAs": "bsTooltip",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "undefined",
+          "description": "Content of the tooltip. Nothing shows when empty.",
+          "model": false,
+          "name": "bsTooltip",
+          "type": "string | TemplateRef",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'top'",
+          "description": "Where the tip appears. start and end follow the text direction. Flips when there is no room.",
+          "model": false,
+          "name": "placement",
+          "type": "BsPlacement",
+          "values": [
+            "top",
+            "top-start",
+            "top-end",
+            "bottom",
+            "bottom-start",
+            "bottom-end",
+            "left",
+            "left-start",
+            "left-end",
+            "right",
+            "right-start",
+            "right-end",
+            "start",
+            "start-start",
+            "start-end",
+            "end",
+            "end-start",
+            "end-end"
+          ]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'hover focus'",
+          "description": "Space-separated hover, focus, click, or manual.",
+          "model": false,
+          "name": "trigger",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "0",
+          "description": "Milliseconds before showing and hiding.",
+          "model": false,
+          "name": "delay",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Fades the tip in and out.",
+          "model": false,
+          "name": "animation",
+          "type": "boolean",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsTooltip",
+      "outputs": [
+        {
+          "description": "Emits after the tip is shown.",
+          "name": "shown",
+          "type": "void"
+        },
+        {
+          "description": "Emits after the tip is hidden and removed.",
+          "name": "hidden",
+          "type": "void"
+        }
+      ],
+      "selector": "[bsTooltip]",
+      "summary": "Tooltips positioned with Floating UI, shown on hover and keyboard focus and dismissed with Escape.",
+      "tags": []
+    },
+    {
+      "attributes": ["bsTypeahead"],
+      "docUrl": "https://bootstrap-ng.com/forms/typeahead/#api",
+      "entry": "typeahead",
+      "exportAs": "bsTypeahead",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "",
+          "description": "Finds the suggestions for a term. Required.",
+          "model": false,
+          "name": "bsTypeahead",
+          "type": "(term: string) => T[] | Promise<T[]> | Observable<T[]>",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "String",
+          "description": "Text shown for a suggestion and put in the input when it is picked or set by a form. A string value is shown as it is.",
+          "model": false,
+          "name": "formatter",
+          "type": "(item: T) => string",
+          "values": []
+        },
+        {
+          "boolean": true,
+          "defaultValue": "true",
+          "description": "Whether typed text becomes the form value. When false, the value is null until the user picks a suggestion.",
+          "model": false,
+          "name": "editable",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "null",
+          "description": "Template for each suggestion. Context: $implicit (the suggestion), term and text.",
+          "model": false,
+          "name": "itemTemplate",
+          "type": "TemplateRef | null",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "1",
+          "description": "Characters to type before searching.",
+          "model": false,
+          "name": "minLength",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "200",
+          "description": "Milliseconds to wait after the last keystroke before searching.",
+          "model": false,
+          "name": "debounce",
+          "type": "number",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'bottom-start'",
+          "description": "Where the list opens relative to the input.",
+          "model": false,
+          "name": "placement",
+          "type": "BsPlacement",
+          "values": [
+            "top",
+            "top-start",
+            "top-end",
+            "bottom",
+            "bottom-start",
+            "bottom-end",
+            "left",
+            "left-start",
+            "left-end",
+            "right",
+            "right-start",
+            "right-end",
+            "start",
+            "start-start",
+            "start-end",
+            "end",
+            "end-start",
+            "end-end"
+          ]
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'Suggestions'",
+          "description": "Accessible label of the suggestion list.",
+          "model": false,
+          "name": "listLabel",
+          "type": "string",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "'3 suggestions available'",
+          "description": "Text announced to screen readers when suggestions arrive.",
+          "model": false,
+          "name": "resultsText",
+          "type": "(count: number) => string",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsTypeahead",
+      "outputs": [
+        {
+          "description": "Emits the suggestion the user picked, after the input is updated.",
+          "name": "itemSelect",
+          "type": "T"
+        }
+      ],
+      "selector": "input[bsTypeahead]",
+      "summary": "A text input that suggests values while the user types. The user can pick a suggestion or keep their own text.",
+      "tags": ["input"]
+    },
+    {
+      "attributes": ["bsValidate"],
+      "docUrl": "https://bootstrap-ng.com/forms/validation/#api",
+      "entry": "validation",
+      "exportAs": "bsValidate",
+      "inputs": [
+        {
+          "boolean": false,
+          "defaultValue": "''",
+          "description": "valid also shows success styles on valid controls.",
+          "model": false,
+          "name": "bsValidate",
+          "type": "'' | 'valid'",
+          "values": ["valid"]
+        }
+      ],
+      "kind": "directive",
+      "name": "BsValidate",
+      "outputs": [],
+      "selector": "form[bsValidate]",
+      "summary": "Validation styles that follow Angular form state, native constraints or the server.",
+      "tags": ["form"]
+    },
+    {
+      "attributes": ["bsValidFeedback"],
+      "docUrl": "https://bootstrap-ng.com/forms/validation/#api",
+      "entry": "validation",
+      "exportAs": null,
+      "inputs": [
+        {
+          "boolean": true,
+          "defaultValue": "false",
+          "description": "Shows the feedback as a tooltip.",
+          "model": false,
+          "name": "tooltip",
+          "type": "boolean",
+          "values": []
+        },
+        {
+          "boolean": false,
+          "defaultValue": "generated",
+          "description": "Element id. Generated when not set.",
+          "model": false,
+          "name": "id",
+          "type": "string",
+          "values": []
+        }
+      ],
+      "kind": "directive",
+      "name": "BsValidFeedback",
+      "outputs": [],
+      "selector": "[bsValidFeedback]",
+      "summary": "Validation styles that follow Angular form state, native constraints or the server.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/getting-started/services/",
+      "entry": null,
+      "exportAs": null,
+      "inputs": [],
+      "kind": "function",
+      "name": "fontAwesomeIcons",
+      "outputs": [],
+      "selector": null,
+      "summary": "Built-in icon library factory for fontAwesomeIcons.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/getting-started/services/",
+      "entry": null,
+      "exportAs": null,
+      "inputs": [],
+      "kind": "function",
+      "name": "getTransitionDuration",
+      "outputs": [],
+      "selector": null,
+      "summary": "The element's first transition duration plus delay, in milliseconds.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/getting-started/services/",
+      "entry": null,
+      "exportAs": null,
+      "inputs": [],
+      "kind": "function",
+      "name": "materialSymbols",
+      "outputs": [],
+      "selector": null,
+      "summary": "Built-in icon library factory for materialSymbols.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/getting-started/services/",
+      "entry": null,
+      "exportAs": null,
+      "inputs": [],
+      "kind": "function",
+      "name": "modusIcons",
+      "outputs": [],
+      "selector": null,
+      "summary": "Built-in icon library factory for modusIcons.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/getting-started/services/",
+      "entry": null,
+      "exportAs": null,
+      "inputs": [],
+      "kind": "function",
+      "name": "phosphorIcons",
+      "outputs": [],
+      "selector": null,
+      "summary": "Built-in icon library factory for phosphorIcons.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/components/accordion/#api",
+      "entry": "accordion",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsAccordionConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for size, flush, exclusive.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/components/alert/#api",
+      "entry": "alert",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsAlertConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for dismissible, closeLabel, animation.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/components/breadcrumb/#api",
+      "entry": "breadcrumb",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsBreadcrumbConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for divider, label.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/forms/datepicker/#api",
+      "entry": "datepicker",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsCalendarConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for firstWeekday, monthsCount, locale, prevLabel, nextLabel, hideOutsideDays, weekNumbers, weekNumbering, weekLabel, monthSelection, yearSelection, monthSelectionLabel, yearSelectionLabel, prevYearsLabel, nextYearsLabel, wareki.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/components/carousel/#api",
+      "entry": "carousel",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsCarouselConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for autoplay, interval, pauseOnHover, ends, keyboard, and pauseLabel and playLabel on bsCarouselPlayPause.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/forms/chips/#api",
+      "entry": "chips",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsChipInputConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for separator, allowDuplicates, createOnBlur, dismissible, removeLabel.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/components/close-button/#api",
+      "entry": "close-button",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsCloseButtonConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for label (aria-label).",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/forms/combobox/#api",
+      "entry": "combobox",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsComboboxConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for size, countText.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/forms/datepicker/#api",
+      "entry": "datepicker",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsDatepickerConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for firstWeekday, monthsCount, weekNumbers, weekNumbering, wareki, locale, dateFormat, placement, calendarLabel, size.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/components/dialog/#api",
+      "entry": "dialog",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsDialogConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for backdrop, keyboard, animation.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/components/drawer/#api",
+      "entry": "drawer",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsDrawerConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for placement, scroll, sheet, backdrop, keyboard, animation.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/forms/file-dropzone/#api",
+      "entry": "file-dropzone",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsFileDropzoneConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for maxFileSize, fileList, thumbnails, size, removeLabel, fileListLabel, formatSize, rejectionText.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/forms/form-control/#api",
+      "entry": "form-control",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsFormControlConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for clearLabel.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/getting-started/services/#icon-registry",
+      "entry": null,
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsIcons",
+      "outputs": [],
+      "selector": null,
+      "summary": "provideBsIcons configuration.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/components/menu/#api",
+      "entry": "menu",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsMenuConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for placement, strategy, autoClose, and hover on bsSubmenu.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/components/nav-overflow/#api",
+      "entry": "nav-overflow",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsNavOverflowConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for moreText, moreLabel, iconPlacement, menuStrategy.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/components/pagination/#api",
+      "entry": "pagination",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsPaginationConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for maxPages, size, previousText, nextText, previousLabel, nextLabel.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/components/popover/#api",
+      "entry": "popover",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsPopoverConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for placement, trigger, delay, animation.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/components/progress/#api",
+      "entry": "progress",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsProgressConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for max, striped, animated.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/forms/range/#api",
+      "entry": "range",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsRangeConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for bubble, formatter.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/forms/rating/#api",
+      "entry": "rating",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsRatingConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for max, allowHalf, resettable, theme, size, valueText.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/components/scrollspy/#api",
+      "entry": "scrollspy",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsScrollspyConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for topMargin, smoothScroll.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/components/spinner/#api",
+      "entry": "spinner",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsSpinnerConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for type, label.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/forms/password-strength/#api",
+      "entry": "password-strength",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsStrengthConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for variant, minLength, weights, thresholds, messages, ariaLabel (aria-label).",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/components/table/#api",
+      "entry": "table",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsTableConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for pageSize, stickyHeader, striped, hover, bordered, size, emptyText, loadingText, selectAllLabel, selectHeader, rowLabel, detailHeader, expandLabel, resizeLabel, sortAnnouncement.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/components/toasts/#api",
+      "entry": "toasts",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsToastConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for autohide, delay, animation, live, and closeLabel for BsToaster.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/components/tooltip/#api",
+      "entry": "tooltip",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsTooltipConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for placement, trigger, delay, animation.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/forms/typeahead/#api",
+      "entry": "typeahead",
+      "exportAs": null,
+      "inputs": [],
+      "kind": "config",
+      "name": "provideBsTypeaheadConfig",
+      "outputs": [],
+      "selector": null,
+      "summary": "Sets defaults for minLength, debounce, placement, listLabel, resultsText, editable.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/getting-started/services/",
+      "entry": null,
+      "exportAs": null,
+      "inputs": [],
+      "kind": "function",
+      "name": "themeClass",
+      "outputs": [],
+      "selector": null,
+      "summary": "Returns the .theme-* class for a BsTheme, such as 'theme-danger', or an empty string when the theme is null.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/getting-started/services/",
+      "entry": null,
+      "exportAs": null,
+      "inputs": [],
+      "kind": "function",
+      "name": "uniqueId",
+      "outputs": [],
+      "selector": null,
+      "summary": "Returns an id that is unique on the page, such as 'bs-collapse-3'.",
+      "tags": []
+    },
+    {
+      "attributes": [],
+      "docUrl": "https://bootstrap-ng.com/getting-started/services/",
+      "entry": null,
+      "exportAs": null,
+      "inputs": [],
+      "kind": "function",
+      "name": "waitForTransition",
+      "outputs": [],
+      "selector": null,
+      "summary": "Resolves when the element's CSS transition ends, at once when it has none, and after a fallback timer if transitionend never fires.",
+      "tags": []
+    }
+  ],
+  "version": 1
+}

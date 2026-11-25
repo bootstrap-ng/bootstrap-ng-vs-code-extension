@@ -1,0 +1,107 @@
+{
+  "name": "bootstrap-ng",
+  "displayName": "Bootstrap-ng",
+  "version": "0.9.0",
+  "description": "%description%",
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "keywords": [
+    "angular",
+    "bootstrap",
+    "ng"
+  ],
+  "homepage": "https://bootstrap-ng.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bootstrap-ng/bootstrap-ng-vs-code-extension.git"
+  },
+  "license": "MIT",
+  "author": "C.Oliff",
+  "publisher": "coliff",
+  "sponsor": {
+    "url": "https://github.com/sponsors/coliff"
+  },
+  "activationEvents": [
+    "onLanguage:html",
+    "onLanguage:json",
+    "onLanguage:typescript",
+    "workspaceContains:package.json"
+  ],
+  "l10n": "./l10n",
+  "main": "./out/extension.js",
+  "scripts": {
+    "compile": "esbuild src/extension.js --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --target=node22 --sourcemap",
+    "lint": "npm run prettier && npm run lint-css && npm run lint-js",
+    "lint:fix": "npm run prettier && npm run lint-css:fix && npm run lint-js:fix",
+    "lint-css": "npx stylelint@18.0.0 src/*.css --allow-empty-input --formatter verbose",
+    "lint-css:fix": "npx stylelint@18.0.0 **/*.css --allow-empty-input --fix --formatter verbose",
+    "lint-js": "eslint .",
+    "lint-js:fix": "eslint . --fix",
+    "package": "npm run vscode:prepublish && vsce package",
+    "prettier": "prettier --write \"**/*.{css,js,json,md,mjs,yml}\"",
+    "spellcheck": "npx cspell \"**/*.{html,js,json,md,yml}\"",
+    "test": "npm run compile && node --check out/extension.js && node --test \"test/**/*.test.js\"",
+    "vscode:prepublish": "npm run compile -- --minify",
+    "watch": "esbuild src/extension.js --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --target=node22 --sourcemap --watch"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/vscode": "1.134.0",
+    "@vscode/vsce": "4.1.1",
+    "esbuild": "0.28.2",
+    "eslint": "10.15.0",
+    "eslint-config-prettier": "10.1.8",
+    "globals": "17.14.0",
+    "prettier": "3.10.1"
+  },
+  "engines": {
+    "vscode": "^1.134.0"
+  },
+  "volta": {
+    "node": "24.22.3"
+  },
+  "icon": "icon.png",
+  "extensionKind": [
+    "workspace"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "category": "Bootstrap-ng",
+        "command": "bootstrap-ng.openDocs",
+        "title": "%command.openDocs.title%"
+      }
+    ],
+    "configuration": {
+      "properties": {
+        "bootstrap-ng.hintBootstrap5DataApi": {
+          "default": true,
+          "description": "%setting.hintBootstrap5DataApi.description%",
+          "type": "boolean"
+        },
+        "bootstrap-ng.validateAttributeValues": {
+          "default": true,
+          "description": "%setting.validateAttributeValues.description%",
+          "type": "boolean"
+        }
+      },
+      "title": "Bootstrap-ng"
+    },
+    "snippets": [
+      {
+        "language": "html",
+        "path": "./snippets/bootstrap-ng.code-snippets"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/bootstrap-ng.code-snippets"
+      }
+    ]
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true,
+    "@vscode/vsce-sign@2.1.1": true
+  }
+}

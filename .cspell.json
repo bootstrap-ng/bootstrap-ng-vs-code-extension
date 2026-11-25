@@ -1,0 +1,14 @@
+{
+  "version": "0.2",
+  "words": ["coliff", "hstack", "offcanvas", "Oliff", "vstack", "ZIZMOR"],
+  "allowCompoundWords": true,
+  "language": "en,en-US",
+  "ignorePaths": [
+    ".cspell.json",
+    "l10n/bundle.l10n.*.json",
+    "package.nls.*.json",
+    "src/data/catalog.json",
+    "src/data/classes.json"
+  ],
+  "useGitignore": true
+}

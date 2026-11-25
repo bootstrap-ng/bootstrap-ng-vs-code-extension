@@ -1,0 +1,288 @@
+{
+  "Accordion": {
+    "prefix": "bs-accordion",
+    "body": [
+      "<div bsAccordion>",
+      "  <details bsAccordionItem open>",
+      "    <summary bsAccordionHeader>${1:First item}</summary>",
+      "    <div bsAccordionBody>${2:Content}</div>",
+      "  </details>",
+      "  <details bsAccordionItem>",
+      "    <summary bsAccordionHeader>${3:Second item}</summary>",
+      "    <div bsAccordionBody>${4:Content}</div>",
+      "  </details>",
+      "</div>"
+    ],
+    "description": "bootstrap-ng accordion"
+  },
+  "Alert": {
+    "prefix": "bs-alert",
+    "body": [
+      "<div bsAlert theme=\"${1|primary,accent,success,danger,warning,info,inverse,secondary|}\">",
+      "  <p>${2:Message}</p>",
+      "</div>"
+    ],
+    "description": "bootstrap-ng alert"
+  },
+  "Avatar": {
+    "prefix": "bs-avatar",
+    "body": ["<span bsAvatar theme=\"${1|primary,accent,success,danger,warning,info,inverse,secondary|}\">${2:AB}</span>"],
+    "description": "bootstrap-ng avatar"
+  },
+  "Badge": {
+    "prefix": "bs-badge",
+    "body": [
+      "<span bsBadge theme=\"${1|primary,accent,success,danger,warning,info,inverse,secondary|}\" variant=\"${2|solid,subtle,outline|}\">${3:Label}</span>"
+    ],
+    "description": "bootstrap-ng badge"
+  },
+  "Breadcrumb": {
+    "prefix": "bs-breadcrumb",
+    "body": ["<nav bsBreadcrumb label=\"${1:Breadcrumb}\" [items]=\"${2:items}\"></nav>"],
+    "description": "bootstrap-ng breadcrumb"
+  },
+  "Button": {
+    "prefix": "bs-button",
+    "body": [
+      "<button type=\"button\" bsButton=\"${1|solid,outline,subtle,text,link,base|}\" theme=\"${2|primary,accent,success,danger,warning,info,inverse,secondary|}\">",
+      "  ${3:Save}",
+      "</button>"
+    ],
+    "description": "bootstrap-ng button"
+  },
+  "Button group": {
+    "prefix": "bs-button-group",
+    "body": [
+      "<div bsButtonGroup aria-label=\"${1:Button group}\">",
+      "  <button type=\"button\" bsButton theme=\"primary\">${2:Left}</button>",
+      "  <button type=\"button\" bsButton theme=\"primary\">${3:Middle}</button>",
+      "  <button type=\"button\" bsButton theme=\"primary\">${4:Right}</button>",
+      "</div>"
+    ],
+    "description": "bootstrap-ng button group"
+  },
+  "Card": {
+    "prefix": "bs-card",
+    "body": [
+      "<div class=\"card\">",
+      "  <div class=\"card-body\">",
+      "    <h2 class=\"card-title h5\">${1:Title}</h2>",
+      "    <p class=\"card-text\">${2:Text}</p>",
+      "  </div>",
+      "</div>"
+    ],
+    "description": "Bootstrap card markup"
+  },
+  "Checkbox": {
+    "prefix": "bs-checkbox",
+    "body": [
+      "<div bsFormField>",
+      "  <input id=\"${1:check}\" type=\"checkbox\" bsCheck />",
+      "  <label bsLabel for=\"${1:check}\">${2:Label}</label>",
+      "</div>"
+    ],
+    "description": "bootstrap-ng checkbox"
+  },
+  "Collapse": {
+    "prefix": "bs-collapse",
+    "body": [
+      "<button type=\"button\" bsButton theme=\"primary\" [bsCollapseToggle]=\"${1:panel}\">${2:Toggle}</button>",
+      "<div bsCollapse #${1:panel}=\"bsCollapse\">",
+      "  ${3:Content}",
+      "</div>"
+    ],
+    "description": "bootstrap-ng collapse"
+  },
+  "Dialog": {
+    "prefix": "bs-dialog",
+    "body": [
+      "<button type=\"button\" bsButton theme=\"primary\" (click)=\"${1:dialog}.show()\">${2:Open}</button>",
+      "<dialog bsDialog #${1:dialog}=\"bsDialog\" aria-labelledby=\"${1:dialog}-title\">",
+      "  <div class=\"dialog-header\">",
+      "    <h2 class=\"dialog-title\" id=\"${1:dialog}-title\">${3:Title}</h2>",
+      "    <button type=\"button\" bsCloseButton bsDialogClose></button>",
+      "  </div>",
+      "  <div class=\"dialog-body\">${4:Content}</div>",
+      "  <div class=\"dialog-footer\">",
+      "    <button type=\"button\" bsButton theme=\"secondary\" bsDialogClose>${5:Cancel}</button>",
+      "    <button type=\"button\" bsButton theme=\"primary\" bsDialogClose>${6:Save}</button>",
+      "  </div>",
+      "</dialog>"
+    ],
+    "description": "bootstrap-ng dialog"
+  },
+  "Drawer": {
+    "prefix": "bs-drawer",
+    "body": [
+      "<button type=\"button\" bsButton theme=\"primary\" [bsDrawerToggle]=\"${1:drawer}\">${2:Open}</button>",
+      "<dialog bsDrawer #${1:drawer}=\"bsDrawer\" placement=\"${3|start,end,top,bottom|}\" aria-labelledby=\"${1:drawer}-title\">",
+      "  <div class=\"drawer-header\">",
+      "    <h2 class=\"drawer-title\" id=\"${1:drawer}-title\">${4:Title}</h2>",
+      "    <button type=\"button\" bsCloseButton bsDrawerClose></button>",
+      "  </div>",
+      "  <div class=\"drawer-body\">${5:Content}</div>",
+      "</dialog>"
+    ],
+    "description": "bootstrap-ng drawer"
+  },
+  "Floating label": {
+    "prefix": "bs-floating-label",
+    "body": [
+      "<div bsFormFloating>",
+      "  <label bsLabel>${1:Email address}</label>",
+      "  <input type=\"email\" bsFormControl placeholder=\"${2:name@example.com}\" autocomplete=\"email\" />",
+      "</div>"
+    ],
+    "description": "bootstrap-ng floating label"
+  },
+  "Form field": {
+    "prefix": "bs-form-field",
+    "body": [
+      "<div bsFormField>",
+      "  <label bsFormLabel for=\"${1:field}\">${2:Label}</label>",
+      "  <input id=\"${1:field}\" type=\"text\" bsFormControl />",
+      "</div>"
+    ],
+    "description": "bootstrap-ng form field"
+  },
+  "Icon": {
+    "prefix": "bs-icon",
+    "body": ["<bs-icon name=\"${1:check}\" label=\"${2}\" />"],
+    "description": "bootstrap-ng icon"
+  },
+  "Input group": {
+    "prefix": "bs-input-group",
+    "body": [
+      "<div bsInputGroup>",
+      "  <span bsInputGroupText>${1:@}</span>",
+      "  <input bsFormControl placeholder=\"${2:Username}\" aria-label=\"${3:Username}\" />",
+      "</div>"
+    ],
+    "description": "bootstrap-ng input group"
+  },
+  "List group": {
+    "prefix": "bs-list-group",
+    "body": [
+      "<ul bsListGroup>",
+      "  <li bsListGroupItem active>${1:First item}</li>",
+      "  <li bsListGroupItem>${2:Second item}</li>",
+      "</ul>"
+    ],
+    "description": "bootstrap-ng list group"
+  },
+  "Menu": {
+    "prefix": "bs-menu",
+    "body": [
+      "<button type=\"button\" bsButton theme=\"primary\" [bsMenuToggle]=\"${1:menu}\">${2:Menu}</button>",
+      "<div bsMenu #${1:menu}=\"bsMenu\">",
+      "  <button type=\"button\" class=\"menu-item\">${3:First item}</button>",
+      "  <button type=\"button\" class=\"menu-item\">${4:Second item}</button>",
+      "</div>"
+    ],
+    "description": "bootstrap-ng menu"
+  },
+  "Nav": {
+    "prefix": "bs-nav",
+    "body": [
+      "<ul bsNav aria-label=\"${1:Navigation}\">",
+      "  <li class=\"nav-item\"><a bsNavLink active href=\"#\">${2:Active}</a></li>",
+      "  <li class=\"nav-item\"><a bsNavLink href=\"#\">${3:Link}</a></li>",
+      "</ul>"
+    ],
+    "description": "bootstrap-ng nav"
+  },
+  "Navbar": {
+    "prefix": "bs-navbar",
+    "body": [
+      "<nav class=\"navbar lg:navbar-expand bg-1\" aria-label=\"${1:Main}\">",
+      "  <div class=\"container-fluid\">",
+      "    <a class=\"navbar-brand\" href=\"#\">${2:Brand}</a>",
+      "    <button type=\"button\" class=\"btn-icon navbar-toggler\" aria-label=\"Toggle navigation\" [bsDrawerToggle]=\"${3:nav}\">",
+      "      <span class=\"navbar-toggler-icon\" aria-hidden=\"true\"></span>",
+      "    </button>",
+      "    <dialog bsDrawer #${3:nav}=\"bsDrawer\" placement=\"end\" aria-labelledby=\"${3:nav}-title\">",
+      "      <div class=\"drawer-header\">",
+      "        <h2 class=\"drawer-title h5\" id=\"${3:nav}-title\">${1:Main}</h2>",
+      "        <button type=\"button\" bsCloseButton bsDrawerClose></button>",
+      "      </div>",
+      "      <div class=\"drawer-body\">",
+      "        <ul class=\"navbar-nav\">",
+      "          <li class=\"nav-item\"><a class=\"nav-link active\" href=\"#\">${4:Home}</a></li>",
+      "        </ul>",
+      "      </div>",
+      "    </dialog>",
+      "  </div>",
+      "</nav>"
+    ],
+    "description": "Bootstrap navbar that collapses into a drawer"
+  },
+  "Pagination": {
+    "prefix": "bs-pagination",
+    "body": ["<nav bsPagination aria-label=\"${1:Pagination}\" [(page)]=\"${2:page}\" [pageCount]=\"${3:5}\"></nav>"],
+    "description": "bootstrap-ng pagination"
+  },
+  "Popover": {
+    "prefix": "bs-popover",
+    "body": [
+      "<button type=\"button\" bsButton theme=\"secondary\" bsPopover=\"${1:Popover content}\" popoverTitle=\"${2:Title}\">",
+      "  ${3:Toggle}",
+      "</button>"
+    ],
+    "description": "bootstrap-ng popover"
+  },
+  "Progress": {
+    "prefix": "bs-progress",
+    "body": ["<bs-progress value=\"${1:50}\" theme=\"${2|primary,accent,success,danger,warning,info,inverse,secondary|}\" aria-label=\"${3:Progress}\" />"],
+    "description": "bootstrap-ng progress"
+  },
+  "Radio": {
+    "prefix": "bs-radio",
+    "body": [
+      "<div bsFormField>",
+      "  <input id=\"${1:option}\" type=\"radio\" name=\"${2:group}\" bsRadio />",
+      "  <label bsLabel for=\"${1:option}\">${3:Label}</label>",
+      "</div>"
+    ],
+    "description": "bootstrap-ng radio"
+  },
+  "Spinner": {
+    "prefix": "bs-spinner",
+    "body": ["<bs-spinner label=\"${1:Loading}\" />"],
+    "description": "bootstrap-ng spinner"
+  },
+  "Switch": {
+    "prefix": "bs-switch",
+    "body": [
+      "<div bsFormField>",
+      "  <div bsSwitch>",
+      "    <input id=\"${1:switch}\" type=\"checkbox\" bsSwitch />",
+      "  </div>",
+      "  <label bsLabel for=\"${1:switch}\">${2:Label}</label>",
+      "</div>"
+    ],
+    "description": "bootstrap-ng switch"
+  },
+  "Tabs": {
+    "prefix": "bs-tabs",
+    "body": [
+      "<nav bsTabs #${1:tabs}=\"bsTabs\" class=\"nav-tabs\" aria-label=\"${2:Sections}\">",
+      "  <button type=\"button\" bsTab=\"${3:one}\">${4:One}</button>",
+      "  <button type=\"button\" bsTab=\"${5:two}\">${6:Two}</button>",
+      "</nav>",
+      "<div [bsTabContent]=\"${1:tabs}\">",
+      "  <div bsTabPane=\"${3:one}\">${7:First panel}</div>",
+      "  <div bsTabPane=\"${5:two}\">${8:Second panel}</div>",
+      "</div>"
+    ],
+    "description": "bootstrap-ng tabs"
+  },
+  "Tooltip": {
+    "prefix": "bs-tooltip",
+    "body": [
+      "<button type=\"button\" bsButton theme=\"secondary\" bsTooltip=\"${1:Tooltip}\" placement=\"${2|top,bottom,start,end|}\">",
+      "  ${3:Hover}",
+      "</button>"
+    ],
+    "description": "bootstrap-ng tooltip"
+  }
+}

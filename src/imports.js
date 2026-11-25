@@ -2,6 +2,7 @@
 
 const { index } = require("./catalog");
 const {
+  closingBacktick,
   componentTemplateRanges,
   componentsIn,
   findProperty,
@@ -17,18 +18,36 @@ function identifiers(body) {
     .filter((name) => name && /^[A-Za-z_]/u.test(name));
 }
 
-function classNamesIn(html) {
-  const names = new Set();
+function usageRange(tag, symbol) {
+  const attribute = tag.attributes.find((item) =>
+    symbol.attributes.includes(item.name),
+  );
+
+  if (attribute) {
+    return { end: attribute.nameEnd, start: attribute.nameStart };
+  }
+
+  return { end: tag.nameEnd, start: tag.nameStart };
+}
+
+function directiveUsages(html) {
+  const usages = [];
 
   for (const tag of parseTags(html)) {
     const attributeNames = tag.attributes.map((attribute) => attribute.name);
 
     for (const symbol of index.directivesFor(tag.name, attributeNames)) {
       if (symbol.kind === "directive") {
-        names.add(symbol.name);
+        usages.push({ name: symbol.name, ...usageRange(tag, symbol) });
       }
     }
   }
+
+  return usages;
+}
+
+function classNamesIn(html) {
+  const names = new Set(directiveUsages(html).map((usage) => usage.name));
 
   return [...names].sort();
 }
@@ -305,6 +324,87 @@ function buildImportEdits(tsText, classNames, options = {}) {
   return edits.filter(Boolean);
 }
 
+function inlineTemplateRange(tsText, component) {
+  const open = findProperty(
+    tsText,
+    component.open,
+    component.close,
+    "template",
+    "`",
+  );
+
+  if (open === -1) {
+    return null;
+  }
+
+  const close = closingBacktick(tsText, open + 1);
+
+  if (close === -1 || close > component.close) {
+    return null;
+  }
+
+  return { content: tsText.slice(open + 1, close), start: open + 1 };
+}
+
+function isStandalone(tsText, component) {
+  const body = tsText.slice(component.open, component.close + 1);
+
+  return !/\bstandalone\s*:\s*false\b/u.test(body);
+}
+
+function unresolvedUsages(tsText, component, usages, base) {
+  const imported = importedNames(tsText);
+  const array = importsArrayIn(tsText, component);
+  const listed = new Set(array ? identifiers(array.body) : []);
+
+  return usages
+    .filter((usage) => !imported.has(usage.name) || !listed.has(usage.name))
+    .map((usage) => ({
+      end: usage.end + base,
+      name: usage.name,
+      start: usage.start + base,
+    }));
+}
+
+function missingInlineImports(tsText) {
+  const missing = [];
+
+  for (const component of componentsIn(tsText)) {
+    const template = inlineTemplateRange(tsText, component);
+
+    if (!template || !isStandalone(tsText, component)) {
+      continue;
+    }
+
+    missing.push(
+      ...unresolvedUsages(
+        tsText,
+        component,
+        directiveUsages(template.content),
+        template.start,
+      ),
+    );
+  }
+
+  return missing;
+}
+
+function missingTemplateImports(html, tsText, templateFile) {
+  if (!templateFile) {
+    return [];
+  }
+
+  const component = componentsIn(tsText).find((item) =>
+    referencesTemplate(tsText.slice(item.open, item.close + 1), templateFile),
+  );
+
+  if (!component || !isStandalone(tsText, component)) {
+    return [];
+  }
+
+  return unresolvedUsages(tsText, component, directiveUsages(html), 0);
+}
+
 function applyEdits(text, edits) {
   let next = text;
 
@@ -321,6 +421,8 @@ module.exports = {
   applyEdits,
   buildImportEdits,
   classNamesIn,
+  missingInlineImports,
+  missingTemplateImports,
   pendingImports,
   templateClassNames,
 };

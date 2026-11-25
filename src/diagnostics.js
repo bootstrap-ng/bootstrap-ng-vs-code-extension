@@ -3,7 +3,10 @@
 const { index } = require("./catalog");
 const { componentTemplateRanges } = require("./angular-component");
 const { parseTags } = require("./context");
+const { missingInlineImports, missingTemplateImports } = require("./imports");
 const { translate } = require("./l10n");
+
+const MISSING_IMPORT_CODE = "missing-import";
 
 const DISMISS_REPLACEMENTS = {
   alert: "bsAlert with dismissible",
@@ -140,10 +143,24 @@ function diagnoseHtml(html, base, settings) {
   return found;
 }
 
+function missingImportDiagnostic(usage) {
+  return {
+    code: MISSING_IMPORT_CODE,
+    end: usage.end,
+    message: translate(
+      "{0} is used in this template but not imported.",
+      usage.name,
+    ),
+    severity: "warning",
+    start: usage.start,
+  };
+}
+
 function settingsFrom(options) {
   return {
     hintBootstrap5DataApi: options.hintBootstrap5DataApi !== false,
     validateAttributeValues: options.validateAttributeValues !== false,
+    validateImports: options.validateImports !== false,
   };
 }
 
@@ -151,7 +168,19 @@ function diagnose(text, languageId, options = {}) {
   const settings = settingsFrom(options);
 
   if (languageId === "html") {
-    return diagnoseHtml(text, 0, settings);
+    const missing =
+      settings.validateImports && options.componentSource
+        ? missingTemplateImports(
+            text,
+            options.componentSource,
+            options.templateFile,
+          )
+        : [];
+
+    return [
+      ...diagnoseHtml(text, 0, settings),
+      ...missing.map(missingImportDiagnostic),
+    ];
   }
 
   if (languageId !== "typescript") {
@@ -168,9 +197,14 @@ function diagnose(text, languageId, options = {}) {
     found.push(...diagnoseHtml(range.content, range.start, settings));
   }
 
+  if (settings.validateImports) {
+    found.push(...missingInlineImports(text).map(missingImportDiagnostic));
+  }
+
   return found;
 }
 
 module.exports = {
   diagnose,
+  MISSING_IMPORT_CODE,
 };

@@ -31,7 +31,10 @@ export class App {}`;
 
     assert.equal(ranges.length, 1);
     assert.match(ranges[0].content, /bsAlert/u);
-    assert.deepEqual(diagnose(source, "typescript"), []);
+    assert.deepEqual(
+      diagnose(source, "typescript", { validateImports: false }),
+      [],
+    );
   });
 
   it("ignores @Component in line comments and string literals", () => {

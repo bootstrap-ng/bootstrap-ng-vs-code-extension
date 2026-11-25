@@ -1,5 +1,6 @@
 "use strict";
 
+const fs = require("node:fs");
 const vscode = require("vscode");
 
 const { complete } = require("./completions");
@@ -8,13 +9,14 @@ const {
   diagnoseDependencies,
   updatedSpecifier,
 } = require("./dependencies");
-const { diagnose } = require("./diagnostics");
+const { diagnose, MISSING_IMPORT_CODE } = require("./diagnostics");
 const { documentationItems } = require("./docs");
 const { hoverAt, symbolAt } = require("./hover");
 const { translate } = require("./l10n");
 const {
   buildImportEdits,
   classNamesIn,
+  missingInlineImports,
   pendingImports,
   templateClassNames,
 } = require("./imports");
@@ -23,6 +25,8 @@ const PACKAGE_SELECTOR = [
   { language: "json", pattern: "**/package.json", scheme: "file" },
   { language: "jsonc", pattern: "**/package.json", scheme: "file" },
 ];
+
+const FIX_ALL_KIND = vscode.CodeActionKind.SourceFixAll.append("bootstrap-ng");
 
 const SELECTOR = [
   { language: "html", scheme: "file" },
@@ -49,7 +53,59 @@ function readOptions() {
   return {
     hintBootstrap5DataApi: config.get("hintBootstrap5DataApi") !== false,
     validateAttributeValues: config.get("validateAttributeValues") !== false,
+    validateImports: config.get("validateImports") !== false,
   };
+}
+
+function siblingPath(document, from, to) {
+  const path = document.uri.fsPath;
+
+  if (document.uri.scheme !== "file" || !path.endsWith(from)) {
+    return null;
+  }
+
+  return path.slice(0, -from.length) + to;
+}
+
+function openDocumentAt(path) {
+  return vscode.workspace.textDocuments.find(
+    (document) =>
+      document.uri.scheme === "file" && document.uri.fsPath === path,
+  );
+}
+
+function componentSource(document) {
+  const path = siblingPath(document, ".html", ".ts");
+
+  if (!path) {
+    return null;
+  }
+
+  const open = openDocumentAt(path);
+
+  if (open) {
+    return open.getText();
+  }
+
+  try {
+    return fs.readFileSync(path, "utf8");
+  } catch {
+    return null;
+  }
+}
+
+function diagnosticOptions(document) {
+  const options = readOptions();
+
+  if (document.languageId !== "html" || !options.validateImports) {
+    return options;
+  }
+
+  const source = componentSource(document);
+
+  return source
+    ? { ...options, ...importOptions(document), componentSource: source }
+    : options;
 }
 
 function toCompletion(document, entry) {
@@ -170,7 +226,7 @@ function refreshDiagnostics(collection, document) {
   const found = diagnose(
     document.getText(),
     document.languageId,
-    readOptions(),
+    diagnosticOptions(document),
   );
   collection.set(
     document.uri,
@@ -179,7 +235,17 @@ function refreshDiagnostics(collection, document) {
 }
 
 function watchDiagnostics(context, collection) {
-  const refresh = (document) => refreshDiagnostics(collection, document);
+  const refreshOne = (document) => refreshDiagnostics(collection, document);
+  const refresh = (document) => {
+    refreshOne(document);
+
+    const template = siblingPath(document, ".ts", ".html");
+    const open = template ? openDocumentAt(template) : null;
+
+    if (open) {
+      refreshOne(open);
+    }
+  };
 
   context.subscriptions.push(
     collection,
@@ -196,13 +262,13 @@ function watchDiagnostics(context, collection) {
       }
 
       for (const document of vscode.workspace.textDocuments) {
-        refresh(document);
+        refreshOne(document);
       }
     }),
   );
 
   for (const document of vscode.workspace.textDocuments) {
-    refresh(document);
+    refreshOne(document);
   }
 }
 
@@ -251,6 +317,17 @@ function watchPackageFiles(context, collection) {
 function wantsQuickFix(context) {
   return (
     !context.only || context.only.intersects(vscode.CodeActionKind.QuickFix)
+  );
+}
+
+function wantsFixAll(context) {
+  return Boolean(context.only?.contains(FIX_ALL_KIND));
+}
+
+function isMissingImport(diagnostic) {
+  return (
+    diagnostic.source === "bootstrap-ng" &&
+    diagnostic.code === MISSING_IMPORT_CODE
   );
 }
 
@@ -345,18 +422,50 @@ function actionTitle(names) {
   return translate("Import {0} from bootstrap-ng", names.join(", "));
 }
 
-async function provideCodeActions(document, range) {
-  if (!isSupported(document)) {
-    return [];
-  }
-
+function directiveAt(document, range) {
   const symbol = symbolAt(
     document.getText(),
     document.offsetAt(range.start),
     document.languageId,
   );
 
-  if (!symbol || symbol.kind !== "directive") {
+  return symbol?.kind === "directive" ? symbol : null;
+}
+
+function missingNames(tsText) {
+  const names = new Set(missingInlineImports(tsText).map((item) => item.name));
+
+  return [...names].sort();
+}
+
+function importEdit(target, names, options) {
+  const workspaceEdit = new vscode.WorkspaceEdit();
+
+  for (const edit of buildImportEdits(target.getText(), names, options)) {
+    const editRange = new vscode.Range(
+      target.positionAt(edit.start),
+      target.positionAt(edit.end),
+    );
+    workspaceEdit.replace(target.uri, editRange, edit.text);
+  }
+
+  return workspaceEdit;
+}
+
+async function provideCodeActions(document, range, context) {
+  if (!isSupported(document)) {
+    return [];
+  }
+
+  const quickFix = wantsQuickFix(context);
+  const diagnostics = quickFix
+    ? context.diagnostics.filter(isMissingImport)
+    : [];
+  const symbol = quickFix ? directiveAt(document, range) : null;
+  // Fix-all runs on save, so it only edits the document being saved.
+  const fixAll = wantsFixAll(context) && document.languageId === "typescript";
+
+  if (!fixAll && !symbol && diagnostics.length === 0) {
     return [];
   }
 
@@ -369,28 +478,36 @@ async function provideCodeActions(document, range) {
   const names = usedNames(document, target);
   const options = importOptions(document);
   const pending = pendingImports(target.getText(), names, options);
+  const offerQuickFix =
+    pending.length > 0 &&
+    (diagnostics.length > 0 || pending.includes(symbol?.name));
+  const actions = [];
 
-  if (!pending.includes(symbol.name)) {
-    return [];
-  }
-
-  const edits = buildImportEdits(target.getText(), names, options);
-  const action = new vscode.CodeAction(
-    actionTitle(pending),
-    vscode.CodeActionKind.QuickFix,
-  );
-  const workspaceEdit = new vscode.WorkspaceEdit();
-
-  for (const edit of edits) {
-    const editRange = new vscode.Range(
-      target.positionAt(edit.start),
-      target.positionAt(edit.end),
+  if (quickFix && offerQuickFix) {
+    const action = new vscode.CodeAction(
+      actionTitle(pending),
+      vscode.CodeActionKind.QuickFix,
     );
-    workspaceEdit.replace(target.uri, editRange, edit.text);
+
+    action.diagnostics = diagnostics;
+    action.edit = importEdit(target, names, options);
+    action.isPreferred = diagnostics.length > 0;
+    actions.push(action);
   }
 
-  action.edit = workspaceEdit;
-  return [action];
+  const fixAllNames = fixAll ? missingNames(target.getText()) : [];
+
+  if (fixAllNames.length > 0) {
+    const action = new vscode.CodeAction(
+      translate("Import missing bootstrap-ng directives"),
+      FIX_ALL_KIND,
+    );
+
+    action.edit = importEdit(target, fixAllNames, options);
+    actions.push(action);
+  }
+
+  return actions;
 }
 
 async function openDocs() {
@@ -436,7 +553,7 @@ function activate(context) {
       SELECTOR,
       { provideCodeActions },
       {
-        providedCodeActionKinds: [vscode.CodeActionKind.QuickFix],
+        providedCodeActionKinds: [vscode.CodeActionKind.QuickFix, FIX_ALL_KIND],
       },
     ),
     vscode.languages.registerCodeActionsProvider(

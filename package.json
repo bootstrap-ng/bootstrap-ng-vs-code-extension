@@ -43,12 +43,14 @@
     "prettier": "prettier --write \"**/*.{css,js,json,md,mjs,yml}\"",
     "spellcheck": "npx cspell \"**/*.{html,js,json,md,yml}\"",
     "test": "npm run compile && node --check out/extension.js && node --test \"test/**/*.test.js\"",
+    "test:vscode": "npm run compile && node test/vscode/run.js",
     "vscode:prepublish": "npm run compile -- --minify",
     "watch": "esbuild src/extension.js --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --target=node22 --sourcemap --watch"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",
     "@types/vscode": "1.134.0",
+    "@vscode/test-electron": "3.1.0",
     "@vscode/vsce": "4.1.1",
     "esbuild": "0.28.2",
     "eslint": "10.15.0",

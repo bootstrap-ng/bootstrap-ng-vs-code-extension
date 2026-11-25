@@ -181,22 +181,40 @@ function importsArrayIn(tsText, component) {
   return { body: tsText.slice(open + 1, close), close, open };
 }
 
+/*
+ * Adds a comma after the last entry of a list body when it has none, keeping
+ * any trailing comment and whitespace after it.
+ */
+function withTrailingComma(body) {
+  const content = body.slice(0, body.search(/\s*$/u));
+  const lastLine = content.slice(content.lastIndexOf("\n") + 1);
+  const code = lastLine.replace(/\s*(?:\/\/.*|\/\*.*\*\/)$/u, "");
+  const codeEnd = content.length - lastLine.length + code.length;
+
+  if (!content.slice(0, codeEnd).trim() || content[codeEnd - 1] === ",") {
+    return body;
+  }
+
+  return `${body.slice(0, codeEnd)},${body.slice(codeEnd)}`;
+}
+
 function insertNames(body, names) {
   if (!body.includes("\n")) {
-    const trimmed = body.trim();
-    const next = trimmed ? `${trimmed}, ${names.join(", ")}` : names.join(", ");
+    const trimmed = withTrailingComma(body.trim());
+    const next = trimmed ? `${trimmed} ${names.join(", ")}` : names.join(", ");
 
     return ` ${next} `;
   }
 
   const indent = body.match(/\n(?<indent>[ \t]+)\S/u)?.groups.indent ?? "  ";
   const block = names.map((name) => `${indent}${name},`).join("\n");
+  const listed = withTrailingComma(body);
 
-  if (/\n[ \t]*$/u.test(body)) {
-    return body.replace(/\n(?<tail>[ \t]*)$/u, `\n${block}\n$<tail>`);
+  if (/\n[ \t]*$/u.test(listed)) {
+    return listed.replace(/\n(?<tail>[ \t]*)$/u, `\n${block}\n$<tail>`);
   }
 
-  return `${body.replace(/\s*$/u, "")}\n${block}\n`;
+  return `${listed.replace(/\s*$/u, "")}\n${block}\n`;
 }
 
 function braceEdit(match, names) {
@@ -212,19 +230,29 @@ function braceEdit(match, names) {
   return { end: start + body.length, start, text: insertNames(body, missing) };
 }
 
-function lastImportEnd(tsText) {
-  let end = 0;
+/*
+ * End of the last static import statement. Matching the module specifier
+ * rather than the next semicolon keeps files written without semicolons
+ * intact.
+ */
+function lastImport(tsText) {
+  const pattern =
+    /^import\s+(?:type\s+)?(?:[\w$*{},\s]+?\s*from\s*)?(?<quote>['"])[^'"\n]+\k<quote>[ \t]*;?/gmu;
+  let last = { end: 0, semicolon: true };
 
-  for (const match of tsText.matchAll(/^import\s[\s\S]*?;/gmu)) {
-    end = match.index + match[0].length;
+  for (const match of tsText.matchAll(pattern)) {
+    last = {
+      end: match.index + match[0].length,
+      semicolon: match[0].endsWith(";"),
+    };
   }
 
-  return end;
+  return last;
 }
 
 function createImport(tsText, names) {
-  const statement = `import { ${names.join(", ")} } from 'bootstrap-ng';\n`;
-  const end = lastImportEnd(tsText);
+  const { end, semicolon } = lastImport(tsText);
+  const statement = `import { ${names.join(", ")} } from 'bootstrap-ng'${semicolon ? ";" : ""}\n`;
 
   if (end === 0) {
     return { end: 0, start: 0, text: statement };

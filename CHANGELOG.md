@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.9.1
 
 - Clear Problems-panel diagnostics when `package.json` is closed.
 - CSS class completions and hovers now use the Bootstrap `6.0.0-alpha.2` stylesheet, adding classes such as `bg-opacity-*`, `fg-opacity-*`, `combobox`, `dialog-2xl` and `font-tabular-nums`, and dropping ones alpha.2 removed such as `bg-10` and `chip-input`.

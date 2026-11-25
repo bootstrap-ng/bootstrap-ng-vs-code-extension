@@ -2,5 +2,6 @@
   "command.openDocs.title": "ドキュメントを開く",
   "description": "Angular テンプレートで bootstrap-ng の入力補完、ホバー、スニペット、診断を提供します。",
   "setting.hintBootstrap5DataApi.description": "Bootstrap 5 の data-bs-toggle または data-bs-dismiss を bootstrap-ng のディレクティブに置き換えるよう提案します。",
-  "setting.validateAttributeValues.description": "bootstrap-ng の属性値がドキュメントにある値以外のとき警告します。"
+  "setting.validateAttributeValues.description": "bootstrap-ng の属性値がドキュメントにある値以外のとき警告します。",
+  "setting.validateImports.description": "スタンドアロンコンポーネントのテンプレートで bootstrap-ng のディレクティブがインポートされずに使用されているとき警告します。"
 }

@@ -2,8 +2,10 @@
 
 ## Unreleased
 
-- Fix the extension failing to activate with "Cannot find module './impl/format'" since 0.9.1.
+- A `source.fixAll.bootstrap-ng` code action, so `editor.codeActionsOnSave` can add missing imports for inline templates on save.
 - Completions and hovers for Bootstrap 6 CSS classes in Angular class bindings: string literals in `[class]` and `[ngClass]` (including object keys and arrays), and the class name in `[class.name]`.
+- Fix the extension failing to activate with "Cannot find module './impl/format'" since 0.9.1.
+- Warnings in the Problems panel when a standalone component template uses a `bs*` directive that is not imported, with the import quick fix attached. Turn them off with `bootstrap-ng.validateImports`.
 
 ## 0.9.1
 

@@ -20,9 +20,11 @@ Commands, settings, diagnostics, hovers, and the import quick fix follow the VS 
 - Warnings when a static attribute value is outside the documented set.
 - Information hints for Bootstrap 5 `data-bs-toggle` and `data-bs-dismiss` attributes, naming the bootstrap-ng directive that replaces them.
 - A quick fix that adds a directive used in a template to the `bootstrap-ng` import and the component `imports` array.
+- Warnings in the Problems panel when a standalone component template uses a `bs*` directive that is not imported, with the import quick fix attached. Add `"source.fixAll.bootstrap-ng": "explicit"` to `editor.codeActionsOnSave` to add missing imports to inline templates on save.
 - **Bootstrap-ng: Open Documentation** opens the docs for the symbol under the cursor, or a list of components.
 
 ## Settings
 
 - `bootstrap-ng.validateAttributeValues` warns about unknown static values. Default: `true`.
 - `bootstrap-ng.hintBootstrap5DataApi` hints about Bootstrap 5 data attributes. Default: `true`.
+- `bootstrap-ng.validateImports` warns when a directive is used in a standalone component template but not imported. Default: `true`.

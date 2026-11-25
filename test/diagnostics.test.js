@@ -79,7 +79,10 @@ describe("diagnostics", () => {
 })
 export class App {}
 `;
-    assert.deepEqual(diagnose(source, "typescript"), []);
+    assert.deepEqual(
+      diagnose(source, "typescript", { validateImports: false }),
+      [],
+    );
   });
 
   it("can turn each diagnostic off", () => {

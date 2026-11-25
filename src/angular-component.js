@@ -400,7 +400,10 @@ function findProperty(text, from, to, property, bracket) {
 
     valueStart = skipTrivia(text, valueStart + 1);
 
-    if (key.name === property && text[valueStart] === bracket) {
+    if (
+      key.name === property &&
+      (bracket === null || text[valueStart] === bracket)
+    ) {
       return valueStart;
     }
 

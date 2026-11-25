@@ -72,6 +72,48 @@ describe("missing import diagnostics", () => {
     assert.deepEqual(missing(source), []);
   });
 
+  it("treats BOOTSTRAP_NG in the imports array as importing every directive", () => {
+    const source = INLINE.replace(
+      "import { BsButton }",
+      "import { BOOTSTRAP_NG }",
+    ).replace("imports: [BsButton]", "imports: [BOOTSTRAP_NG]");
+
+    assert.deepEqual(missing(source), []);
+  });
+
+  it("stays quiet when the imports come from a constant or a spread", () => {
+    const constant = INLINE.replace("imports: [BsButton]", "imports: SHARED");
+    const spread = INLINE.replace(
+      "imports: [BsButton]",
+      "imports: [...SHARED, BsButton]",
+    );
+
+    assert.deepEqual(missing(constant), []);
+    assert.deepEqual(missing(spread), []);
+    assert.equal(
+      applyEdits(constant, buildImportEdits(constant, ["BsAlert", "BsButton"])),
+      constant,
+    );
+  });
+
+  it("matches renamed imports by their local name", () => {
+    const listed = INLINE.replace(
+      "import { BsButton }",
+      "import { BsAlert as Alert, BsButton }",
+    ).replace("imports: [BsButton]", "imports: [Alert, BsButton]");
+    const unlisted = INLINE.replace(
+      "import { BsButton }",
+      "import { BsAlert as Alert, BsButton }",
+    );
+
+    assert.deepEqual(missing(listed), []);
+    assert.equal(missing(unlisted).length, 1);
+    assert.match(
+      applyEdits(unlisted, buildImportEdits(unlisted, ["BsAlert", "BsButton"])),
+      /imports: \[ BsButton, Alert \]/u,
+    );
+  });
+
   it("ignores components declared in an NgModule", () => {
     const source = INLINE.replace(
       "selector: 'app-root',",

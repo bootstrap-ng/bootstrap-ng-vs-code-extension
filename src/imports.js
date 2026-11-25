@@ -11,11 +11,20 @@ const {
 } = require("./angular-component");
 const { parseTags } = require("./context");
 
-function identifiers(body) {
+function specifiers(body) {
   return body
     .split(",")
-    .map((part) => part.trim().split(/\s+/u)[0])
-    .filter((name) => name && /^[A-Za-z_]/u.test(name));
+    .map((part) =>
+      part
+        .trim()
+        .replace(/^type\s+/u, "")
+        .split(/\s+/u),
+    )
+    .filter(([name]) => name && /^[A-Za-z_$]/u.test(name));
+}
+
+function identifiers(body) {
+  return specifiers(body).map(([name]) => name);
 }
 
 function usageRange(tag, symbol) {
@@ -68,14 +77,18 @@ function templateClassNames(tsText) {
   return [...names].sort();
 }
 
+/*
+ * Maps each name imported from bootstrap-ng to its local name, so
+ * `import { BsAlert as Alert }` gives BsAlert -> Alert.
+ */
 function importedNames(tsText) {
-  const names = new Set();
+  const names = new Map();
   const pattern =
     /import\s+\{(?<body>[^}]*)\}\s*from\s*['"]bootstrap-ng(?:\/[^'"]*)?['"]/gu;
 
   for (const match of tsText.matchAll(pattern)) {
-    for (const name of identifiers(match.groups.body)) {
-      names.add(name);
+    for (const [name, keyword, local] of specifiers(match.groups.body)) {
+      names.set(name, keyword === "as" && local ? local : name);
     }
   }
 
@@ -319,19 +332,39 @@ function componentImportsEdit(tsText, names, component) {
   return listEdit(array, names);
 }
 
+/*
+ * Which directives a component's imports already provide. An imports value
+ * that is not an array literal, a spread, or BOOTSTRAP_NG can provide any
+ * directive, so the component counts as importing all of them.
+ */
+function componentResolver(tsText, component, imported) {
+  const property = findProperty(
+    tsText,
+    component.open,
+    component.close,
+    "imports",
+    null,
+  );
+  const array = importsArrayIn(tsText, component);
+  const listed = new Set(array ? identifiers(array.body) : []);
+  const all =
+    (property !== -1 && !array) ||
+    Boolean(array?.body.includes("...")) ||
+    (imported.has("BOOTSTRAP_NG") && listed.has(imported.get("BOOTSTRAP_NG")));
+
+  return (name) =>
+    all || (imported.has(name) && listed.has(imported.get(name)));
+}
+
 function pendingImports(tsText, classNames, options = {}) {
   const imported = importedNames(tsText);
   const pending = [];
 
   for (const target of assignNames(tsText, classNames, options.templateFile)) {
-    const array = importsArrayIn(tsText, target.component);
-    const listed = new Set(array ? identifiers(array.body) : []);
+    const resolved = componentResolver(tsText, target.component, imported);
 
     for (const name of target.names) {
-      if (
-        (!imported.has(name) || !listed.has(name)) &&
-        !pending.includes(name)
-      ) {
+      if (!resolved(name) && !pending.includes(name)) {
         pending.push(name);
       }
     }
@@ -342,14 +375,33 @@ function pendingImports(tsText, classNames, options = {}) {
 
 function buildImportEdits(tsText, classNames, options = {}) {
   const imported = importedNames(tsText);
-  const needImport = classNames.filter((name) => !imported.has(name));
-  const edits = [importStatementEdit(tsText, needImport)];
+  const needed = new Set();
+  const componentEdits = [];
 
   for (const target of assignNames(tsText, classNames, options.templateFile)) {
-    edits.push(componentImportsEdit(tsText, target.names, target.component));
+    const resolved = componentResolver(tsText, target.component, imported);
+    const names = target.names.filter((name) => !resolved(name));
+
+    for (const name of names) {
+      needed.add(name);
+    }
+
+    componentEdits.push(
+      componentImportsEdit(
+        tsText,
+        names.map((name) => imported.get(name) ?? name),
+        target.component,
+      ),
+    );
   }
 
-  return edits.filter(Boolean);
+  const needImport = classNames.filter(
+    (name) => needed.has(name) && !imported.has(name),
+  );
+
+  return [importStatementEdit(tsText, needImport), ...componentEdits].filter(
+    Boolean,
+  );
 }
 
 function inlineTemplateRange(tsText, component) {
@@ -381,12 +433,10 @@ function isStandalone(tsText, component) {
 }
 
 function unresolvedUsages(tsText, component, usages, base) {
-  const imported = importedNames(tsText);
-  const array = importsArrayIn(tsText, component);
-  const listed = new Set(array ? identifiers(array.body) : []);
+  const resolved = componentResolver(tsText, component, importedNames(tsText));
 
   return usages
-    .filter((usage) => !imported.has(usage.name) || !listed.has(usage.name))
+    .filter((usage) => !resolved(usage.name))
     .map((usage) => ({
       end: usage.end + base,
       name: usage.name,

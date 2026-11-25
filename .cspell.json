@@ -1,6 +1,6 @@
 {
   "version": "0.2",
-  "words": ["coliff", "hstack", "offcanvas", "Oliff", "vstack", "ZIZMOR"],
+  "words": ["coliff", "hstack", "offcanvas", "Oliff", "ssremlin", "vstack", "ZIZMOR"],
   "allowCompoundWords": true,
   "language": "en,en-US",
   "ignorePaths": [

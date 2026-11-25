@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Fix the extension failing to activate with "Cannot find module './impl/format'" since 0.9.1.
 - Completions and hovers for Bootstrap 6 CSS classes in Angular class bindings: string literals in `[class]` and `[ngClass]` (including object keys and arrays), and the class name in `[class.name]`.
 
 ## 0.9.1

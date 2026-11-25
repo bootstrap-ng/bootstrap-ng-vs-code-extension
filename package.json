@@ -32,7 +32,7 @@
   "l10n": "./l10n",
   "main": "./out/extension.js",
   "scripts": {
-    "compile": "esbuild src/extension.js --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --target=node22 --sourcemap",
+    "compile": "esbuild src/extension.js --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --main-fields=module,main --target=node22 --sourcemap",
     "lint": "npm run prettier && npm run lint-css && npm run lint-js",
     "lint:fix": "npm run prettier && npm run lint-css:fix && npm run lint-js:fix",
     "lint-css": "npx stylelint@18.0.0 src/*.css --allow-empty-input --formatter verbose",
@@ -45,7 +45,7 @@
     "test": "npm run compile && node --check out/extension.js && node --test \"test/**/*.test.js\"",
     "test:vscode": "npm run compile && node test/vscode/run.js",
     "vscode:prepublish": "npm run compile -- --minify",
-    "watch": "esbuild src/extension.js --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --target=node22 --sourcemap --watch"
+    "watch": "esbuild src/extension.js --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --main-fields=module,main --target=node22 --sourcemap --watch"
   },
   "devDependencies": {
     "@eslint/js": "10.0.1",

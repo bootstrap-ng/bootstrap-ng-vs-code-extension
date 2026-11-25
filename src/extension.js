@@ -452,11 +452,73 @@ function importEdit(target, names, options) {
   return workspaceEdit;
 }
 
-async function provideCodeActions(document, range, context) {
-  if (!isSupported(document)) {
-    return [];
+function matchingDiagnostic(context, item, range) {
+  return (
+    context.diagnostics?.find(
+      (diagnostic) =>
+        diagnostic.source === "bootstrap-ng" &&
+        diagnostic.code === item.code &&
+        diagnostic.range.isEqual(range),
+    ) ?? null
+  );
+}
+
+function diagnosticFixes(document, range, context) {
+  const actions = [];
+  const found = diagnose(
+    document.getText(),
+    document.languageId,
+    readOptions(),
+  );
+
+  for (const item of found) {
+    if (!item.fixes?.length) {
+      continue;
+    }
+
+    const itemRange = new vscode.Range(
+      document.positionAt(item.start),
+      document.positionAt(item.end),
+    );
+
+    if (!itemRange.intersection(range)) {
+      continue;
+    }
+
+    const diagnostic = matchingDiagnostic(context, item, itemRange);
+
+    for (const fix of item.fixes) {
+      const action = new vscode.CodeAction(
+        fix.title,
+        vscode.CodeActionKind.QuickFix,
+      );
+      const edit = new vscode.WorkspaceEdit();
+
+      for (const change of fix.edits) {
+        edit.replace(
+          document.uri,
+          new vscode.Range(
+            document.positionAt(change.start),
+            document.positionAt(change.end),
+          ),
+          change.text,
+        );
+      }
+
+      if (diagnostic) {
+        action.diagnostics = [diagnostic];
+      }
+
+      action.edit = edit;
+      action.isPreferred = fix.preferred;
+      actions.push(action);
+    }
   }
 
+  return actions;
+}
+
+async function importActions(document, range, context) {
   const quickFix = wantsQuickFix(context);
   const diagnostics = quickFix
     ? context.diagnostics.filter(isMissingImport)
@@ -508,6 +570,19 @@ async function provideCodeActions(document, range, context) {
   }
 
   return actions;
+}
+
+async function provideCodeActions(document, range, context) {
+  if (!isSupported(document)) {
+    return [];
+  }
+
+  const fixes = wantsQuickFix(context)
+    ? diagnosticFixes(document, range, context)
+    : [];
+  const imports = await importActions(document, range, context);
+
+  return [...fixes, ...imports];
 }
 
 async function openDocs() {

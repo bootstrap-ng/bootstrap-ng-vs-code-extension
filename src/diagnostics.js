@@ -1,7 +1,8 @@
 "use strict";
 
 const { index } = require("./catalog");
-const { parseTags, templateRanges } = require("./context");
+const { componentTemplateRanges } = require("./angular-component");
+const { parseTags } = require("./context");
 const { translate } = require("./l10n");
 
 const DISMISS_REPLACEMENTS = {
@@ -159,7 +160,7 @@ function diagnose(text, languageId, options = {}) {
 
   const found = [];
 
-  for (const range of templateRanges(text)) {
+  for (const range of componentTemplateRanges(text)) {
     if (!range.content.includes("<")) {
       continue;
     }

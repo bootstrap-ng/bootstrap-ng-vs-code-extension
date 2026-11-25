@@ -147,4 +147,25 @@ export class B {}
     assert.deepEqual(classNamesIn("<input bsRange>"), ["BsRangeInput"]);
     assert.deepEqual(classNamesIn("<div bsRange>"), ["BsRange"]);
   });
+
+  it("ignores directives in template literals outside @Component", () => {
+    const source = `import { Component } from '@angular/core';
+const tpl = \`<motion.div bsAlert theme="bad"></motion.div>\`;
+
+@Component({
+  selector: 'b',
+  imports: [],
+  template: \`<button bsButton></button>\`,
+})
+export class B {}
+`;
+    const next = applyEdits(
+      source,
+      buildImportEdits(source, templateClassNames(source)),
+    );
+
+    assert.match(next, /import \{ BsButton \} from 'bootstrap-ng';/u);
+    assert.doesNotMatch(next, /BsAlert/u);
+    assert.match(next, /imports: \[ BsButton \]/u);
+  });
 });

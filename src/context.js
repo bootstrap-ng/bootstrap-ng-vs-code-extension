@@ -1,5 +1,7 @@
 "use strict";
 
+const { componentTemplateRanges } = require("./angular-component");
+
 function skipWhitespace(text, index) {
   let cursor = index;
 
@@ -509,71 +511,6 @@ function textContext(text, offset) {
   };
 }
 
-function skipBraces(text, start) {
-  let depth = 1;
-  let index = start;
-
-  while (index < text.length && depth > 0) {
-    if (text[index] === "{") {
-      depth += 1;
-    } else if (text[index] === "}") {
-      depth -= 1;
-    }
-
-    index += 1;
-  }
-
-  return index;
-}
-
-function closingBacktick(text, start) {
-  let index = start;
-
-  while (index < text.length) {
-    if (text[index] === "\\") {
-      index += 2;
-      continue;
-    }
-
-    if (text[index] === "`") {
-      return index;
-    }
-
-    if (text[index] === "$" && text[index + 1] === "{") {
-      index = skipBraces(text, index + 2);
-      continue;
-    }
-
-    index += 1;
-  }
-
-  return -1;
-}
-
-function templateRanges(text) {
-  const ranges = [];
-  let index = 0;
-
-  while (index < text.length) {
-    const start = text.indexOf("`", index);
-
-    if (start === -1) {
-      break;
-    }
-
-    const end = closingBacktick(text, start + 1);
-
-    if (end === -1) {
-      break;
-    }
-
-    ranges.push({ content: text.slice(start + 1, end), end, start: start + 1 });
-    index = end + 1;
-  }
-
-  return ranges;
-}
-
 function importContext(text, offset) {
   const before = text.slice(0, offset);
   const opened = before.match(/import\s+(?:type\s+)?\{(?<body>[^}]*)$/u);
@@ -650,7 +587,7 @@ function shiftContext(context, base) {
 }
 
 function analyzeTypeScript(text, offset) {
-  const range = templateRanges(text).find(
+  const range = componentTemplateRanges(text).find(
     (item) => offset >= item.start && offset <= item.end,
   );
 
@@ -678,7 +615,5 @@ function analyze(text, offset, languageId) {
 
 module.exports = {
   analyze,
-  closingBacktick,
   parseTags,
-  templateRanges,
 };

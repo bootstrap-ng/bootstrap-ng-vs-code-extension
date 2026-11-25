@@ -157,7 +157,7 @@
       "name": "animation-shake"
     },
     {
-      "detail": "position: relative; display: inline-flex",
+      "detail": "position: relative; display: inline-flex; outline: 1px solid transparent",
       "name": "avatar"
     },
     {
@@ -241,46 +241,6 @@
       "name": "bg-4"
     },
     {
-      "detail": "background-color: color-mix(in oklch, var(--bs-bg) 10%, transparent)",
-      "name": "bg-10"
-    },
-    {
-      "detail": "background-color: color-mix(in oklch, var(--bs-bg) 20%, transparent)",
-      "name": "bg-20"
-    },
-    {
-      "detail": "background-color: color-mix(in oklch, var(--bs-bg) 30%, transparent)",
-      "name": "bg-30"
-    },
-    {
-      "detail": "background-color: color-mix(in oklch, var(--bs-bg) 40%, transparent)",
-      "name": "bg-40"
-    },
-    {
-      "detail": "background-color: color-mix(in oklch, var(--bs-bg) 50%, transparent)",
-      "name": "bg-50"
-    },
-    {
-      "detail": "background-color: color-mix(in oklch, var(--bs-bg) 60%, transparent)",
-      "name": "bg-60"
-    },
-    {
-      "detail": "background-color: color-mix(in oklch, var(--bs-bg) 70%, transparent)",
-      "name": "bg-70"
-    },
-    {
-      "detail": "background-color: color-mix(in oklch, var(--bs-bg) 80%, transparent)",
-      "name": "bg-80"
-    },
-    {
-      "detail": "background-color: color-mix(in oklch, var(--bs-bg) 90%, transparent)",
-      "name": "bg-90"
-    },
-    {
-      "detail": "background-color: var(--bs-bg)",
-      "name": "bg-100"
-    },
-    {
       "detail": "background-color: var(--bs-bg)",
       "name": "bg-accent"
     },
@@ -343,6 +303,46 @@
     {
       "detail": "background-color: var(--bs-bg)",
       "name": "bg-muted-warning"
+    },
+    {
+      "detail": "background-color: color-mix(in oklch, var(--bs-bg) 10%, transparent)",
+      "name": "bg-opacity-10"
+    },
+    {
+      "detail": "background-color: color-mix(in oklch, var(--bs-bg) 20%, transparent)",
+      "name": "bg-opacity-20"
+    },
+    {
+      "detail": "background-color: color-mix(in oklch, var(--bs-bg) 30%, transparent)",
+      "name": "bg-opacity-30"
+    },
+    {
+      "detail": "background-color: color-mix(in oklch, var(--bs-bg) 40%, transparent)",
+      "name": "bg-opacity-40"
+    },
+    {
+      "detail": "background-color: color-mix(in oklch, var(--bs-bg) 50%, transparent)",
+      "name": "bg-opacity-50"
+    },
+    {
+      "detail": "background-color: color-mix(in oklch, var(--bs-bg) 60%, transparent)",
+      "name": "bg-opacity-60"
+    },
+    {
+      "detail": "background-color: color-mix(in oklch, var(--bs-bg) 70%, transparent)",
+      "name": "bg-opacity-70"
+    },
+    {
+      "detail": "background-color: color-mix(in oklch, var(--bs-bg) 80%, transparent)",
+      "name": "bg-opacity-80"
+    },
+    {
+      "detail": "background-color: color-mix(in oklch, var(--bs-bg) 90%, transparent)",
+      "name": "bg-opacity-90"
+    },
+    {
+      "detail": "background-color: var(--bs-bg)",
+      "name": "bg-opacity-100"
     },
     {
       "detail": "background-color: var(--bs-bg)",
@@ -441,46 +441,6 @@
       "name": "border-5"
     },
     {
-      "detail": "border-color: color-mix(in oklch, var(--bs-bc) 10%, transparent)",
-      "name": "border-10"
-    },
-    {
-      "detail": "border-color: color-mix(in oklch, var(--bs-bc) 20%, transparent)",
-      "name": "border-20"
-    },
-    {
-      "detail": "border-color: color-mix(in oklch, var(--bs-bc) 30%, transparent)",
-      "name": "border-30"
-    },
-    {
-      "detail": "border-color: color-mix(in oklch, var(--bs-bc) 40%, transparent)",
-      "name": "border-40"
-    },
-    {
-      "detail": "border-color: color-mix(in oklch, var(--bs-bc) 50%, transparent)",
-      "name": "border-50"
-    },
-    {
-      "detail": "border-color: color-mix(in oklch, var(--bs-bc) 60%, transparent)",
-      "name": "border-60"
-    },
-    {
-      "detail": "border-color: color-mix(in oklch, var(--bs-bc) 70%, transparent)",
-      "name": "border-70"
-    },
-    {
-      "detail": "border-color: color-mix(in oklch, var(--bs-bc) 80%, transparent)",
-      "name": "border-80"
-    },
-    {
-      "detail": "border-color: color-mix(in oklch, var(--bs-bc) 90%, transparent)",
-      "name": "border-90"
-    },
-    {
-      "detail": "border-color: var(--bs-bc)",
-      "name": "border-100"
-    },
-    {
       "detail": "border-color: var(--bs-bc)",
       "name": "border-accent"
     },
@@ -535,6 +495,46 @@
     {
       "detail": "border-color: var(--bs-bc)",
       "name": "border-muted"
+    },
+    {
+      "detail": "border-color: color-mix(in oklch, var(--bs-bc) 10%, transparent)",
+      "name": "border-opacity-10"
+    },
+    {
+      "detail": "border-color: color-mix(in oklch, var(--bs-bc) 20%, transparent)",
+      "name": "border-opacity-20"
+    },
+    {
+      "detail": "border-color: color-mix(in oklch, var(--bs-bc) 30%, transparent)",
+      "name": "border-opacity-30"
+    },
+    {
+      "detail": "border-color: color-mix(in oklch, var(--bs-bc) 40%, transparent)",
+      "name": "border-opacity-40"
+    },
+    {
+      "detail": "border-color: color-mix(in oklch, var(--bs-bc) 50%, transparent)",
+      "name": "border-opacity-50"
+    },
+    {
+      "detail": "border-color: color-mix(in oklch, var(--bs-bc) 60%, transparent)",
+      "name": "border-opacity-60"
+    },
+    {
+      "detail": "border-color: color-mix(in oklch, var(--bs-bc) 70%, transparent)",
+      "name": "border-opacity-70"
+    },
+    {
+      "detail": "border-color: color-mix(in oklch, var(--bs-bc) 80%, transparent)",
+      "name": "border-opacity-80"
+    },
+    {
+      "detail": "border-color: color-mix(in oklch, var(--bs-bc) 90%, transparent)",
+      "name": "border-opacity-90"
+    },
+    {
+      "detail": "border-color: var(--bs-bc)",
+      "name": "border-opacity-100"
     },
     {
       "detail": "border-color: var(--bs-bc)",
@@ -641,7 +641,7 @@
       "name": "breadcrumb"
     },
     {
-      "detail": "margin-inline: calc(var(--bs-breadcrumb-link-padding-x) / 4); color: var(--bs-breadcrumb-divider-color)",
+      "detail": "margin-inline: var(--bs-breadcrumb-divider-margin-x); color: var(--bs-breadcrumb-divider-color)",
       "name": "breadcrumb-divider"
     },
     {
@@ -701,7 +701,7 @@
       "name": "btn-check"
     },
     {
-      "detail": "box-sizing: content-box; min-width: var(--bs-btn-close-size)",
+      "detail": "box-sizing: content-box; min-width: var(--bs-btn-close-size); background-color: CanvasText",
       "name": "btn-close"
     },
     {
@@ -829,7 +829,7 @@
       "name": "card-row"
     },
     {
-      "detail": "margin-top: calc(var(--bs-card-body-gap) * -0.5)",
+      "detail": "margin-top: calc(var(--bs-card-body-gap) * -0.5); color: var(--bs-card-subtitle-color)",
       "name": "card-subtitle"
     },
     {
@@ -905,7 +905,7 @@
       "name": "check"
     },
     {
-      "detail": "check-size: 1.5rem; check-margin-block: .375rem",
+      "detail": "check-size: 1.5rem",
       "name": "check-lg"
     },
     {
@@ -929,59 +929,55 @@
       "name": "chip-img"
     },
     {
-      "detail": "display: flex; flex-wrap: wrap",
-      "name": "chip-input"
-    },
-    {
       "detail": "flex: 1 0 0",
       "name": "col"
     },
     {
-      "detail": "flex: 0 0 auto; width: 8.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.0833333333 - 0px)",
       "name": "col-1"
     },
     {
-      "detail": "flex: 0 0 auto; width: 16.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.1666666667 - 0px)",
       "name": "col-2"
     },
     {
-      "detail": "flex: 0 0 auto; width: 25%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.25 - 0px)",
       "name": "col-3"
     },
     {
-      "detail": "flex: 0 0 auto; width: 33.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.3333333333 - 0px)",
       "name": "col-4"
     },
     {
-      "detail": "flex: 0 0 auto; width: 41.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.4166666667 - 0px)",
       "name": "col-5"
     },
     {
-      "detail": "flex: 0 0 auto; width: 50%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.5 - 0px)",
       "name": "col-6"
     },
     {
-      "detail": "flex: 0 0 auto; width: 58.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.5833333333 - 0px)",
       "name": "col-7"
     },
     {
-      "detail": "flex: 0 0 auto; width: 66.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.6666666667 - 0px)",
       "name": "col-8"
     },
     {
-      "detail": "flex: 0 0 auto; width: 75%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.75 - 0px)",
       "name": "col-9"
     },
     {
-      "detail": "flex: 0 0 auto; width: 83.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.8333333333 - 0px)",
       "name": "col-10"
     },
     {
-      "detail": "flex: 0 0 auto; width: 91.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.9166666667 - 0px)",
       "name": "col-11"
     },
     {
-      "detail": "flex: 0 0 auto; width: 100%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 1 - 0px)",
       "name": "col-12"
     },
     {
@@ -1007,6 +1003,10 @@
     {
       "detail": "",
       "name": "collapse-horizontal"
+    },
+    {
+      "detail": "",
+      "name": "collapse-instant"
     },
     {
       "detail": "color-scheme: light dark",
@@ -1073,19 +1073,31 @@
       "name": "column-gap-12"
     },
     {
+      "detail": "",
+      "name": "combobox"
+    },
+    {
       "detail": "flex-shrink: 0; transition: transform 0.2s ease-in-out",
       "name": "combobox-caret"
+    },
+    {
+      "detail": "display: flex; flex-wrap: wrap",
+      "name": "combobox-control"
+    },
+    {
+      "detail": "",
+      "name": "combobox-input"
     },
     {
       "detail": "padding: 1rem; font-size: var(--bs-font-size-sm)",
       "name": "combobox-no-results"
     },
     {
-      "detail": "color: color-mix(in oklch, currentcolor 65%, transparent)",
+      "detail": "color: var(--bs-control-placeholder-color)",
       "name": "combobox-placeholder"
     },
     {
-      "detail": "position: sticky; top: 0",
+      "detail": "position: sticky; inset-block-start: calc(-1 * var(--bs-menu-padding-y, 0.25rem))",
       "name": "combobox-search"
     },
     {
@@ -1097,7 +1109,7 @@
       "name": "combobox-toggle"
     },
     {
-      "detail": "display: flex; flex: 1",
+      "detail": "display: block; flex: 1",
       "name": "combobox-value"
     },
     {
@@ -1169,8 +1181,12 @@
       "name": "d-table-row"
     },
     {
-      "detail": "display: flex; flex-direction: column",
+      "detail": "display: none; flex-direction: column",
       "name": "dialog"
+    },
+    {
+      "detail": "dialog-width: 1440px",
+      "name": "dialog-2xl"
     },
     {
       "detail": "position: relative; flex: 1 1 auto",
@@ -1195,6 +1211,10 @@
     {
       "detail": "dialog-width: 800px",
       "name": "dialog-lg"
+    },
+    {
+      "detail": "background-color: transparent; backdrop-filter: none",
+      "name": "dialog-no-backdrop"
     },
     {
       "detail": "",
@@ -1257,7 +1277,7 @@
       "name": "divide-y-0"
     },
     {
-      "detail": "drawer-inset: var(--bs-spacer); drawer-zindex: var(--bs-z-drawer); position: fixed; inset: auto",
+      "detail": "drawer-backdrop-bg: var(--bs-bg-body); drawer-backdrop-opacity: 25%",
       "name": "drawer"
     },
     {
@@ -1301,7 +1321,7 @@
       "name": "drawer-start"
     },
     {
-      "detail": "transform: scale(1.02)",
+      "detail": "",
       "name": "drawer-static"
     },
     {
@@ -1355,46 +1375,6 @@
     {
       "detail": "color: var(--bs-fg)",
       "name": "fg-4"
-    },
-    {
-      "detail": "color: color-mix(in oklch, var(--bs-fg) 10%, transparent)",
-      "name": "fg-10"
-    },
-    {
-      "detail": "color: color-mix(in oklch, var(--bs-fg) 20%, transparent)",
-      "name": "fg-20"
-    },
-    {
-      "detail": "color: color-mix(in oklch, var(--bs-fg) 30%, transparent)",
-      "name": "fg-30"
-    },
-    {
-      "detail": "color: color-mix(in oklch, var(--bs-fg) 40%, transparent)",
-      "name": "fg-40"
-    },
-    {
-      "detail": "color: color-mix(in oklch, var(--bs-fg) 50%, transparent)",
-      "name": "fg-50"
-    },
-    {
-      "detail": "color: color-mix(in oklch, var(--bs-fg) 60%, transparent)",
-      "name": "fg-60"
-    },
-    {
-      "detail": "color: color-mix(in oklch, var(--bs-fg) 70%, transparent)",
-      "name": "fg-70"
-    },
-    {
-      "detail": "color: color-mix(in oklch, var(--bs-fg) 80%, transparent)",
-      "name": "fg-80"
-    },
-    {
-      "detail": "color: color-mix(in oklch, var(--bs-fg) 90%, transparent)",
-      "name": "fg-90"
-    },
-    {
-      "detail": "color: var(--bs-fg)",
-      "name": "fg-100"
     },
     {
       "detail": "color: var(--bs-fg)",
@@ -1487,6 +1467,46 @@
     {
       "detail": "color: var(--bs-fg)",
       "name": "fg-inverse"
+    },
+    {
+      "detail": "color: color-mix(in oklch, var(--bs-fg) 10%, transparent)",
+      "name": "fg-opacity-10"
+    },
+    {
+      "detail": "color: color-mix(in oklch, var(--bs-fg) 20%, transparent)",
+      "name": "fg-opacity-20"
+    },
+    {
+      "detail": "color: color-mix(in oklch, var(--bs-fg) 30%, transparent)",
+      "name": "fg-opacity-30"
+    },
+    {
+      "detail": "color: color-mix(in oklch, var(--bs-fg) 40%, transparent)",
+      "name": "fg-opacity-40"
+    },
+    {
+      "detail": "color: color-mix(in oklch, var(--bs-fg) 50%, transparent)",
+      "name": "fg-opacity-50"
+    },
+    {
+      "detail": "color: color-mix(in oklch, var(--bs-fg) 60%, transparent)",
+      "name": "fg-opacity-60"
+    },
+    {
+      "detail": "color: color-mix(in oklch, var(--bs-fg) 70%, transparent)",
+      "name": "fg-opacity-70"
+    },
+    {
+      "detail": "color: color-mix(in oklch, var(--bs-fg) 80%, transparent)",
+      "name": "fg-opacity-80"
+    },
+    {
+      "detail": "color: color-mix(in oklch, var(--bs-fg) 90%, transparent)",
+      "name": "fg-opacity-90"
+    },
+    {
+      "detail": "color: var(--bs-fg)",
+      "name": "fg-opacity-100"
     },
     {
       "detail": "color: var(--bs-fg)",
@@ -1601,6 +1621,10 @@
       "name": "font-monospace"
     },
     {
+      "detail": "font-variant-numeric: tabular-nums",
+      "name": "font-tabular-nums"
+    },
+    {
       "detail": "gap: var(--bs-form-adorn-gap); align-items: center",
       "name": "form-adorn"
     },
@@ -1677,11 +1701,11 @@
       "name": "form-range"
     },
     {
-      "detail": "position: absolute; bottom: 100%",
+      "detail": "position: absolute; inset-inline-start: calc(var(--bs-range-thumb-width) * 0.5 + var(--bs-ran...",
       "name": "form-range-bubble"
     },
     {
-      "detail": "display: block; width: 100%",
+      "detail": "display: block; width: 100%; forced-color-adjust: none",
       "name": "form-range-input"
     },
     {
@@ -1693,7 +1717,7 @@
       "name": "form-range-tick-label"
     },
     {
-      "detail": "display: grid; padding-inline: calc(var(--bs-range-thumb-width) * 0.25)",
+      "detail": "display: grid; padding-inline: calc(var(--bs-range-thumb-width) * 0.5)",
       "name": "form-range-ticks"
     },
     {
@@ -1777,7 +1801,7 @@
       "name": "fw-semibold"
     },
     {
-      "detail": "gutter-x: 0; gutter-y: 0",
+      "detail": "gutter-x: 0px; gutter-y: 0",
       "name": "g-0"
     },
     {
@@ -2017,7 +2041,7 @@
       "name": "grid-cols-subgrid"
     },
     {
-      "detail": "gutter-x: 0",
+      "detail": "gutter-x: 0px",
       "name": "gx-0"
     },
     {
@@ -2585,8 +2609,12 @@
       "name": "me-auto"
     },
     {
-      "detail": "position: absolute; z-index: var(--bs-menu-zindex)",
+      "detail": "position: absolute; z-index: var(--bs-menu-zindex); menu-stack-submenus: 1",
       "name": "menu"
+    },
+    {
+      "detail": "display: none",
+      "name": "menu-back"
     },
     {
       "detail": "height: 0; margin: var(--bs-menu-divider-margin-y) var(--bs-menu-divider...",
@@ -2901,7 +2929,7 @@
       "name": "nav"
     },
     {
-      "detail": "",
+      "detail": "display: flex",
       "name": "nav-fill"
     },
     {
@@ -2909,7 +2937,7 @@
       "name": "nav-item"
     },
     {
-      "detail": "",
+      "detail": "display: flex",
       "name": "nav-justified"
     },
     {
@@ -3005,47 +3033,47 @@
       "name": "object-fit-scale"
     },
     {
-      "detail": "margin-inline-start: 8.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.0833333333)",
       "name": "offset-1"
     },
     {
-      "detail": "margin-inline-start: 16.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.1666666667)",
       "name": "offset-2"
     },
     {
-      "detail": "margin-inline-start: 25%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.25)",
       "name": "offset-3"
     },
     {
-      "detail": "margin-inline-start: 33.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.3333333333)",
       "name": "offset-4"
     },
     {
-      "detail": "margin-inline-start: 41.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.4166666667)",
       "name": "offset-5"
     },
     {
-      "detail": "margin-inline-start: 50%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.5)",
       "name": "offset-6"
     },
     {
-      "detail": "margin-inline-start: 58.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.5833333333)",
       "name": "offset-7"
     },
     {
-      "detail": "margin-inline-start: 66.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.6666666667)",
       "name": "offset-8"
     },
     {
-      "detail": "margin-inline-start: 75%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.75)",
       "name": "offset-9"
     },
     {
-      "detail": "margin-inline-start: 83.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.8333333333)",
       "name": "offset-10"
     },
     {
-      "detail": "margin-inline-start: 91.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.9166666667)",
       "name": "offset-11"
     },
     {
@@ -3101,8 +3129,12 @@
       "name": "order-last"
     },
     {
-      "detail": "position: relative; display: flex",
+      "detail": "position: relative; box-sizing: border-box",
       "name": "otp"
+    },
+    {
+      "detail": "",
+      "name": "otp-badge-space"
     },
     {
       "detail": "",
@@ -3129,12 +3161,16 @@
       "name": "otp-slot"
     },
     {
-      "detail": "z-index: 1; outline: var(--bs-focus-ring)",
+      "detail": "position: relative; z-index: 1; outline: 2px solid Highlight; outline-offset: -2px",
       "name": "otp-slot-active"
     },
     {
       "detail": "",
       "name": "otp-slot-filled"
+    },
+    {
+      "detail": "color: HighlightText; background-color: Highlight",
+      "name": "otp-slot-selected"
     },
     {
       "detail": "display: inline-flex; gap: var(--bs-otp-gap)",
@@ -3465,7 +3501,7 @@
       "name": "position-sticky"
     },
     {
-      "detail": "display: flex; height: var(--bs-progress-height)",
+      "detail": "display: flex; height: var(--bs-progress-height); outline: 1px solid transparent",
       "name": "progress"
     },
     {
@@ -3481,7 +3517,7 @@
       "name": "progress-bar-striped"
     },
     {
-      "detail": "display: flex; height: var(--bs-progress-height)",
+      "detail": "display: flex; height: var(--bs-progress-height); outline: 1px solid transparent",
       "name": "progress-stacked"
     },
     {
@@ -4349,7 +4385,7 @@
       "name": "space-y-12"
     },
     {
-      "detail": "display: inline-flex; flex-shrink: 0; spinner-animation-speed: 1.5s",
+      "detail": "display: inline-flex; flex-shrink: 0; border-inline-end-color: Canvas",
       "name": "spinner-border"
     },
     {
@@ -4449,7 +4485,7 @@
       "name": "switch"
     },
     {
-      "detail": "switch-height: 1.5rem; switch-margin-block: .375rem",
+      "detail": "switch-height: 1.5rem",
       "name": "switch-lg"
     },
     {
@@ -4737,46 +4773,6 @@
       "name": "translate-middle-y"
     },
     {
-      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
-      "name": "underline-10"
-    },
-    {
-      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
-      "name": "underline-20"
-    },
-    {
-      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
-      "name": "underline-30"
-    },
-    {
-      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
-      "name": "underline-40"
-    },
-    {
-      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
-      "name": "underline-50"
-    },
-    {
-      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
-      "name": "underline-60"
-    },
-    {
-      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
-      "name": "underline-70"
-    },
-    {
-      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
-      "name": "underline-80"
-    },
-    {
-      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
-      "name": "underline-90"
-    },
-    {
-      "detail": "text-decoration-color: var(--bs-underline-color, currentcolor)",
-      "name": "underline-100"
-    },
-    {
       "detail": "text-decoration-color: var(--bs-underline-color)",
       "name": "underline-accent"
     },
@@ -4803,6 +4799,46 @@
     {
       "detail": "text-underline-offset: 0.375em",
       "name": "underline-offset-3"
+    },
+    {
+      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
+      "name": "underline-opacity-10"
+    },
+    {
+      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
+      "name": "underline-opacity-20"
+    },
+    {
+      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
+      "name": "underline-opacity-30"
+    },
+    {
+      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
+      "name": "underline-opacity-40"
+    },
+    {
+      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
+      "name": "underline-opacity-50"
+    },
+    {
+      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
+      "name": "underline-opacity-60"
+    },
+    {
+      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
+      "name": "underline-opacity-70"
+    },
+    {
+      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
+      "name": "underline-opacity-80"
+    },
+    {
+      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
+      "name": "underline-opacity-90"
+    },
+    {
+      "detail": "text-decoration-color: var(--bs-underline-color, currentcolor)",
+      "name": "underline-opacity-100"
     },
     {
       "detail": "text-decoration-color: var(--bs-underline-color)",
@@ -4881,7 +4917,7 @@
       "name": "visually-hidden-focusable"
     },
     {
-      "detail": "display: inline-block; align-self: stretch",
+      "detail": "display: inline-block; align-self: stretch; outline: 1px solid transparent",
       "name": "vr"
     },
     {
@@ -5101,51 +5137,51 @@
       "name": "2xl:col"
     },
     {
-      "detail": "flex: 0 0 auto; width: 8.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.0833333333 - 0px)",
       "name": "2xl:col-1"
     },
     {
-      "detail": "flex: 0 0 auto; width: 16.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.1666666667 - 0px)",
       "name": "2xl:col-2"
     },
     {
-      "detail": "flex: 0 0 auto; width: 25%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.25 - 0px)",
       "name": "2xl:col-3"
     },
     {
-      "detail": "flex: 0 0 auto; width: 33.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.3333333333 - 0px)",
       "name": "2xl:col-4"
     },
     {
-      "detail": "flex: 0 0 auto; width: 41.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.4166666667 - 0px)",
       "name": "2xl:col-5"
     },
     {
-      "detail": "flex: 0 0 auto; width: 50%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.5 - 0px)",
       "name": "2xl:col-6"
     },
     {
-      "detail": "flex: 0 0 auto; width: 58.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.5833333333 - 0px)",
       "name": "2xl:col-7"
     },
     {
-      "detail": "flex: 0 0 auto; width: 66.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.6666666667 - 0px)",
       "name": "2xl:col-8"
     },
     {
-      "detail": "flex: 0 0 auto; width: 75%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.75 - 0px)",
       "name": "2xl:col-9"
     },
     {
-      "detail": "flex: 0 0 auto; width: 83.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.8333333333 - 0px)",
       "name": "2xl:col-10"
     },
     {
-      "detail": "flex: 0 0 auto; width: 91.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.9166666667 - 0px)",
       "name": "2xl:col-11"
     },
     {
-      "detail": "flex: 0 0 auto; width: 100%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 1 - 0px)",
       "name": "2xl:col-12"
     },
     {
@@ -5277,7 +5313,7 @@
       "name": "2xl:divide-y-0"
     },
     {
-      "detail": "drawer-inset: var(--bs-spacer); drawer-zindex: var(--bs-z-drawer); position: fixed; inset: auto",
+      "detail": "drawer-backdrop-bg: var(--bs-bg-body); drawer-backdrop-opacity: 25%; drawer-inline: 0",
       "name": "2xl:drawer"
     },
     {
@@ -5341,7 +5377,7 @@
       "name": "2xl:float-start"
     },
     {
-      "detail": "gutter-x: 0; gutter-y: 0",
+      "detail": "gutter-x: 0px; gutter-y: 0",
       "name": "2xl:g-0"
     },
     {
@@ -5577,7 +5613,7 @@
       "name": "2xl:grid-cols-subgrid"
     },
     {
-      "detail": "gutter-x: 0",
+      "detail": "gutter-x: 0px",
       "name": "2xl:gx-0"
     },
     {
@@ -6177,47 +6213,47 @@
       "name": "2xl:offset-0"
     },
     {
-      "detail": "margin-inline-start: 8.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.0833333333)",
       "name": "2xl:offset-1"
     },
     {
-      "detail": "margin-inline-start: 16.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.1666666667)",
       "name": "2xl:offset-2"
     },
     {
-      "detail": "margin-inline-start: 25%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.25)",
       "name": "2xl:offset-3"
     },
     {
-      "detail": "margin-inline-start: 33.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.3333333333)",
       "name": "2xl:offset-4"
     },
     {
-      "detail": "margin-inline-start: 41.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.4166666667)",
       "name": "2xl:offset-5"
     },
     {
-      "detail": "margin-inline-start: 50%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.5)",
       "name": "2xl:offset-6"
     },
     {
-      "detail": "margin-inline-start: 58.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.5833333333)",
       "name": "2xl:offset-7"
     },
     {
-      "detail": "margin-inline-start: 66.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.6666666667)",
       "name": "2xl:offset-8"
     },
     {
-      "detail": "margin-inline-start: 75%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.75)",
       "name": "2xl:offset-9"
     },
     {
-      "detail": "margin-inline-start: 83.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.8333333333)",
       "name": "2xl:offset-10"
     },
     {
-      "detail": "margin-inline-start: 91.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.9166666667)",
       "name": "2xl:offset-11"
     },
     {
@@ -6893,46 +6929,6 @@
       "name": "hover:link-100"
     },
     {
-      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
-      "name": "hover:underline-10"
-    },
-    {
-      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
-      "name": "hover:underline-20"
-    },
-    {
-      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
-      "name": "hover:underline-30"
-    },
-    {
-      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
-      "name": "hover:underline-40"
-    },
-    {
-      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
-      "name": "hover:underline-50"
-    },
-    {
-      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
-      "name": "hover:underline-60"
-    },
-    {
-      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
-      "name": "hover:underline-70"
-    },
-    {
-      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
-      "name": "hover:underline-80"
-    },
-    {
-      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
-      "name": "hover:underline-90"
-    },
-    {
-      "detail": "text-decoration-color: var(--bs-underline-color, currentcolor)",
-      "name": "hover:underline-100"
-    },
-    {
       "detail": "text-underline-offset: 0.125em",
       "name": "hover:underline-offset-1"
     },
@@ -6943,6 +6939,46 @@
     {
       "detail": "text-underline-offset: 0.375em",
       "name": "hover:underline-offset-3"
+    },
+    {
+      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
+      "name": "hover:underline-opacity-10"
+    },
+    {
+      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
+      "name": "hover:underline-opacity-20"
+    },
+    {
+      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
+      "name": "hover:underline-opacity-30"
+    },
+    {
+      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
+      "name": "hover:underline-opacity-40"
+    },
+    {
+      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
+      "name": "hover:underline-opacity-50"
+    },
+    {
+      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
+      "name": "hover:underline-opacity-60"
+    },
+    {
+      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
+      "name": "hover:underline-opacity-70"
+    },
+    {
+      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
+      "name": "hover:underline-opacity-80"
+    },
+    {
+      "detail": "text-decoration-color: color-mix(in oklch, var(--bs-underline-color, current...",
+      "name": "hover:underline-opacity-90"
+    },
+    {
+      "detail": "text-decoration-color: var(--bs-underline-color, currentcolor)",
+      "name": "hover:underline-opacity-100"
     },
     {
       "detail": "text-decoration-thickness: 1px",
@@ -7041,51 +7077,51 @@
       "name": "lg:col"
     },
     {
-      "detail": "flex: 0 0 auto; width: 8.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.0833333333 - 0px)",
       "name": "lg:col-1"
     },
     {
-      "detail": "flex: 0 0 auto; width: 16.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.1666666667 - 0px)",
       "name": "lg:col-2"
     },
     {
-      "detail": "flex: 0 0 auto; width: 25%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.25 - 0px)",
       "name": "lg:col-3"
     },
     {
-      "detail": "flex: 0 0 auto; width: 33.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.3333333333 - 0px)",
       "name": "lg:col-4"
     },
     {
-      "detail": "flex: 0 0 auto; width: 41.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.4166666667 - 0px)",
       "name": "lg:col-5"
     },
     {
-      "detail": "flex: 0 0 auto; width: 50%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.5 - 0px)",
       "name": "lg:col-6"
     },
     {
-      "detail": "flex: 0 0 auto; width: 58.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.5833333333 - 0px)",
       "name": "lg:col-7"
     },
     {
-      "detail": "flex: 0 0 auto; width: 66.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.6666666667 - 0px)",
       "name": "lg:col-8"
     },
     {
-      "detail": "flex: 0 0 auto; width: 75%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.75 - 0px)",
       "name": "lg:col-9"
     },
     {
-      "detail": "flex: 0 0 auto; width: 83.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.8333333333 - 0px)",
       "name": "lg:col-10"
     },
     {
-      "detail": "flex: 0 0 auto; width: 91.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.9166666667 - 0px)",
       "name": "lg:col-11"
     },
     {
-      "detail": "flex: 0 0 auto; width: 100%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 1 - 0px)",
       "name": "lg:col-12"
     },
     {
@@ -7217,7 +7253,7 @@
       "name": "lg:divide-y-0"
     },
     {
-      "detail": "drawer-inset: var(--bs-spacer); drawer-zindex: var(--bs-z-drawer); position: fixed; inset: auto",
+      "detail": "drawer-backdrop-bg: var(--bs-bg-body); drawer-backdrop-opacity: 25%; drawer-inline: 0",
       "name": "lg:drawer"
     },
     {
@@ -7281,7 +7317,7 @@
       "name": "lg:float-start"
     },
     {
-      "detail": "gutter-x: 0; gutter-y: 0",
+      "detail": "gutter-x: 0px; gutter-y: 0",
       "name": "lg:g-0"
     },
     {
@@ -7517,7 +7553,7 @@
       "name": "lg:grid-cols-subgrid"
     },
     {
-      "detail": "gutter-x: 0",
+      "detail": "gutter-x: 0px",
       "name": "lg:gx-0"
     },
     {
@@ -8117,47 +8153,47 @@
       "name": "lg:offset-0"
     },
     {
-      "detail": "margin-inline-start: 8.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.0833333333)",
       "name": "lg:offset-1"
     },
     {
-      "detail": "margin-inline-start: 16.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.1666666667)",
       "name": "lg:offset-2"
     },
     {
-      "detail": "margin-inline-start: 25%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.25)",
       "name": "lg:offset-3"
     },
     {
-      "detail": "margin-inline-start: 33.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.3333333333)",
       "name": "lg:offset-4"
     },
     {
-      "detail": "margin-inline-start: 41.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.4166666667)",
       "name": "lg:offset-5"
     },
     {
-      "detail": "margin-inline-start: 50%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.5)",
       "name": "lg:offset-6"
     },
     {
-      "detail": "margin-inline-start: 58.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.5833333333)",
       "name": "lg:offset-7"
     },
     {
-      "detail": "margin-inline-start: 66.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.6666666667)",
       "name": "lg:offset-8"
     },
     {
-      "detail": "margin-inline-start: 75%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.75)",
       "name": "lg:offset-9"
     },
     {
-      "detail": "margin-inline-start: 83.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.8333333333)",
       "name": "lg:offset-10"
     },
     {
-      "detail": "margin-inline-start: 91.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.9166666667)",
       "name": "lg:offset-11"
     },
     {
@@ -8869,51 +8905,51 @@
       "name": "md:col"
     },
     {
-      "detail": "flex: 0 0 auto; width: 8.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.0833333333 - 0px)",
       "name": "md:col-1"
     },
     {
-      "detail": "flex: 0 0 auto; width: 16.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.1666666667 - 0px)",
       "name": "md:col-2"
     },
     {
-      "detail": "flex: 0 0 auto; width: 25%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.25 - 0px)",
       "name": "md:col-3"
     },
     {
-      "detail": "flex: 0 0 auto; width: 33.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.3333333333 - 0px)",
       "name": "md:col-4"
     },
     {
-      "detail": "flex: 0 0 auto; width: 41.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.4166666667 - 0px)",
       "name": "md:col-5"
     },
     {
-      "detail": "flex: 0 0 auto; width: 50%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.5 - 0px)",
       "name": "md:col-6"
     },
     {
-      "detail": "flex: 0 0 auto; width: 58.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.5833333333 - 0px)",
       "name": "md:col-7"
     },
     {
-      "detail": "flex: 0 0 auto; width: 66.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.6666666667 - 0px)",
       "name": "md:col-8"
     },
     {
-      "detail": "flex: 0 0 auto; width: 75%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.75 - 0px)",
       "name": "md:col-9"
     },
     {
-      "detail": "flex: 0 0 auto; width: 83.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.8333333333 - 0px)",
       "name": "md:col-10"
     },
     {
-      "detail": "flex: 0 0 auto; width: 91.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.9166666667 - 0px)",
       "name": "md:col-11"
     },
     {
-      "detail": "flex: 0 0 auto; width: 100%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 1 - 0px)",
       "name": "md:col-12"
     },
     {
@@ -9045,7 +9081,7 @@
       "name": "md:divide-y-0"
     },
     {
-      "detail": "drawer-inset: var(--bs-spacer); drawer-zindex: var(--bs-z-drawer); position: fixed; inset: auto",
+      "detail": "drawer-backdrop-bg: var(--bs-bg-body); drawer-backdrop-opacity: 25%; drawer-inline: 0",
       "name": "md:drawer"
     },
     {
@@ -9109,7 +9145,7 @@
       "name": "md:float-start"
     },
     {
-      "detail": "gutter-x: 0; gutter-y: 0",
+      "detail": "gutter-x: 0px; gutter-y: 0",
       "name": "md:g-0"
     },
     {
@@ -9345,7 +9381,7 @@
       "name": "md:grid-cols-subgrid"
     },
     {
-      "detail": "gutter-x: 0",
+      "detail": "gutter-x: 0px",
       "name": "md:gx-0"
     },
     {
@@ -9945,47 +9981,47 @@
       "name": "md:offset-0"
     },
     {
-      "detail": "margin-inline-start: 8.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.0833333333)",
       "name": "md:offset-1"
     },
     {
-      "detail": "margin-inline-start: 16.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.1666666667)",
       "name": "md:offset-2"
     },
     {
-      "detail": "margin-inline-start: 25%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.25)",
       "name": "md:offset-3"
     },
     {
-      "detail": "margin-inline-start: 33.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.3333333333)",
       "name": "md:offset-4"
     },
     {
-      "detail": "margin-inline-start: 41.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.4166666667)",
       "name": "md:offset-5"
     },
     {
-      "detail": "margin-inline-start: 50%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.5)",
       "name": "md:offset-6"
     },
     {
-      "detail": "margin-inline-start: 58.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.5833333333)",
       "name": "md:offset-7"
     },
     {
-      "detail": "margin-inline-start: 66.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.6666666667)",
       "name": "md:offset-8"
     },
     {
-      "detail": "margin-inline-start: 75%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.75)",
       "name": "md:offset-9"
     },
     {
-      "detail": "margin-inline-start: 83.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.8333333333)",
       "name": "md:offset-10"
     },
     {
-      "detail": "margin-inline-start: 91.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.9166666667)",
       "name": "md:offset-11"
     },
     {
@@ -10697,51 +10733,51 @@
       "name": "sm:col"
     },
     {
-      "detail": "flex: 0 0 auto; width: 8.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.0833333333 - 0px)",
       "name": "sm:col-1"
     },
     {
-      "detail": "flex: 0 0 auto; width: 16.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.1666666667 - 0px)",
       "name": "sm:col-2"
     },
     {
-      "detail": "flex: 0 0 auto; width: 25%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.25 - 0px)",
       "name": "sm:col-3"
     },
     {
-      "detail": "flex: 0 0 auto; width: 33.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.3333333333 - 0px)",
       "name": "sm:col-4"
     },
     {
-      "detail": "flex: 0 0 auto; width: 41.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.4166666667 - 0px)",
       "name": "sm:col-5"
     },
     {
-      "detail": "flex: 0 0 auto; width: 50%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.5 - 0px)",
       "name": "sm:col-6"
     },
     {
-      "detail": "flex: 0 0 auto; width: 58.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.5833333333 - 0px)",
       "name": "sm:col-7"
     },
     {
-      "detail": "flex: 0 0 auto; width: 66.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.6666666667 - 0px)",
       "name": "sm:col-8"
     },
     {
-      "detail": "flex: 0 0 auto; width: 75%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.75 - 0px)",
       "name": "sm:col-9"
     },
     {
-      "detail": "flex: 0 0 auto; width: 83.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.8333333333 - 0px)",
       "name": "sm:col-10"
     },
     {
-      "detail": "flex: 0 0 auto; width: 91.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.9166666667 - 0px)",
       "name": "sm:col-11"
     },
     {
-      "detail": "flex: 0 0 auto; width: 100%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 1 - 0px)",
       "name": "sm:col-12"
     },
     {
@@ -10873,7 +10909,7 @@
       "name": "sm:divide-y-0"
     },
     {
-      "detail": "drawer-inset: var(--bs-spacer); drawer-zindex: var(--bs-z-drawer); position: fixed; inset: auto",
+      "detail": "drawer-backdrop-bg: var(--bs-bg-body); drawer-backdrop-opacity: 25%; drawer-inline: 0",
       "name": "sm:drawer"
     },
     {
@@ -10937,7 +10973,7 @@
       "name": "sm:float-start"
     },
     {
-      "detail": "gutter-x: 0; gutter-y: 0",
+      "detail": "gutter-x: 0px; gutter-y: 0",
       "name": "sm:g-0"
     },
     {
@@ -11173,7 +11209,7 @@
       "name": "sm:grid-cols-subgrid"
     },
     {
-      "detail": "gutter-x: 0",
+      "detail": "gutter-x: 0px",
       "name": "sm:gx-0"
     },
     {
@@ -11773,47 +11809,47 @@
       "name": "sm:offset-0"
     },
     {
-      "detail": "margin-inline-start: 8.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.0833333333)",
       "name": "sm:offset-1"
     },
     {
-      "detail": "margin-inline-start: 16.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.1666666667)",
       "name": "sm:offset-2"
     },
     {
-      "detail": "margin-inline-start: 25%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.25)",
       "name": "sm:offset-3"
     },
     {
-      "detail": "margin-inline-start: 33.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.3333333333)",
       "name": "sm:offset-4"
     },
     {
-      "detail": "margin-inline-start: 41.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.4166666667)",
       "name": "sm:offset-5"
     },
     {
-      "detail": "margin-inline-start: 50%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.5)",
       "name": "sm:offset-6"
     },
     {
-      "detail": "margin-inline-start: 58.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.5833333333)",
       "name": "sm:offset-7"
     },
     {
-      "detail": "margin-inline-start: 66.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.6666666667)",
       "name": "sm:offset-8"
     },
     {
-      "detail": "margin-inline-start: 75%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.75)",
       "name": "sm:offset-9"
     },
     {
-      "detail": "margin-inline-start: 83.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.8333333333)",
       "name": "sm:offset-10"
     },
     {
-      "detail": "margin-inline-start: 91.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.9166666667)",
       "name": "sm:offset-11"
     },
     {
@@ -12525,51 +12561,51 @@
       "name": "xl:col"
     },
     {
-      "detail": "flex: 0 0 auto; width: 8.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.0833333333 - 0px)",
       "name": "xl:col-1"
     },
     {
-      "detail": "flex: 0 0 auto; width: 16.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.1666666667 - 0px)",
       "name": "xl:col-2"
     },
     {
-      "detail": "flex: 0 0 auto; width: 25%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.25 - 0px)",
       "name": "xl:col-3"
     },
     {
-      "detail": "flex: 0 0 auto; width: 33.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.3333333333 - 0px)",
       "name": "xl:col-4"
     },
     {
-      "detail": "flex: 0 0 auto; width: 41.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.4166666667 - 0px)",
       "name": "xl:col-5"
     },
     {
-      "detail": "flex: 0 0 auto; width: 50%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.5 - 0px)",
       "name": "xl:col-6"
     },
     {
-      "detail": "flex: 0 0 auto; width: 58.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.5833333333 - 0px)",
       "name": "xl:col-7"
     },
     {
-      "detail": "flex: 0 0 auto; width: 66.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.6666666667 - 0px)",
       "name": "xl:col-8"
     },
     {
-      "detail": "flex: 0 0 auto; width: 75%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.75 - 0px)",
       "name": "xl:col-9"
     },
     {
-      "detail": "flex: 0 0 auto; width: 83.3333333333%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.8333333333 - 0px)",
       "name": "xl:col-10"
     },
     {
-      "detail": "flex: 0 0 auto; width: 91.6666666667%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 0.9166666667 - 0px)",
       "name": "xl:col-11"
     },
     {
-      "detail": "flex: 0 0 auto; width: 100%",
+      "detail": "flex: 0 0 auto; width: calc((100% + 0px) * 1 - 0px)",
       "name": "xl:col-12"
     },
     {
@@ -12701,7 +12737,7 @@
       "name": "xl:divide-y-0"
     },
     {
-      "detail": "drawer-inset: var(--bs-spacer); drawer-zindex: var(--bs-z-drawer); position: fixed; inset: auto",
+      "detail": "drawer-backdrop-bg: var(--bs-bg-body); drawer-backdrop-opacity: 25%; drawer-inline: 0",
       "name": "xl:drawer"
     },
     {
@@ -12765,7 +12801,7 @@
       "name": "xl:float-start"
     },
     {
-      "detail": "gutter-x: 0; gutter-y: 0",
+      "detail": "gutter-x: 0px; gutter-y: 0",
       "name": "xl:g-0"
     },
     {
@@ -13001,7 +13037,7 @@
       "name": "xl:grid-cols-subgrid"
     },
     {
-      "detail": "gutter-x: 0",
+      "detail": "gutter-x: 0px",
       "name": "xl:gx-0"
     },
     {
@@ -13601,47 +13637,47 @@
       "name": "xl:offset-0"
     },
     {
-      "detail": "margin-inline-start: 8.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.0833333333)",
       "name": "xl:offset-1"
     },
     {
-      "detail": "margin-inline-start: 16.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.1666666667)",
       "name": "xl:offset-2"
     },
     {
-      "detail": "margin-inline-start: 25%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.25)",
       "name": "xl:offset-3"
     },
     {
-      "detail": "margin-inline-start: 33.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.3333333333)",
       "name": "xl:offset-4"
     },
     {
-      "detail": "margin-inline-start: 41.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.4166666667)",
       "name": "xl:offset-5"
     },
     {
-      "detail": "margin-inline-start: 50%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.5)",
       "name": "xl:offset-6"
     },
     {
-      "detail": "margin-inline-start: 58.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.5833333333)",
       "name": "xl:offset-7"
     },
     {
-      "detail": "margin-inline-start: 66.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.6666666667)",
       "name": "xl:offset-8"
     },
     {
-      "detail": "margin-inline-start: 75%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.75)",
       "name": "xl:offset-9"
     },
     {
-      "detail": "margin-inline-start: 83.3333333333%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.8333333333)",
       "name": "xl:offset-10"
     },
     {
-      "detail": "margin-inline-start: 91.6666666667%",
+      "detail": "margin-inline-start: calc((100% + 0px) * 0.9166666667)",
       "name": "xl:offset-11"
     },
     {
@@ -14277,5 +14313,5 @@
       "name": "xl:vstack"
     }
   ],
-  "version": "6.0.0-alpha.1"
+  "version": "6.0.0-alpha.2"
 }

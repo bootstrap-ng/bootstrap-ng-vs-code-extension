@@ -46,6 +46,17 @@ describe("hover", () => {
     assert.equal(html.slice(hit.start, hit.end), "d-flex");
   });
 
+  it("describes Bootstrap 6 classes in Angular class bindings", () => {
+    const html = `<div [ngClass]="{ 'd-flex': on }" [class.gap-2]="on">`;
+    const keyed = hoverAt(html, at(html, "d-fl"), "html");
+    const toggled = hoverAt(html, at(html, "gap"), "html");
+
+    assert.match(keyed.markdown, /\*\*d-flex\*\*/u);
+    assert.equal(html.slice(keyed.start, keyed.end), "d-flex");
+    assert.match(toggled.markdown, /\*\*gap-2\*\*/u);
+    assert.equal(html.slice(toggled.start, toggled.end), "gap-2");
+  });
+
   it("picks the directive that matches the host element", () => {
     const input = "<input bsRange>";
     const div = "<div bsRange>";

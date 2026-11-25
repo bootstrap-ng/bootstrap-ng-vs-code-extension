@@ -292,7 +292,9 @@ function classCompletions(context) {
         documentation: documentationForClass(entry),
         filterText: entry.name,
         incomplete: true,
-        insertText: entry.name,
+        insertText: context.insertQuote
+          ? `${context.insertQuote}${entry.name}${context.insertQuote}`
+          : entry.name,
         kind: "Value",
         label: entry.name,
         sortText: entry.sortText,

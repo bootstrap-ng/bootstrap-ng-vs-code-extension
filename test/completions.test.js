@@ -163,6 +163,77 @@ export class App {}`;
     assert.equal(inside.includes("container"), false);
   });
 
+  it("suggests classes in string literals of [class] and [ngClass]", () => {
+    const bound = `<div [class]="'d-flex jus'">`;
+    const listed = `<div [ngClass]="['d-flex', isOpen ? 'sho' : '']">`;
+    const keyed = `<div [ngClass]="{ 'd-fl': wide, active: on }">`;
+    const items = complete(bound, at(bound, "'d-flex jus"), "html");
+    const justify = items.find(
+      (item) => item.label === "justify-content-center",
+    );
+
+    assert.ok(justify);
+    assert.equal(bound.slice(justify.start, justify.end), "jus");
+    assert.equal(justify.insertText, "justify-content-center");
+    assert.equal(
+      items.some((item) => item.label === "d-flex"),
+      false,
+    );
+    assert.ok(
+      labels(complete(listed, at(listed, "'sho"), "html")).includes("show"),
+    );
+    assert.ok(
+      labels(complete(keyed, at(keyed, "'d-fl"), "html")).includes("d-flex"),
+    );
+  });
+
+  it("quotes class names typed as bare [ngClass] object keys", () => {
+    const html = `<div [ngClass]="{ active: on, d-fl }">`;
+    const items = complete(html, at(html, "d-fl"), "html");
+    const flex = items.find((item) => item.label === "d-flex");
+
+    assert.ok(flex);
+    assert.equal(flex.insertText, "'d-flex'");
+    assert.equal(html.slice(flex.start, flex.end), "d-fl");
+  });
+
+  it("ignores identifiers and values inside class binding expressions", () => {
+    const html = `<div [ngClass]="{ 'd-flex': cont, x: fn(cont) }">`;
+
+    assert.deepEqual(complete(html, at(html, "': cont"), "html"), []);
+    assert.deepEqual(complete(html, at(html, "fn(cont"), "html"), []);
+  });
+
+  it("suggests the class name in a [class.name] binding", () => {
+    const html = '<div class="d-flex" [class.fle]="on">';
+    const items = complete(html, at(html, "[class.fle"), "html");
+    const grow = items.find((item) => item.label === "flex-grow-1");
+
+    assert.ok(grow);
+    assert.equal(html.slice(grow.start, grow.end), "fle");
+    assert.equal(grow.insertText, "flex-grow-1");
+    assert.equal(
+      items.some((item) => item.label === "d-flex"),
+      false,
+    );
+  });
+
+  it("suggests class bindings inside an Angular template", () => {
+    const source = `@Component({ template: \`<div [ngClass]="'cont'" [class.cont]>\` })
+export class App {}`;
+
+    assert.ok(
+      labels(complete(source, at(source, "'cont"), "typescript")).includes(
+        "container",
+      ),
+    );
+    assert.ok(
+      labels(
+        complete(source, at(source, "[class.cont"), "typescript"),
+      ).includes("container"),
+    );
+  });
+
   it("completes custom element tags", () => {
     const html = "<bs-";
     const items = labels(complete(html, html.length, "html"));

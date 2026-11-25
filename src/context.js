@@ -415,6 +415,180 @@ function classValueContext(text, offset, tag, attribute) {
   };
 }
 
+const CLASS_BINDINGS = new Set(["[class]", "[ngClass]"]);
+const CLOSERS = { ")": "(", "]": "[", "}": "{" };
+
+function scanExpression(text, start, offset) {
+  const stack = [];
+  let literal = null;
+
+  for (let index = start; index < offset; index += 1) {
+    const char = text[index];
+
+    if (literal) {
+      if (char === "\\") {
+        index += 1;
+      } else if (char === literal.quote) {
+        literal = null;
+      }
+
+      continue;
+    }
+
+    if (char === "'" || char === '"' || char === "`") {
+      literal = { quote: char, start: index + 1 };
+    } else if (char === "(" || char === "[" || char === "{") {
+      stack.push(char);
+    } else if (CLOSERS[char] && stack.at(-1) === CLOSERS[char]) {
+      stack.pop();
+    }
+  }
+
+  return { literal, stack };
+}
+
+function literalEnd(text, start, limit, quote) {
+  let index = start;
+
+  while (index < limit && text[index] !== quote) {
+    index += text[index] === "\\" ? 2 : 1;
+  }
+
+  return Math.min(index, limit);
+}
+
+function bindingClassContext(text, offset, tag, attribute, range) {
+  const token = classTokenBounds(text, offset, range.start, range.end);
+
+  return {
+    attribute: publicAttribute(attribute),
+    attributes: tag.attributes.map(publicAttribute),
+    end: token.end,
+    insertQuote: range.insertQuote ?? null,
+    kind: "class-name",
+    prefix: text.slice(token.start, token.end),
+    present: range.present
+      ? range.present
+      : otherClassTokens(text, range.start, range.end, token.start, token.end),
+    quote: attribute.quote,
+    start: token.start,
+    tagName: tag.name,
+  };
+}
+
+function objectKeyContext(text, offset, tag, attribute, stack) {
+  if (stack.at(-1) !== "{") {
+    return null;
+  }
+
+  let start = offset;
+
+  while (start > attribute.valueStart && /[\w$-]/u.test(text[start - 1])) {
+    start -= 1;
+  }
+
+  let before = start - 1;
+
+  while (before >= attribute.valueStart && /\s/u.test(text[before])) {
+    before -= 1;
+  }
+
+  if (text[before] !== "{" && text[before] !== ",") {
+    return null;
+  }
+
+  let end = offset;
+
+  while (end < attribute.valueEnd && /[\w$-]/u.test(text[end])) {
+    end += 1;
+  }
+
+  return bindingClassContext(text, offset, tag, attribute, {
+    end,
+    insertQuote: attribute.quote === "'" ? '"' : "'",
+    present: [],
+    start,
+  });
+}
+
+function classBindingContext(text, offset, tag, attribute) {
+  if (!CLASS_BINDINGS.has(attribute.rawName) || !attribute.quote) {
+    return null;
+  }
+
+  const { literal, stack } = scanExpression(text, attribute.valueStart, offset);
+
+  if (!literal) {
+    return objectKeyContext(text, offset, tag, attribute, stack);
+  }
+
+  if (
+    literal.quote === "`" &&
+    text.slice(literal.start, offset).includes("${")
+  ) {
+    return null;
+  }
+
+  return bindingClassContext(text, offset, tag, attribute, {
+    end: literalEnd(text, offset, attribute.valueEnd, literal.quote),
+    start: literal.start,
+  });
+}
+
+function staticClassTokens(tag) {
+  const names = [];
+
+  for (const attribute of tag.attributes) {
+    if (attribute.rawName === "class" && attribute.value) {
+      names.push(...(attribute.value.match(/[A-Za-z0-9_:-]+/gu) ?? []));
+    }
+
+    const toggle = attribute.rawName.match(/^\[class\.(?<name>[^\]]+)\]$/u);
+
+    if (toggle) {
+      names.push(toggle.groups.name);
+    }
+  }
+
+  return names;
+}
+
+function classToggleContext(text, offset, tag, attribute) {
+  const nameStart = attribute.nameStart + "[class.".length;
+
+  if (
+    !attribute.rawName.startsWith("[class.") ||
+    offset < nameStart ||
+    offset > attribute.nameEnd
+  ) {
+    return null;
+  }
+
+  let end = nameStart;
+
+  while (end < attribute.nameEnd && CLASS_TOKEN.test(text[end])) {
+    end += 1;
+  }
+
+  if (offset > end) {
+    return null;
+  }
+
+  const prefix = text.slice(nameStart, end);
+  const others = tag.attributes.filter((item) => item !== attribute);
+
+  return {
+    attribute: publicAttribute(attribute),
+    attributes: others.map(publicAttribute),
+    end,
+    kind: "class-name",
+    prefix,
+    present: staticClassTokens({ attributes: others }),
+    start: nameStart,
+    tagName: tag.name,
+  };
+}
+
 function attributeContext(text, offset, tag, attribute) {
   if (
     attribute.valueStart !== null &&
@@ -427,6 +601,12 @@ function attributeContext(text, offset, tag, attribute) {
       if (classContext) {
         return classContext;
       }
+    }
+
+    const bindingContext = classBindingContext(text, offset, tag, attribute);
+
+    if (bindingContext) {
+      return bindingContext;
     }
 
     return {
@@ -443,6 +623,12 @@ function attributeContext(text, offset, tag, attribute) {
 
   if (offset < attribute.nameStart || offset > attribute.nameEnd) {
     return null;
+  }
+
+  const toggleContext = classToggleContext(text, offset, tag, attribute);
+
+  if (toggleContext) {
+    return toggleContext;
   }
 
   const attributes = tag.attributes

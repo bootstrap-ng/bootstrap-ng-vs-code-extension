@@ -423,7 +423,7 @@ async function openDocs() {
 function activate(context) {
   const collection =
     vscode.languages.createDiagnosticCollection("bootstrap-ng");
-  const triggers = ["<", " ", '"', "'", "[", "(", ":"];
+  const triggers = ["<", " ", '"', "'", "[", "(", ":", "."];
 
   context.subscriptions.push(
     vscode.languages.registerCompletionItemProvider(

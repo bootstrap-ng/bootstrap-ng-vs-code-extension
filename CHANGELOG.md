@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.9.1
 
 - Clear Problems-panel diagnostics when `package.json` is closed.
 - The extension no longer activates in every Node.js project. It activates for HTML, JSON and TypeScript files, and in workspaces with an `angular.json`.

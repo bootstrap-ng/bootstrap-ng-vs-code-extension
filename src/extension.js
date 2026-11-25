@@ -188,10 +188,6 @@ function watchDiagnostics(context, collection) {
       refresh(event.document),
     ),
     vscode.workspace.onDidCloseTextDocument((document) => {
-      if (isPackageJson(document)) {
-        return;
-      }
-
       collection.delete(document.uri);
     }),
     vscode.workspace.onDidChangeConfiguration((event) => {

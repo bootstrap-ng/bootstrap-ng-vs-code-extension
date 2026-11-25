@@ -104,11 +104,48 @@ describe("dependency versions", () => {
       ),
       [],
     );
+    assert.deepEqual(messages(""), []);
+  });
+
+  it("warns when package.json contains JSONC comments or trailing commas", () => {
+    const commented = `{
+  // Outdated bootstrap-ng release
+  "dependencies": {
+    "bootstrap-ng": "6.0.0-alpha.1"
+  }
+}`;
+    const trailing = `{
+  "dependencies": {
+    "bootstrap": "6.0.0-alpha.1",
+  }
+}`;
+    const commentedFound = diagnoseDependencies(commented);
+    const trailingFound = diagnoseDependencies(trailing);
+
+    assert.equal(commentedFound.length, 1);
+    assert.equal(
+      commented.slice(commentedFound[0].start, commentedFound[0].end),
+      "6.0.0-alpha.1",
+    );
+    assert.equal(trailingFound.length, 1);
+    assert.equal(
+      trailing.slice(trailingFound[0].start, trailingFound[0].end),
+      "6.0.0-alpha.1",
+    );
+  });
+
+  it("ignores malformed manifests while they are being edited", () => {
+    assert.doesNotThrow(() =>
+      diagnoseDependencies('{"dependencies":{"bootstrap":}}'),
+    );
     assert.deepEqual(
-      messages('{"dependencies":{"bootstrap":"6.0.0-alpha.1",}}'),
+      diagnoseDependencies('{"dependencies":{"bootstrap":}}'),
       [],
     );
-    assert.deepEqual(messages(""), []);
+    assert.deepEqual(
+      diagnoseDependencies('{"dependencies":{"bootstrap":"6.0.0-alpha.1'),
+      [],
+    );
   });
 
   it("replaces only the alpha 1 version token", () => {

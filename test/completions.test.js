@@ -149,7 +149,8 @@ describe("completions", () => {
   });
 
   it("suggests classes inside an Angular template and not inside interpolation", () => {
-    const source = 'template: `<div class="cont">`;';
+    const source = `@Component({ template: \`<div class="cont">\` })
+export class App {}`;
     const interpolated = '<div class="d-flex {{ cont }}">';
     const names = labels(
       complete(source, at(source, 'class="cont'), "typescript"),

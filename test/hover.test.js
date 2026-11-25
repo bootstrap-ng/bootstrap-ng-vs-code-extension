@@ -61,4 +61,14 @@ describe("hover", () => {
     assert.doesNotMatch(divHit.markdown, /BsRangeInput/u);
     assert.equal(symbolAt(div, at(div, "bsRange"), "html").name, "BsRange");
   });
+
+  it("ignores bootstrap-ng markup in unrelated TypeScript template literals", () => {
+    const source = `const tpl = \`<div bsAlert theme="bad">\`;
+@Component({ template: \`<button bsButton></button>\` })
+export class App {}`;
+    const offset = source.indexOf("bad") - 1;
+
+    assert.equal(hoverAt(source, offset, "typescript"), null);
+    assert.equal(symbolAt(source, offset, "typescript"), null);
+  });
 });

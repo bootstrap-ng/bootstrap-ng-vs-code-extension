@@ -1,7 +1,14 @@
 "use strict";
 
 const { index } = require("./catalog");
-const { closingBacktick, parseTags, templateRanges } = require("./context");
+const {
+  componentTemplateRanges,
+  componentsIn,
+  findProperty,
+  inlineTemplate,
+  matchingBracket,
+} = require("./angular-component");
+const { parseTags } = require("./context");
 
 function identifiers(body) {
   return body
@@ -29,7 +36,7 @@ function classNamesIn(html) {
 function templateClassNames(tsText) {
   const names = new Set();
 
-  for (const range of templateRanges(tsText)) {
+  for (const range of componentTemplateRanges(tsText)) {
     if (!range.content.includes("<")) {
       continue;
     }
@@ -54,149 +61,6 @@ function importedNames(tsText) {
   }
 
   return names;
-}
-
-function skipCode(text, offset) {
-  const quote = text[offset];
-
-  if (quote === "'" || quote === '"') {
-    let cursor = offset + 1;
-
-    while (
-      cursor < text.length &&
-      text[cursor] !== quote &&
-      text[cursor] !== "\n"
-    ) {
-      cursor += text[cursor] === "\\" ? 2 : 1;
-    }
-
-    return Math.min(text.length, cursor + 1);
-  }
-
-  if (quote === "`") {
-    const end = closingBacktick(text, offset + 1);
-
-    return end === -1 ? text.length : end + 1;
-  }
-
-  return offset;
-}
-
-function matchingBracket(text, openIndex, open, close) {
-  let depth = 0;
-
-  for (let cursor = openIndex; cursor < text.length; cursor += 1) {
-    const next = skipCode(text, cursor);
-
-    if (next !== cursor) {
-      cursor = next - 1;
-      continue;
-    }
-
-    if (text[cursor] === open) {
-      depth += 1;
-    } else if (text[cursor] === close) {
-      depth -= 1;
-
-      if (depth === 0) {
-        return cursor;
-      }
-    }
-  }
-
-  return -1;
-}
-
-function componentsIn(tsText) {
-  const components = [];
-
-  for (const match of tsText.matchAll(/@Component\s*\(\s*\{/gu)) {
-    const open = match.index + match[0].lastIndexOf("{");
-    const close = matchingBracket(tsText, open, "{", "}");
-
-    if (close !== -1) {
-      components.push({ close, open });
-    }
-  }
-
-  return components;
-}
-
-function isProperty(text, offset, property) {
-  const previous = text[offset - 1];
-
-  if (previous && /[\w$]/u.test(previous)) {
-    return false;
-  }
-
-  return text.startsWith(property, offset);
-}
-
-function propertyValue(text, offset, limit) {
-  let cursor = offset;
-
-  while (cursor < limit && /[\t\n\r ]/u.test(text[cursor])) {
-    cursor += 1;
-  }
-
-  if (text[cursor] !== ":") {
-    return -1;
-  }
-
-  cursor += 1;
-
-  while (cursor < limit && /[\t\n\r ]/u.test(text[cursor])) {
-    cursor += 1;
-  }
-
-  return cursor;
-}
-
-function findProperty(text, from, to, property, bracket) {
-  let cursor = from + 1;
-
-  while (cursor < to) {
-    const next = skipCode(text, cursor);
-
-    if (next !== cursor) {
-      cursor = next;
-      continue;
-    }
-
-    if (isProperty(text, cursor, property)) {
-      const value = propertyValue(text, cursor + property.length, to);
-
-      if (value !== -1 && text[value] === bracket) {
-        return value;
-      }
-    }
-
-    cursor += 1;
-  }
-
-  return -1;
-}
-
-function inlineTemplate(tsText, component) {
-  const start = findProperty(
-    tsText,
-    component.open,
-    component.close,
-    "template",
-    "`",
-  );
-
-  if (start === -1) {
-    return null;
-  }
-
-  const end = closingBacktick(tsText, start + 1);
-
-  if (end === -1 || end > component.close) {
-    return null;
-  }
-
-  return tsText.slice(start + 1, end);
 }
 
 function referencesTemplate(source, fileName) {

@@ -63,6 +63,62 @@ export class App {}
     assert.match(next, /imports: \[[\s\S]*BsAlert,/u);
   });
 
+  it("adds the import after the imports in a file without semicolons", () => {
+    const source = `import { Component } from '@angular/core'
+
+@Component({
+  selector: 'app-root',
+  imports: [],
+  template: \`<div bsAlert></div>\`,
+})
+export class App {
+  count = 1;
+}
+`;
+    const next = edited(source);
+
+    assert.match(
+      next,
+      /^import \{ Component \} from '@angular\/core'\nimport \{ BsAlert \} from 'bootstrap-ng'\n\n@Component/u,
+    );
+    assert.match(next, /export class App \{\n {2}count = 1;\n\}/u);
+  });
+
+  it("adds commas to multiline lists without a trailing comma", () => {
+    const source = `import { Component } from '@angular/core';
+import {
+  BsButton
+} from 'bootstrap-ng';
+
+@Component({
+  selector: 'app-root',
+  imports: [
+    BsButton // buttons
+  ],
+  template: \`<div bsAlert></div>\`,
+})
+export class App {}
+`;
+    const next = edited(source);
+
+    assert.match(next, /import \{\n {2}BsButton,\n {2}BsAlert,\n\} from/u);
+    assert.match(
+      next,
+      /imports: \[\n {4}BsButton, \/\/ buttons\n {4}BsAlert,\n {2}\]/u,
+    );
+  });
+
+  it("does not double a trailing comma in a single-line list", () => {
+    const source = INLINE.replace("{ BsButton }", "{ BsButton, }").replace(
+      "[BsButton]",
+      "[BsButton,]",
+    );
+    const next = edited(source);
+
+    assert.match(next, /import \{ BsButton, BsAlert \} from 'bootstrap-ng';/u);
+    assert.match(next, /imports: \[ BsButton, BsAlert \]/u);
+  });
+
   it("does not add a runtime import to an import type", () => {
     const source = `import type { BsTheme } from 'bootstrap-ng';
 import { Component } from '@angular/core';

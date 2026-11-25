@@ -5,6 +5,8 @@
 - A `source.fixAll.bootstrap-ng` code action, so `editor.codeActionsOnSave` can add missing imports for inline templates on save.
 - Completions and hovers for Bootstrap 6 CSS classes in Angular class bindings: string literals in `[class]` and `[ngClass]` (including object keys and arrays), and the class name in `[class.name]`.
 - Fix the extension failing to activate with "Cannot find module './impl/format'" since 0.9.1.
+- Quick fix for invalid attribute values that suggests the closest documented value, such as `theme="primray"` to `theme="primary"`.
+- Quick fix that replaces Bootstrap 5 `data-bs-dismiss="modal"`, `"offcanvas"`, and `"toast"` with `bsDialogClose`, `bsDrawerClose`, and `bsToastClose`, and `data-bs-toggle="tooltip"` or `"popover"` with `bsTooltip` or `bsPopover`, carrying over `title`, `data-bs-title`, `data-bs-content`, `data-bs-placement`, and `data-bs-trigger`.
 - Warnings in the Problems panel when a standalone component template uses a `bs*` directive that is not imported, with the import quick fix attached. Turn them off with `bootstrap-ng.validateImports`.
 
 ## 0.9.1

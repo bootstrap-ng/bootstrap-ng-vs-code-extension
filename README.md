@@ -17,8 +17,8 @@ Commands, settings, diagnostics, hovers, and the import quick fix follow the VS 
 - Completions for `bootstrap-ng` imports.
 - Hovers with a short description and a link to the docs.
 - Snippets for common components and form controls (`bs-alert`, `bs-dialog`, `bs-form-field`, and others).
-- Warnings when a static attribute value is outside the documented set.
-- Information hints for Bootstrap 5 `data-bs-toggle` and `data-bs-dismiss` attributes, naming the bootstrap-ng directive that replaces them.
+- Warnings when a static attribute value is outside the documented set, with a quick fix for close matches such as `theme="primray"` to `theme="primary"`.
+- Information hints for Bootstrap 5 `data-bs-toggle` and `data-bs-dismiss` attributes, naming the bootstrap-ng directive that replaces them. Tooltip, popover, and dismiss attributes have a quick fix that swaps in `bsTooltip`, `bsPopover`, `bsDialogClose`, `bsDrawerClose`, or `bsToastClose`.
 - A quick fix that adds a directive used in a template to the `bootstrap-ng` import and the component `imports` array.
 - Warnings in the Problems panel when a standalone component template uses a `bs*` directive that is not imported, with the import quick fix attached. Add `"source.fixAll.bootstrap-ng": "explicit"` to `editor.codeActionsOnSave` to add missing imports to inline templates on save.
 - **Bootstrap-ng: Open Documentation** opens the docs for the symbol under the cursor, or a list of components.

@@ -53,6 +53,16 @@ describe("diagnostics", () => {
     assert.match(dismiss[0].message, /bsDialogClose/u);
   });
 
+  it("names the toggle directives for collapse, dropdown and offcanvas", () => {
+    const hint = (value) =>
+      diagnose(`<button data-bs-toggle="${value}"></button>`, "html")[0]
+        .message;
+
+    assert.match(hint("collapse"), /bsCollapseToggle/u);
+    assert.match(hint("dropdown"), /bsMenuToggle/u);
+    assert.match(hint("offcanvas"), /bsDrawerToggle/u);
+  });
+
   it("ignores examples inside comments and raw text", () => {
     assert.deepEqual(
       diagnose('<!-- <button data-bs-dismiss="modal"></button> -->', "html"),

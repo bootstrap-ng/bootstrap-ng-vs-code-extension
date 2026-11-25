@@ -16,10 +16,10 @@ const DISMISS_REPLACEMENTS = {
 };
 
 const TOGGLE_REPLACEMENTS = {
-  collapse: "bsCollapse",
-  dropdown: "bsMenu",
+  collapse: "bsCollapseToggle",
+  dropdown: "bsMenuToggle",
   modal: "bsDialog",
-  offcanvas: "bsDrawer",
+  offcanvas: "bsDrawerToggle",
   pill: "bsTab",
   popover: "bsPopover",
   tab: "bsTab",

@@ -9,6 +9,24 @@ function namesOf(attributes) {
   return (attributes ?? []).map((attribute) => attribute.name).filter(Boolean);
 }
 
+/*
+ * The import context only covers the text before the cursor, for completion,
+ * so widen it to the whole name for hovers and the docs command.
+ */
+function wholeName(text, context) {
+  if (context.kind !== "import") {
+    return context;
+  }
+
+  let { end } = context;
+
+  while (end < text.length && /[\w$]/u.test(text[end])) {
+    end += 1;
+  }
+
+  return { ...context, end, prefix: text.slice(context.start, end) };
+}
+
 function hoverResult(context, markdown) {
   return { end: context.end, markdown, start: context.start };
 }
@@ -87,7 +105,8 @@ function hoverAttribute(context) {
 }
 
 function hoverAt(text, offset, languageId) {
-  const context = analyze(text, offset, languageId);
+  const found = analyze(text, offset, languageId);
+  const context = found && wholeName(text, found);
 
   if (!context) {
     return null;
@@ -119,7 +138,8 @@ function hoverAt(text, offset, languageId) {
 }
 
 function symbolAt(text, offset, languageId) {
-  const context = analyze(text, offset, languageId);
+  const found = analyze(text, offset, languageId);
+  const context = found && wholeName(text, found);
 
   if (!context) {
     return null;

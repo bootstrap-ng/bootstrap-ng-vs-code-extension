@@ -73,6 +73,19 @@ describe("hover", () => {
     assert.equal(symbolAt(div, at(div, "bsRange"), "html").name, "BsRange");
   });
 
+  it("describes an imported name wherever the cursor is in it", () => {
+    const ts = "import { BsAlert } from 'bootstrap-ng';";
+    const start = ts.indexOf("BsAlert");
+
+    for (const offset of [start, start + 3, start + "BsAlert".length]) {
+      const hit = hoverAt(ts, offset, "typescript");
+
+      assert.match(hit.markdown, /BsAlert/u);
+      assert.deepEqual([hit.start, hit.end], [start, start + 7]);
+      assert.equal(symbolAt(ts, offset, "typescript").name, "BsAlert");
+    }
+  });
+
   it("ignores bootstrap-ng markup in unrelated TypeScript template literals", () => {
     const source = `const tpl = \`<div bsAlert theme="bad">\`;
 @Component({ template: \`<button bsButton></button>\` })

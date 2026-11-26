@@ -69,8 +69,12 @@ function quotedValue(text, index, quote, base) {
   const valueStart = index + 1;
   let valueEnd = valueStart;
 
-  while (valueEnd < text.length && text[valueEnd] !== quote) {
-    valueEnd += 1;
+  while (valueEnd < text.length) {
+    if (text[valueEnd] === quote) {
+      break;
+    }
+
+    valueEnd += text[valueEnd] === "\\" ? 2 : 1;
   }
 
   const closed = valueEnd < text.length;
@@ -173,7 +177,7 @@ function parseTagAt(text, start) {
   const nameStart = start + 1;
   let index = nameStart + 1;
 
-  while (index < text.length && /[\w:-]/u.test(text[index])) {
+  while (index < text.length && /[\w.:-]/u.test(text[index])) {
     index += 1;
   }
 
@@ -265,10 +269,10 @@ function commentRanges(text) {
   while (open !== -1) {
     if (close !== text.length && close < open + 4) {
       close = text.indexOf("-->", open + 4);
-      close = close === -1 ? text.length : close;
+      close = close === -1 ? text.length : close + 3;
     }
 
-    ranges.push({ end: close + 1, start: open });
+    ranges.push({ end: close, start: open });
     open = text.indexOf("<!--", open + 1);
   }
 

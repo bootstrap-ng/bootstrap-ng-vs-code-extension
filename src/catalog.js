@@ -12,8 +12,15 @@ function hostAllows(symbol, tagName) {
   }
 
   const host = tagName.toLowerCase();
+  const suffix = host.includes(".")
+    ? host.slice(host.lastIndexOf(".") + 1)
+    : host;
 
-  return symbol.tags.some((tag) => tag.toLowerCase() === host);
+  return symbol.tags.some((tag) => {
+    const lower = tag.toLowerCase();
+
+    return lower === host || lower === suffix;
+  });
 }
 
 function createIndex(data) {

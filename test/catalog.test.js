@@ -60,5 +60,11 @@ describe("catalog", () => {
       index.directivesFor("div", ["bsRange"]).map((symbol) => symbol.name),
       ["BsRange"],
     );
+    assert.deepEqual(
+      index
+        .directivesFor("motion.div", ["bsRange"])
+        .map((symbol) => symbol.name),
+      ["BsRange"],
+    );
   });
 });

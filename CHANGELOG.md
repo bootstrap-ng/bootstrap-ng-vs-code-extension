@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Fix `@Component` text inside an inline template being treated as a second component, which duplicated missing-import warnings and spurious attribute-value checks.
+- Fix host-specific directive detection on dotted custom elements such as `<motion.div bsRange>`, including parser support for `.` in tag names and host matching on the segment after the last dot.
+- Fix enum attribute-value warnings for documented values written with different casing, such as `theme="Primary"`.
+- Fix the import quick fix adding a second `bootstrap-ng` import when the file already imports from a subpath such as `bootstrap-ng/button`.
+- Fix HTML comment skip ranges ending before the closing `-->`, and escaped quotes ending a quoted attribute value too early.
 - Fix false missing-import warnings when a component lists `BOOTSTRAP_NG`, uses a constant such as `imports: SHARED` or a spread such as `[...SHARED]`, or renames an import with `import { BsAlert as Alert }`. The import quick fix no longer adds a second `imports` property, and adds the renamed name to the `imports` array.
 - Fix hovers and the "Open bootstrap-ng documentation" command on a name in a `bootstrap-ng` import, which only worked with the cursor at the end of the name.
 - Fix the import quick fix and fix-all on save writing broken code. In files without semicolons the new `bootstrap-ng` import landed inside the class body, and multiline `imports` arrays or import lists without a trailing comma lost the comma before the added name.

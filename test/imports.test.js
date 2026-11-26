@@ -202,6 +202,27 @@ export class B {}
   it("names only the directive whose host matches", () => {
     assert.deepEqual(classNamesIn("<input bsRange>"), ["BsRangeInput"]);
     assert.deepEqual(classNamesIn("<div bsRange>"), ["BsRange"]);
+    assert.deepEqual(classNamesIn("<motion.div bsRange>"), ["BsRange"]);
+  });
+
+  it("extends an existing bootstrap-ng subpath import", () => {
+    const source = `import { Component } from '@angular/core';
+import { BsButton } from 'bootstrap-ng/button';
+
+@Component({
+  selector: 'app-root',
+  imports: [BsButton],
+  template: \`<div bsAlert></div>\`,
+})
+export class App {}
+`;
+    const next = applyEdits(source, buildImportEdits(source, ["BsAlert"]));
+
+    assert.doesNotMatch(next, /from 'bootstrap-ng';/u);
+    assert.match(
+      next,
+      /import \{ BsButton, BsAlert \} from 'bootstrap-ng\/button';/u,
+    );
   });
 
   it("ignores directives in template literals outside @Component", () => {

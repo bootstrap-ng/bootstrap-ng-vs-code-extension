@@ -263,16 +263,10 @@ function rangesContain(ranges, index) {
 
 function commentRanges(text) {
   const ranges = [];
-  let close = -1;
   let open = text.indexOf("<!--");
 
   while (open !== -1) {
-    if (close !== text.length && close < open + 4) {
-      close = text.indexOf("-->", open + 4);
-      close = close === -1 ? text.length : close + 3;
-    }
-
-    ranges.push({ end: close, start: open });
+    ranges.push({ end: commentEnd(text, open), start: open });
     open = text.indexOf("<!--", open + 1);
   }
 

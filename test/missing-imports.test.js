@@ -123,6 +123,18 @@ describe("missing import diagnostics", () => {
     assert.deepEqual(missingInlineImports(source), []);
   });
 
+  it("ignores templateUrl components without a standalone imports array", () => {
+    const moduleStyle = EXTERNAL.replace("imports: [BsButton],\n  ", "");
+
+    assert.deepEqual(
+      diagnose(TEMPLATE, "html", {
+        componentSource: moduleStyle,
+        templateFile: "app.html",
+      }).filter((item) => item.code === MISSING_IMPORT_CODE),
+      [],
+    );
+  });
+
   it("checks each component in a file against its own imports", () => {
     const source = `${INLINE}
 @Component({

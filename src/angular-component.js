@@ -226,6 +226,16 @@ function matchingBracket(text, openIndex, open, close) {
   return -1;
 }
 
+function afterComponentDecorator(tsText, close) {
+  let cursor = skipTrivia(tsText, close + 1);
+
+  if (tsText[cursor] === ")") {
+    cursor = skipTrivia(tsText, cursor + 1);
+  }
+
+  return cursor;
+}
+
 function componentsIn(tsText) {
   const components = [];
   let cursor = 0;
@@ -269,9 +279,10 @@ function componentsIn(tsText) {
 
     if (close !== -1) {
       components.push({ close, open });
+      cursor = afterComponentDecorator(tsText, close);
+    } else {
+      cursor = open + 1;
     }
-
-    cursor = open + 1;
   }
 
   return components;

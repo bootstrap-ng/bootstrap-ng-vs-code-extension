@@ -177,7 +177,11 @@ function enumDiagnostic(attribute, directives) {
 
   if (
     inputs.length === 0 ||
-    inputs.some((input) => input.values.includes(attribute.value))
+    inputs.some((input) =>
+      input.values.some(
+        (value) => value.toLowerCase() === attribute.value.toLowerCase(),
+      ),
+    )
   ) {
     return null;
   }

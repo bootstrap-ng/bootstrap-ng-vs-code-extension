@@ -9,6 +9,7 @@ const { componentTemplateRanges } = require("../src/angular-component");
 const { analyze } = require("../src/context");
 const { complete } = require("../src/completions");
 const { diagnose } = require("../src/diagnostics");
+const { missingInlineImports } = require("../src/imports");
 
 describe("TypeScript template scoping", () => {
   it("does not treat arbitrary backtick strings as component templates", () => {
@@ -35,6 +36,16 @@ export class App {}`;
       diagnose(source, "typescript", { validateImports: false }),
       [],
     );
+  });
+
+  it("ignores @Component text inside an inline template", () => {
+    const source = `@Component({
+  template: \`<p>@Component({ template: '<x/>' })</p><div bsAlert></div>\`,
+})
+export class App {}`;
+
+    assert.equal(componentTemplateRanges(source).length, 1);
+    assert.equal(missingInlineImports(source).length, 1);
   });
 
   it("ignores @Component in line comments and string literals", () => {

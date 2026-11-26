@@ -285,9 +285,17 @@ function importStatementEdit(tsText, names) {
     return null;
   }
 
-  const match = tsText.match(
-    /import\s+\{(?<body>[^}]*)\}\s*from\s*['"]bootstrap-ng['"]/u,
-  );
+  const pattern =
+    /import\s+\{(?<body>[^}]*)\}\s*from\s*['"]bootstrap-ng(?:\/[^'"]*)?['"]/gu;
+  let match = null;
+
+  for (const found of tsText.matchAll(pattern)) {
+    match = found;
+
+    if (/from\s*['"]bootstrap-ng['"]/u.test(found[0])) {
+      break;
+    }
+  }
 
   if (!match) {
     return createImport(tsText, names);

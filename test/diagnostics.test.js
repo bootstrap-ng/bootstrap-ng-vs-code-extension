@@ -89,6 +89,10 @@ describe("diagnostics", () => {
       diagnose('<button data-bs-toggle="tooltip"></button>', "html").length,
       1,
     );
+    assert.deepEqual(
+      diagnose('<div class="foo\\"extra" bsButton></div>', "html"),
+      [],
+    );
   });
 
   it("ignores bootstrap-ng markup in unrelated TypeScript template literals", () => {
@@ -135,6 +139,13 @@ export class App {}
 
   it("matches values regardless of case", () => {
     assert.deepEqual(closestValues("Danger", ["danger", "dark"]), ["danger"]);
+    assert.deepEqual(
+      diagnose(
+        '<button type="button" bsButton theme="Primary"></button>',
+        "html",
+      ),
+      [],
+    );
   });
 
   it("offers no value fix when nothing is close", () => {

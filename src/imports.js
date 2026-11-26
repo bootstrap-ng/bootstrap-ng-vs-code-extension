@@ -415,7 +415,23 @@ function buildImportEdits(tsText, classNames, options = {}) {
 function isStandalone(tsText, component) {
   const body = tsText.slice(component.open, component.close + 1);
 
-  return !/\bstandalone\s*:\s*false\b/u.test(body);
+  if (/\bstandalone\s*:\s*false\b/u.test(body)) {
+    return false;
+  }
+
+  if (/\bstandalone\s*:\s*true\b/u.test(body)) {
+    return true;
+  }
+
+  if (/\bimports\s*:/u.test(body)) {
+    return true;
+  }
+
+  /*
+   * `templateUrl` without an imports array usually points at an NgModule
+   * component. Inline templates without either still get checked.
+   */
+  return !/\btemplateUrl\s*:/u.test(body);
 }
 
 function unresolvedUsages(tsText, component, usages, base) {

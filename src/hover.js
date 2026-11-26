@@ -18,13 +18,17 @@ function wholeName(text, context) {
     return context;
   }
 
-  let { end } = context;
+  let { end, start } = context;
+
+  while (start > 0 && /[\w$]/u.test(text[start - 1])) {
+    start -= 1;
+  }
 
   while (end < text.length && /[\w$]/u.test(text[end])) {
     end += 1;
   }
 
-  return { ...context, end, prefix: text.slice(context.start, end) };
+  return { ...context, end, prefix: text.slice(start, end), start };
 }
 
 function hoverResult(context, markdown) {

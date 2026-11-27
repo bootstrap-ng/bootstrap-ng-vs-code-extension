@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.9.2 (2026-11-27)
 
 - Fix false missing-import warnings for directives imported from a relative path or a barrel file, such as `import { BsDatepicker } from './datepicker'`, when they are listed in the component's `imports` array.
 

@@ -1,0 +1,96 @@
+---
+name: PR Review (Ollama Pro)
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: read
+
+# A new push cancels the review still running for the previous one.
+concurrency:
+  group: ollama-pro-pr-review-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  inline-review:
+    runs-on: ubuntu-slim
+    permissions:
+      contents: read
+      # write lets the review edit its comment and APPROVE clean PRs; approving
+      # also needs "Allow GitHub Actions to create and approve pull requests".
+      pull-requests: write
+    outputs:
+      approved: ${{ steps.review.outputs.approved }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Run Inline PR Review
+        id: review
+        env:
+          OLLAMA_API_KEY: ${{ secrets.OLLAMA_API_KEY }}
+          # Optional repo variable to try another Ollama Cloud model (default glm-5.3).
+          OLLAMA_MODEL: ${{ vars.OLLAMA_MODEL }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          BASE_REF: ${{ github.base_ref }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+        run: |
+          set -euo pipefail
+
+          PATHSPECS=(
+            ":!package-lock.json"
+            ":!go.sum"
+            ":!dist/**"
+            ":!build/**"
+            ":!out/**"
+            ":!coverage/**"
+            ":!*.min.*"
+            ":!*.map"
+            ":!*.snap"
+            ":!*.generated.*"
+            ":!*_generated.*"
+            ":!*.g.dart"
+            ":!*.pb.go"
+          )
+
+          git diff -U10 "origin/$BASE_REF...HEAD" -- . "${PATHSPECS[@]}" > pr.diff
+          git diff -U10 -w "origin/$BASE_REF...HEAD" -- . "${PATHSPECS[@]}" > pr-no-ws.diff
+
+          # Repo guidelines come from the base branch so a PR can't rewrite them.
+          for f in AGENTS.md .github/AGENTS.md; do
+            if git cat-file -e "origin/$BASE_REF:$f" 2>/dev/null; then
+              printf '### %s\n\n' "$f"
+              git show "origin/$BASE_REF:$f"
+              printf '\n\n'
+            fi
+          done > guidelines.md
+
+          python3 .github/scripts/pr_review.py
+
+  # Approvals made with GITHUB_TOKEN don't start the Auto-merge workflow, so a
+  # clean, approved review turns on auto-merge here instead.
+  auto-merge:
+    needs: inline-review
+    if: >-
+      needs.inline-review.outputs.approved == 'true' &&
+      !github.event.pull_request.draft &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-slim
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Enable auto-merge
+        run: gh pr merge "$PR_URL" --auto --squash
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          # Same token as the Auto-merge workflow: with AUTO_MERGE_TOKEN the merge
+          # also starts the push workflows on main.
+          GH_TOKEN: ${{ secrets.AUTO_MERGE_TOKEN || github.token }}

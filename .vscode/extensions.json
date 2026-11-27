@@ -3,5 +3,10 @@
     "dbaeumer.vscode-eslint",
     "editorconfig.editorconfig",
     "esbenp.prettier-vscode"
+  ],
+  "unwantedRecommendations": [
+    "GitHub.vscode-github-actions",
+    "ms-edgedevtools.vscode-edge-devtools",
+    "ms-vscode.vscode-chat-customizations-evaluations"
   ]
 }

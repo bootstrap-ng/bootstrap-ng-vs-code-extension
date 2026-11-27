@@ -290,6 +290,19 @@ export class Chips {}
     );
   });
 
+  it("reads names listed after a comment in imports", () => {
+    const source = INLINE.replace(
+      "import { BsButton } from 'bootstrap-ng';",
+      "import {\n  BsButton, // buttons\n  /* alerts */ BsAlert,\n} from 'bootstrap-ng';",
+    ).replace(
+      "imports: [BsButton],",
+      "imports: [\n    BsButton, // buttons\n    /* alerts */ BsAlert,\n  ],",
+    );
+
+    assert.deepEqual(missingInlineImports(source), []);
+    assert.deepEqual(buildImportEdits(source, ["BsAlert", "BsButton"]), []);
+  });
+
   it("does not add imports to a standalone: false component", () => {
     const source = INLINE.replace("imports: [BsButton],", "standalone: false,");
 

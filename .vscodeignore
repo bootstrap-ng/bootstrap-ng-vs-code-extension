@@ -1,4 +1,6 @@
 .github/**
+.mypy_cache/**
+.ruff_cache/**
 .vscode-test/**
 .vscode/**
 node_modules/**

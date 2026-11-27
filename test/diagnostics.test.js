@@ -251,4 +251,14 @@ export class App {}
     assert.equal(found.length, 1);
     assert.match(found[0].message, /size="huge"/u);
   });
+
+  it("keeps checking after a textarea whose text contains <script", () => {
+    const found = diagnose(
+      '<textarea><script></textarea><div bsAlert theme="nope"></div>',
+      "html",
+    );
+
+    assert.equal(found.length, 1);
+    assert.match(found[0].message, /theme="nope"/u);
+  });
 });

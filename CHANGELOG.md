@@ -1,10 +1,17 @@
 # Changelog
 
-## 0.9.3 (Unreleased)
+## 0.9.4 (2026-11-28)
 
+- Fix false missing-import warnings, and a quick fix that added duplicate names, when a comment sits in an `import { ... }` list or an `imports` array, such as `BsAlert, // alerts` followed by `BsTooltip`.
+- Fix everything after a `<textarea>` being ignored when the textarea's text contains `<script`, `<style` or another `<textarea`.
 - Fix `<textarea>` elements being ignored, so directives such as `<textarea bsFormControl>` got no completions, hovers, attribute-value warnings or missing-import warnings. The text inside a textarea is still skipped.
 - Fix the import quick fix adding an `imports` array to a component marked `standalone: false`, which Angular rejects.
 - Fix input completions ending their detail with a stray `=` when the input has no default value.
+- Added French, German, Spanish and Italian translations.
+- File size optimizations.
+
+## 0.9.3 (2026-11-27)
+
 - Fix false missing-import warnings for directives imported from a relative path or a barrel file, such as `import { BsDatepicker } from './datepicker'`, when they are listed in the component's `imports` array.
 
 ## 0.9.2 (2026-11-26)

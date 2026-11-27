@@ -7,7 +7,7 @@
 
 Editor support for [bootstrap-ng](https://bootstrap-ng.com/), the Angular components for Bootstrap 6.
 
-Commands, settings, diagnostics, hovers, and the import quick fix follow the VS Code display language for English and Japanese. Snippet templates and API descriptions from the bootstrap-ng docs stay in English.
+Commands, settings, diagnostics, hovers, and the import quick fix follow the VS Code display language for English, French, German, Italian, Japanese and Spanish. Snippet templates and API descriptions from the bootstrap-ng docs stay in English.
 
 ## Features
 

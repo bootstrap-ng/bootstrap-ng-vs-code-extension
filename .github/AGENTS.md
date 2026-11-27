@@ -4,14 +4,13 @@
 
 ## GitHub Actions
 
-- The GitHub Actions workflows should be placed in the .github/workflows directory.
-- The workflows should be named <workflow-name>.yml.
 - All GitHub Actions should be pinned versions to avoid breaking changes (SHA-1).
-- If using actions/checkout, it should have persist-credentials: false set.
+- If using actions/checkout, it should have `persist-credentials: false` set.
+- Must be formatted with Prettier.
 
 ## Dependabot
 
 - GitHub Actions updates should be grouped and updated monthly.
 - npm packages should be grouped and updated monthly.
 - Dependabot config should be formatted with Prettier.
-- Dependencies should have a cooldown period of 7 days
+- Dependencies should have a cooldown period of 7 days.

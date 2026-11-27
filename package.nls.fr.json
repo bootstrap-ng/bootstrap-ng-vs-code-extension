@@ -1,0 +1,7 @@
+{
+  "command.openDocs.title": "Ouvrir la documentation",
+  "description": "Autocomplétion, infobulles, extraits de code et diagnostics pour bootstrap-ng dans les templates Angular.",
+  "setting.hintBootstrap5DataApi.description": "Signaler lorsqu'un attribut data-bs-toggle ou data-bs-dismiss de Bootstrap 5 devrait être une directive bootstrap-ng.",
+  "setting.validateAttributeValues.description": "Avertir lorsqu'un attribut bootstrap-ng utilise une valeur absente de la documentation.",
+  "setting.validateImports.description": "Avertir lorsqu'une directive bootstrap-ng est utilisée dans le template d'un composant standalone sans être importée."
+}

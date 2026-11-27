@@ -292,7 +292,8 @@ function rawRanges(lower, comments) {
           close = close === -1 ? Infinity : close;
         }
 
-        ranges.push({ end: close, start: open });
+        // Start after the "<" so the element's own tag is still parsed.
+        ranges.push({ end: close, start: open + 1 });
       }
 
       open = lower.indexOf(`<${name}`, open + 1);
@@ -328,10 +329,9 @@ function parseTags(text) {
     }
 
     const comment = commentEnd(text, start);
-    const rawEnd = comment === -1 ? rawElementEnd(text, lower, start) : -1;
 
-    if (comment !== -1 || rawEnd !== -1) {
-      index = comment === -1 ? rawEnd : comment;
+    if (comment !== -1) {
+      index = comment;
       continue;
     }
 
@@ -341,10 +341,16 @@ function parseTags(text) {
     }
 
     const tag = parseTagAt(text, start);
+    const rawEnd = rawElementEnd(text, lower, start);
     index = tag ? Math.max(tag.end, start + 1) : start + 1;
 
     if (tag) {
       tags.push(tag);
+    }
+
+    // Skip the content of script, style and textarea, but keep their own tag.
+    if (rawEnd !== -1) {
+      index = Math.max(index, rawEnd);
     }
   }
 

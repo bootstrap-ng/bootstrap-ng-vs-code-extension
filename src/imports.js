@@ -181,7 +181,20 @@ function assignNames(tsText, classNames, templateFile) {
       component,
       names: assigned[position],
     }))
-    .filter((item) => item.names.length > 0);
+    .filter(
+      (item) =>
+        item.names.length > 0 && !declaredInNgModule(tsText, item.component),
+    );
+}
+
+/*
+ * A component marked `standalone: false` belongs to an NgModule, where an
+ * `imports` property is a compile error, so the import fixes leave it alone.
+ */
+function declaredInNgModule(tsText, component) {
+  return /\bstandalone\s*:\s*false\b/u.test(
+    tsText.slice(component.open, component.close + 1),
+  );
 }
 
 function importsArrayIn(tsText, component) {
@@ -427,7 +440,7 @@ function buildImportEdits(tsText, classNames, options = {}) {
 function isStandalone(tsText, component) {
   const body = tsText.slice(component.open, component.close + 1);
 
-  if (/\bstandalone\s*:\s*false\b/u.test(body)) {
+  if (declaredInNgModule(tsText, component)) {
     return false;
   }
 

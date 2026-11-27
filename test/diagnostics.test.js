@@ -241,4 +241,14 @@ export class App {}
     assert.equal(diagnose(html, "html").length, 5000);
     assert.ok(performance.now() - started < 2000);
   });
+
+  it("checks a textarea's own attributes but not its content", () => {
+    const found = diagnose(
+      '<textarea bsFormControl size="huge"><div bsAlert theme="nope"></div></textarea>',
+      "html",
+    );
+
+    assert.equal(found.length, 1);
+    assert.match(found[0].message, /size="huge"/u);
+  });
 });

@@ -81,15 +81,26 @@ function templateClassNames(tsText) {
  * Maps each named import to its local name, so `import { BsAlert as Alert }`
  * gives BsAlert -> Alert. Any module counts, not only bootstrap-ng, because
  * the library's own files import from relative paths and apps can re-export
- * bootstrap-ng through a barrel file.
+ * bootstrap-ng through a barrel file. Classes declared in the file count too,
+ * because the library's components import directives declared next to them.
+ * Only declarations at the start of a line count, so `class Foo` in a comment
+ * or string does not, and an import's mapping is never replaced.
  */
 function importedNames(tsText) {
   const names = new Map();
   const pattern = /import\s+\{(?<body>[^}]*)\}\s*from\s*['"][^'"\n]+['"]/gu;
+  const declaration =
+    /^[ \t]*(?:export[ \t]+)?(?:default[ \t]+)?(?:abstract[ \t]+)?class[ \t]+(?<name>[A-Za-z_$][\w$]*)/gmu;
 
   for (const match of tsText.matchAll(pattern)) {
     for (const [name, keyword, local] of specifiers(match.groups.body)) {
       names.set(name, keyword === "as" && local ? local : name);
+    }
+  }
+
+  for (const match of tsText.matchAll(declaration)) {
+    if (!names.has(match.groups.name)) {
+      names.set(match.groups.name, match.groups.name);
     }
   }
 

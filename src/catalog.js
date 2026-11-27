@@ -35,8 +35,13 @@ function createIndex(data) {
       pushMap(byAttribute, attribute, symbol);
     }
 
+    /*
+     * Only element selectors such as `bs-icon` match by tag name. A selector
+     * like `ng-template[bsRatingStar]` also needs its attribute, so it is
+     * found through `byAttribute` instead.
+     */
     for (const tag of symbol.tags) {
-      if (tag.includes("-")) {
+      if (tag.includes("-") && symbol.attributes.length === 0) {
         pushMap(byElement, tag.toLowerCase(), symbol);
       }
     }

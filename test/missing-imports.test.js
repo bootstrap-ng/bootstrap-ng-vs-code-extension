@@ -72,6 +72,35 @@ describe("missing import diagnostics", () => {
     assert.deepEqual(missing(source), []);
   });
 
+  it("stays quiet when the directive comes from a relative path or barrel", () => {
+    const relative = INLINE.replace(
+      "import { BsButton } from 'bootstrap-ng';",
+      "import { BsAlert, BsButton } from './alert';",
+    ).replace("imports: [BsButton]", "imports: [BsAlert, BsButton]");
+    const barrel = INLINE.replace(
+      "import { BsButton } from 'bootstrap-ng';",
+      "import { BsAlert, BsButton } from '../shared/ui';",
+    ).replace("imports: [BsButton]", "imports: [BsAlert, BsButton]");
+
+    assert.deepEqual(missing(relative), []);
+    assert.deepEqual(missing(barrel), []);
+  });
+
+  it("adds a directive imported from a relative path only to the imports array", () => {
+    const source = INLINE.replace(
+      "import { BsButton } from 'bootstrap-ng';",
+      "import { BsAlert, BsButton } from './alert';",
+    );
+    const fixed = applyEdits(
+      source,
+      buildImportEdits(source, ["BsAlert", "BsButton"]),
+    );
+
+    assert.equal(missing(source).length, 1);
+    assert.match(fixed, /imports: \[ BsButton, BsAlert \]/u);
+    assert.doesNotMatch(fixed, /from 'bootstrap-ng'/u);
+  });
+
   it("treats BOOTSTRAP_NG in the imports array as importing every directive", () => {
     const source = INLINE.replace(
       "import { BsButton }",

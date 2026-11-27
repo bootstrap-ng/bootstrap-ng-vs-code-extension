@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Fix false missing-import warnings for directives imported from a relative path or a barrel file, such as `import { BsDatepicker } from './datepicker'`, when they are listed in the component's `imports` array.
+
 ## 0.9.2 (2026-11-26)
 
 - Fix `@Component` text inside an inline template being treated as a second component, which duplicated missing-import warnings and spurious attribute-value checks.

@@ -78,13 +78,14 @@ function templateClassNames(tsText) {
 }
 
 /*
- * Maps each name imported from bootstrap-ng to its local name, so
- * `import { BsAlert as Alert }` gives BsAlert -> Alert.
+ * Maps each named import to its local name, so `import { BsAlert as Alert }`
+ * gives BsAlert -> Alert. Any module counts, not only bootstrap-ng, because
+ * the library's own files import from relative paths and apps can re-export
+ * bootstrap-ng through a barrel file.
  */
 function importedNames(tsText) {
   const names = new Map();
-  const pattern =
-    /import\s+\{(?<body>[^}]*)\}\s*from\s*['"]bootstrap-ng(?:\/[^'"]*)?['"]/gu;
+  const pattern = /import\s+\{(?<body>[^}]*)\}\s*from\s*['"][^'"\n]+['"]/gu;
 
   for (const match of tsText.matchAll(pattern)) {
     for (const [name, keyword, local] of specifiers(match.groups.body)) {

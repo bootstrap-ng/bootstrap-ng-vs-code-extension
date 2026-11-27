@@ -277,11 +277,11 @@ function componentsIn(tsText) {
     const open = index;
     const close = matchingBracket(tsText, open, "{", "}");
 
-    if (close !== -1) {
+    if (close === -1) {
+      cursor = open + 1;
+    } else {
       components.push({ close, open });
       cursor = afterComponentDecorator(tsText, close);
-    } else {
-      cursor = open + 1;
     }
   }
 

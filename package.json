@@ -32,6 +32,7 @@
   "l10n": "./l10n",
   "main": "./out/extension.js",
   "scripts": {
+    "all": "npm run lint && npm run test && npm run compile && npm run package",
     "compile": "esbuild src/extension.js --bundle --outfile=out/extension.js --external:vscode --format=cjs --platform=node --main-fields=module,main --target=node22 --sourcemap",
     "lint": "npm run prettier && npm run lint-css && npm run lint-js",
     "lint:fix": "npm run prettier && npm run lint-css:fix && npm run lint-js:fix",

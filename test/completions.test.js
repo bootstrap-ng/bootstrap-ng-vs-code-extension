@@ -242,4 +242,20 @@ export class App {}`;
     assert.ok(items.includes("bs-progress"));
     assert.ok(items.includes("bs-spinner"));
   });
+
+  it("leaves the default out of the detail when an input has none", () => {
+    const text = '<button type="button" bsCombobox m';
+    const menu = complete(text, text.length, "html").find(
+      (item) => item.label === "menu",
+    );
+
+    assert.equal(menu.detail, "BsComboboxMenu");
+  });
+
+  it("completes attributes on a textarea", () => {
+    const text = "<textarea bsFormControl s></textarea>";
+    const items = labels(complete(text, at(text, "bsFormControl s"), "html"));
+
+    assert.ok(items.includes("size"));
+  });
 });

@@ -1,7 +1,10 @@
 # Changelog
 
-## 0.9.2 (2026-11-27)
+## 0.9.3 (Unreleased)
 
+- Fix `<textarea>` elements being ignored, so directives such as `<textarea bsFormControl>` got no completions, hovers, attribute-value warnings or missing-import warnings. The text inside a textarea is still skipped.
+- Fix the import quick fix adding an `imports` array to a component marked `standalone: false`, which Angular rejects.
+- Fix input completions ending their detail with a stray `=` when the input has no default value.
 - Fix false missing-import warnings for directives imported from a relative path or a barrel file, such as `import { BsDatepicker } from './datepicker'`, when they are listed in the component's `imports` array.
 
 ## 0.9.2 (2026-11-26)

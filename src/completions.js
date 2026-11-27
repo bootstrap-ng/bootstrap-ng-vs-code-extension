@@ -202,7 +202,9 @@ function inputItems(directive, context, wrapper) {
     for (const form of inputLabels(input, wrapper)) {
       items.push(
         located(context, {
-          detail: `${input.type} = ${input.defaultValue}`,
+          detail: input.defaultValue
+            ? `${input.type} = ${input.defaultValue}`
+            : input.type,
           documentation: documentationFor(directive),
           filterText: form.filterText,
           insertText: form.label,

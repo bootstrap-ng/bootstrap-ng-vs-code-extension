@@ -277,4 +277,22 @@ export class Chips {}
     assert.match(fixed, /import \{ BsButton, BsAlert \} from 'bootstrap-ng';/u);
     assert.deepEqual(missing(fixed), []);
   });
+
+  it("flags a directive on a textarea", () => {
+    const source = INLINE.replace(
+      '<div class="mb-3" bsAlert></div>',
+      "<textarea bsFormControl></textarea>",
+    );
+
+    assert.deepEqual(
+      missingInlineImports(source).map((item) => item.name),
+      ["BsFormControl"],
+    );
+  });
+
+  it("does not add imports to a standalone: false component", () => {
+    const source = INLINE.replace("imports: [BsButton],", "standalone: false,");
+
+    assert.deepEqual(buildImportEdits(source, ["BsAlert", "BsButton"]), []);
+  });
 });

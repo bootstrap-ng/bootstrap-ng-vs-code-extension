@@ -67,4 +67,19 @@ describe("catalog", () => {
       ["BsRange"],
     );
   });
+
+  it("needs the attribute for ng-template directives", () => {
+    assert.deepEqual(index.directivesFor("ng-template", []), []);
+    assert.deepEqual(index.element("ng-template"), []);
+    assert.deepEqual(
+      index
+        .directivesFor("ng-template", ["bsRatingStar"])
+        .map((symbol) => symbol.name),
+      ["BsRatingStar"],
+    );
+    assert.deepEqual(
+      index.directivesFor("bs-icon", []).map((symbol) => symbol.name),
+      ["BsIcon"],
+    );
+  });
 });

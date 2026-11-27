@@ -198,6 +198,61 @@ export class Other {}
     assert.deepEqual(diagnose(TEMPLATE, "html"), []);
   });
 
+  it("ignores ng-template tags without a directive attribute", () => {
+    const source = INLINE.replace(
+      '<div class="mb-3" bsAlert></div>',
+      '<ng-template #header let-id="id"><span>{{ id }}</span></ng-template>',
+    );
+
+    assert.deepEqual(missing(source), []);
+  });
+
+  it("flags an ng-template directive that is not imported", () => {
+    const source = INLINE.replace(
+      '<div class="mb-3" bsAlert></div>',
+      '<ng-template bsRatingStar let-fill="fill">{{ fill }}</ng-template>',
+    );
+    const found = missing(source);
+
+    assert.equal(found.length, 1);
+    assert.match(found[0].message, /BsRatingStar/u);
+  });
+
+  it("counts a directive declared in the same file as imported", () => {
+    const source = `import { Component } from '@angular/core';
+
+@Component({ selector: 'button[bsChipDismiss]', template: '' })
+export class BsChipDismiss {}
+
+@Component({
+  selector: 'app-chips',
+  imports: [BsChipDismiss],
+  template: \`<button bsChipDismiss type="button"></button>\`,
+})
+export class Chips {}
+`;
+
+    assert.deepEqual(missing(source), []);
+    assert.match(
+      missing(source.replace("imports: [BsChipDismiss],", ""))[0].message,
+      /BsChipDismiss/u,
+    );
+  });
+
+  it("ignores class names in comments and keeps renamed imports", () => {
+    const source = INLINE.replace(
+      "import { BsButton }",
+      "import { BsAlert as Alert, BsButton }",
+    )
+      .replace("imports: [BsButton]", "imports: [Alert, BsButton]")
+      .replace(
+        "@Component",
+        "/** Wraps the class BsAlert as Alert. */\n@Component",
+      );
+
+    assert.deepEqual(missing(source), []);
+  });
+
   it("can be turned off", () => {
     assert.deepEqual(
       diagnose(INLINE, "typescript", { validateImports: false }),

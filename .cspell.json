@@ -1,6 +1,19 @@
 {
   "version": "0.2",
-  "words": ["coliff", "hstack", "offcanvas", "Oliff", "ssremlin", "vstack", "ZIZMOR"],
+  "words": [
+    "coliff",
+    "esbenp",
+    "hstack",
+    "nvmrc",
+    "offcanvas",
+    "Oliff",
+    "Ollama",
+    "ssremlin",
+    "unparseable",
+    "unreviewed",
+    "vstack",
+    "ZIZMOR"
+  ],
   "allowCompoundWords": true,
   "language": "en,en-US",
   "ignorePaths": [

@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.9.2 (2026-11-26)
 
 - Fix `@Component` text inside an inline template being treated as a second component, which duplicated missing-import warnings and spurious attribute-value checks.
 - Fix host-specific directive detection on dotted custom elements such as `<motion.div bsRange>`, including parser support for `.` in tag names and host matching on the segment after the last dot.

@@ -200,7 +200,12 @@ export class B {}
   });
 
   it("names only the directive whose host matches", () => {
-    assert.deepEqual(classNamesIn("<input bsRange>"), ["BsRangeInput"]);
+    assert.deepEqual(classNamesIn('<input type="range" bsRange>'), [
+      "BsRangeInput",
+    ]);
+    assert.deepEqual(classNamesIn("<input bsRange>"), []);
+    assert.deepEqual(classNamesIn('<input type="radio" bsCheck>'), []);
+    assert.deepEqual(classNamesIn("<div bsButton>"), []);
     assert.deepEqual(classNamesIn("<div bsRange>"), ["BsRange"]);
     assert.deepEqual(classNamesIn("<motion.div bsRange>"), ["BsRange"]);
   });

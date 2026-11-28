@@ -3,5 +3,6 @@
   "description": "Completamento automatico, informazioni al passaggio del mouse, snippet e diagnostica per bootstrap-ng nei template Angular.",
   "setting.hintBootstrap5DataApi.description": "Suggerisci quando un attributo data-bs-toggle o data-bs-dismiss di Bootstrap 5 dovrebbe essere una direttiva bootstrap-ng.",
   "setting.validateAttributeValues.description": "Avvisa quando un attributo bootstrap-ng usa un valore non presente nella documentazione.",
+  "setting.validateHostElements.description": "Avvisare quando una direttiva bootstrap-ng si trova su un elemento che non corrisponde al suo selettore, quindi Angular la ignora.",
   "setting.validateImports.description": "Avvisa quando una direttiva bootstrap-ng è usata nel template di un componente standalone ma non è importata."
 }

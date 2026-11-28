@@ -58,7 +58,7 @@ describe("hover", () => {
   });
 
   it("picks the directive that matches the host element", () => {
-    const input = "<input bsRange>";
+    const input = '<input type="range" bsRange>';
     const div = "<div bsRange>";
     const inputHit = hoverAt(input, at(input, "bsRange"), "html");
     const divHit = hoverAt(div, at(div, "bsRange"), "html");
@@ -71,6 +71,17 @@ describe("hover", () => {
     assert.match(divHit.markdown, /\*\*BsRange\*\*/u);
     assert.doesNotMatch(divHit.markdown, /BsRangeInput/u);
     assert.equal(symbolAt(div, at(div, "bsRange"), "html").name, "BsRange");
+  });
+
+  it("skips a directive whose selector needs another input type", () => {
+    const radio = '<input type="radio" bsCheck>';
+    const checkbox = '<input type="checkbox" bsCheck>';
+
+    assert.equal(hoverAt(radio, at(radio, "bsCheck"), "html"), null);
+    assert.match(
+      hoverAt(checkbox, at(checkbox, "bsCheck"), "html").markdown,
+      /\*\*BsCheck\*\*/u,
+    );
   });
 
   it("describes an imported name wherever the cursor is in it", () => {

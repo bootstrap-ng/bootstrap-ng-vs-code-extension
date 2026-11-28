@@ -3,7 +3,7 @@
 const assert = require("node:assert/strict");
 const { describe, it } = require("node:test");
 
-const { index } = require("../src/catalog");
+const { index, parseSelector } = require("../src/catalog");
 
 describe("catalog", () => {
   it("describes buttons, alerts, and models", () => {
@@ -80,6 +80,44 @@ describe("catalog", () => {
     assert.deepEqual(
       index.directivesFor("bs-icon", []).map((symbol) => symbol.name),
       ["BsIcon"],
+    );
+  });
+
+  it("parses selector alternatives and attribute conditions", () => {
+    assert.deepEqual(parseSelector("input[type=checkbox][bsCheck], [bsX]"), [
+      {
+        conditions: [
+          { name: "type", value: "checkbox" },
+          { name: "bsCheck", value: null },
+        ],
+        tag: "input",
+      },
+      { conditions: [{ name: "bsX", value: null }], tag: null },
+    ]);
+    assert.equal(parseSelector("inject(BsToaster)"), null);
+  });
+
+  it("matches attribute values only for parsed attributes", () => {
+    const radio = [
+      { name: "type", rawName: "type", value: "radio" },
+      { name: "bsCheck", rawName: "bsCheck", value: null },
+    ];
+    const bound = [
+      { name: "type", rawName: "[type]", value: "kind" },
+      { name: "bsCheck", rawName: "bsCheck", value: null },
+    ];
+
+    assert.deepEqual(index.directivesFor("input", radio), []);
+    assert.deepEqual(index.directivesFor("input", bound), []);
+    assert.deepEqual(
+      index.directivesFor("input", ["bsCheck"]).map((symbol) => symbol.name),
+      ["BsCheck"],
+    );
+    assert.deepEqual(
+      index
+        .misplaced("input", radio)
+        .map((item) => [item.attribute, item.symbols[0].name]),
+      [["bsCheck", "BsCheck"]],
     );
   });
 });

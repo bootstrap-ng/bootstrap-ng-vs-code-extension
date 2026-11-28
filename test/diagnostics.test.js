@@ -235,11 +235,33 @@ export class App {}
   <button bsButton="outline" data-bs-toggle="tooltip">{{ name }}</button>
 </div>
 `;
-    const html = block.repeat(5000);
-    const started = performance.now();
+    const fastest = (count) => {
+      const html = block.repeat(count);
+      let best = Infinity;
 
-    assert.equal(diagnose(html, "html").length, 5000);
-    assert.ok(performance.now() - started < 2000);
+      assert.equal(diagnose(html, "html").length, count);
+
+      for (let run = 0; run < 3; run += 1) {
+        const started = performance.now();
+        diagnose(html, "html");
+        best = Math.min(best, performance.now() - started);
+      }
+
+      return best;
+    };
+
+    /*
+     * Compare two sizes instead of checking a fixed time limit, so a slow CI
+     * runner does not fail the test. Four times the text takes about four
+     * times as long when parsing is linear, and sixteen when it is quadratic.
+     */
+    const small = fastest(1250);
+    const large = fastest(5000);
+
+    assert.ok(
+      large < small * 8,
+      `5000 blocks took ${large.toFixed(1)}ms, 1250 took ${small.toFixed(1)}ms`,
+    );
   });
 
   it("checks a textarea's own attributes but not its content", () => {
@@ -250,5 +272,15 @@ export class App {}
 
     assert.equal(found.length, 1);
     assert.match(found[0].message, /size="huge"/u);
+  });
+
+  it("keeps checking after a textarea whose text contains <script", () => {
+    const found = diagnose(
+      '<textarea><script></textarea><div bsAlert theme="nope"></div>',
+      "html",
+    );
+
+    assert.equal(found.length, 1);
+    assert.match(found[0].message, /theme="nope"/u);
   });
 });

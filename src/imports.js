@@ -11,8 +11,13 @@ const {
 } = require("./angular-component");
 const { parseTags } = require("./context");
 
+// Comments in an import list or imports array would otherwise hide the next name.
+function withoutComments(body) {
+  return body.replace(/\/\*[\s\S]*?\*\//gu, " ").replace(/\/\/[^\n]*/gu, " ");
+}
+
 function specifiers(body) {
-  return body
+  return withoutComments(body)
     .split(",")
     .map((part) =>
       part
@@ -382,7 +387,7 @@ function componentResolver(tsText, component, imported) {
   const listed = new Set(array ? identifiers(array.body) : []);
   const all =
     (property !== -1 && !array) ||
-    Boolean(array?.body.includes("...")) ||
+    Boolean(array && withoutComments(array.body).includes("...")) ||
     (imported.has("BOOTSTRAP_NG") && listed.has(imported.get("BOOTSTRAP_NG")));
 
   return (name) =>

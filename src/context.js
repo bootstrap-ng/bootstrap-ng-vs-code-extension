@@ -201,8 +201,6 @@ function commentEnd(text, start) {
   return end === -1 ? text.length : end + 3;
 }
 
-const RAW_ELEMENTS = ["script", "style", "textarea"];
-
 function rawElementEnd(text, lower, start) {
   const match = /<(?<name>script|style|textarea)(?![\w-])/iuy;
   match.lastIndex = start;
@@ -273,31 +271,33 @@ function commentRanges(text) {
   return mergeRanges(ranges);
 }
 
+/*
+ * Scans left to right so text such as "<script" inside a textarea does not
+ * start a raw element of its own and hide the rest of the document.
+ */
 function rawRanges(lower, comments) {
   const ranges = [];
+  const pattern = /<(?<name>script|style|textarea)(?![\w-])/gu;
+  let found = pattern.exec(lower);
 
-  for (const name of RAW_ELEMENTS) {
-    let close = -1;
-    let open = lower.indexOf(`<${name}`);
+  while (found) {
+    if (!rangesContain(comments, found.index)) {
+      const close = lower.indexOf(`</${found.groups.name}`, pattern.lastIndex);
 
-    while (open !== -1) {
-      const boundary = lower[open + name.length + 1];
+      // Start after the "<" so the element's own tag is still parsed.
+      ranges.push({
+        end: close === -1 ? Infinity : close,
+        start: found.index + 1,
+      });
 
-      if (
-        (!boundary || !/[\w-]/u.test(boundary)) &&
-        !rangesContain(comments, open)
-      ) {
-        if (close !== Infinity && close < open + name.length + 2) {
-          close = lower.indexOf(`</${name}`, open + name.length + 2);
-          close = close === -1 ? Infinity : close;
-        }
-
-        // Start after the "<" so the element's own tag is still parsed.
-        ranges.push({ end: close, start: open + 1 });
+      if (close === -1) {
+        break;
       }
 
-      open = lower.indexOf(`<${name}`, open + 1);
+      pattern.lastIndex = close;
     }
+
+    found = pattern.exec(lower);
   }
 
   return ranges;

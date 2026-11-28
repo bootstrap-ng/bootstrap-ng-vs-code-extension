@@ -133,4 +133,40 @@ export class App {}`;
       /openTextDocument/u,
     );
   });
+
+  it("reads escaped attribute quotes in a double-quoted template", () => {
+    const source = `import { BsButton, BsCheck } from "bootstrap-ng";
+
+@Component({
+  imports: [BsButton, BsCheck],
+  template: "<div class=\\"ro\\"><input type=\\"checkbox\\" bsCheck /><button bsButton theme=\\"primray\\"></button></div>",
+})
+export class Demo {}
+`;
+    const found = diagnose(source, "typescript");
+    const rows = complete(source, source.indexOf('ro\\"') + 2, "typescript");
+
+    assert.deepEqual(
+      found.map((item) => source.slice(item.start, item.end)),
+      ["primray"],
+    );
+    assert.ok(rows.some((item) => item.label === "row"));
+    assert.equal(source.slice(rows[0].start, rows[0].end), "ro");
+  });
+
+  it("keeps escaped quotes when a data API quick fix moves an attribute", () => {
+    const source = `@Component({
+  template: "<button data-bs-toggle=\\"tooltip\\" title=\\"Hi\\">x</button>",
+})
+export class Demo {}
+`;
+    const [hint] = diagnose(source, "typescript");
+    let fixed = source;
+
+    for (const edit of [...hint.fixes[0].edits].reverse()) {
+      fixed = fixed.slice(0, edit.start) + edit.text + fixed.slice(edit.end);
+    }
+
+    assert.match(fixed, /template: "<button bsTooltip=\\"Hi\\">x<\/button>"/u);
+  });
 });

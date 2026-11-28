@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Fix value completions in a property binding replacing the whole expression, so picking `primary` in `[theme]="'pri'"` gave `[theme]="primary"`. Values now go inside the string literal under the cursor, or are quoted in an empty binding, and other expressions get no value completions.
+- Fix attribute completions offering directives that the element's `type` rules out, such as `bsCheck` and `bsSwitch` on `<input type="radio">`, which then got the misplaced-directive warning.
+- Fix attributes written with escaped quotes in a double-quoted inline template, such as `template: "<div class=\"row\">"`. Class completions and hovers now work there, values are checked, `<input type=\"checkbox\" bsCheck>` no longer gets a false misplaced-directive warning, and the data API quick fix keeps the quotes escaped instead of ending the TypeScript string.
 - Warn about undocumented values in string literals bound to an input, such as `[theme]="'primray'"`, with the same closest-match quick fix as static values.
 - Warn when a directive is on an element its selector does not match, so Angular ignores it, such as `bsButton` on a `div` or `bsAccordionItem` on anything but `details`. The warning names the selector. Turn it off with `bootstrap-ng.validateHostElements`.
 - Fix directives whose selector needs an attribute value, such as `input[type=checkbox][bsCheck]`, being treated as applied to any input. `<input type="radio" bsCheck>` no longer gets BsCheck hovers, completions or a missing-import warning, and gets the new warning instead.

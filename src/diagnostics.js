@@ -274,7 +274,9 @@ function attributeText(name, attribute) {
     return name;
   }
 
-  const quote = attribute.quote ?? '"';
+  const mark = attribute.quote ?? '"';
+  // Keep escaped quotes inside a quoted TypeScript template string.
+  const quote = attribute.escaped ? `\\${mark}` : mark;
 
   return `${name}=${quote}${attribute.value}${quote}`;
 }

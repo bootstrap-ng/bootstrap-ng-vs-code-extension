@@ -258,4 +258,65 @@ export class App {}`;
 
     assert.ok(items.includes("size"));
   });
+
+  it("completes values inside a bound string literal", () => {
+    const text = `<button bsButton [theme]="'pri'">`;
+    const offset = at(text, "'pri");
+    const primary = complete(text, offset, "html").find(
+      (item) => item.label === "primary",
+    );
+
+    assert.equal(primary.insertText, "primary");
+    assert.equal(text.slice(primary.start, primary.end), "pri");
+  });
+
+  it("completes values inside one literal of a bound expression", () => {
+    const text = `<button bsButton [theme]="dark ? 'inv' : 'primary'">`;
+    const inverse = complete(text, at(text, "'inv"), "html").find(
+      (item) => item.label === "inverse",
+    );
+
+    assert.equal(text.slice(inverse.start, inverse.end), "inv");
+  });
+
+  it("quotes values completed into an empty binding", () => {
+    const double = `<button bsButton [theme]="">`;
+    const single = `<button bsButton [theme]=''>`;
+    const fromDouble = complete(double, at(double, '[theme]="'), "html").find(
+      (item) => item.label === "primary",
+    );
+    const fromSingle = complete(single, at(single, "[theme]='"), "html").find(
+      (item) => item.label === "primary",
+    );
+
+    assert.equal(fromDouble.insertText, "'primary'");
+    assert.equal(fromSingle.insertText, '"primary"');
+  });
+
+  it("offers no values for a bound expression outside a literal", () => {
+    const text = `<button bsButton [theme]="myTheme">`;
+
+    assert.deepEqual(complete(text, at(text, "myThe"), "html"), []);
+  });
+
+  it("leaves out directives whose selector the element's type rules out", () => {
+    const radio = '<input type="radio" >';
+    const checkbox = '<input type="checkbox" >';
+    const untyped = "<input >";
+    const onRadio = labels(complete(radio, at(radio, '"radio" '), "html"));
+    const onCheckbox = labels(
+      complete(checkbox, at(checkbox, '"checkbox" '), "html"),
+    );
+    const onUntyped = labels(complete(untyped, at(untyped, "<input "), "html"));
+
+    assert.ok(onRadio.includes("bsRadio"));
+    assert.equal(onRadio.includes("bsCheck"), false);
+    assert.equal(onRadio.includes("bsSwitch"), false);
+    assert.ok(onCheckbox.includes("bsCheck"));
+    assert.ok(onCheckbox.includes("bsSwitch"));
+    assert.equal(onCheckbox.includes("bsRadio"), false);
+    assert.equal(onCheckbox.includes("bsRange"), false);
+    assert.ok(onUntyped.includes("bsCheck"));
+    assert.ok(onUntyped.includes("bsRadio"));
+  });
 });

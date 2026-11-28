@@ -1,6 +1,6 @@
 "use strict";
 
-const { hostAllows, index } = require("./catalog");
+const { index } = require("./catalog");
 const { classes, documentationForClass } = require("./classes");
 const { analyze } = require("./context");
 const { translate } = require("./l10n");
@@ -135,7 +135,10 @@ function directiveItems(context, wrapper) {
   const items = [];
 
   for (const symbol of index.symbols) {
-    if (symbol.kind !== "directive" || !hostAllows(symbol, context.tagName)) {
+    if (
+      symbol.kind !== "directive" ||
+      !index.canHost(symbol, context.tagName, context.attributes)
+    ) {
       continue;
     }
 
@@ -308,6 +311,10 @@ function classCompletions(context) {
 }
 
 function valueCompletions(context) {
+  if (context.expression) {
+    return [];
+  }
+
   const directives = index.directivesFor(
     context.tagName,
     context.attributes ?? [],
@@ -331,7 +338,9 @@ function valueCompletions(context) {
       detail: input.type,
       documentation: input.description,
       filterText: value,
-      insertText: value,
+      insertText: context.insertQuote
+        ? `${context.insertQuote}${value}${context.insertQuote}`
+        : value,
       kind: "Value",
       label: value,
       sortText: `0-${value}`,

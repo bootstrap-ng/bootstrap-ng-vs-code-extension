@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Warn about undocumented values in string literals bound to an input, such as `[theme]="'primray'"`, with the same closest-match quick fix as static values.
 - Warn when a directive is on an element its selector does not match, so Angular ignores it, such as `bsButton` on a `div` or `bsAccordionItem` on anything but `details`. The warning names the selector. Turn it off with `bootstrap-ng.validateHostElements`.
 - Fix directives whose selector needs an attribute value, such as `input[type=checkbox][bsCheck]`, being treated as applied to any input. `<input type="radio" bsCheck>` no longer gets BsCheck hovers, completions or a missing-import warning, and gets the new warning instead.
 

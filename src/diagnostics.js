@@ -138,14 +138,14 @@ function closestValues(value, values) {
   return scored.slice(0, 3).map((item) => item.candidate);
 }
 
-function valueFixes(attribute, values) {
-  const suggestions = closestValues(attribute.value, values);
+function valueFixes(target, values) {
+  const suggestions = closestValues(target.value, values);
 
   return suggestions.map((suggestion, position) => ({
     edits: [
       {
-        end: attribute.valueEnd,
-        start: attribute.valueStart,
+        end: target.end,
+        start: target.start,
         text: suggestion,
       },
     ],
@@ -154,15 +154,66 @@ function valueFixes(attribute, values) {
   }));
 }
 
-function enumDiagnostic(attribute, directives) {
+/*
+ * A property binding whose expression is one string literal, such as
+ * [theme]="'primray'". The quote may be escaped when the template is itself a
+ * quoted TypeScript string.
+ */
+const STRING_LITERAL =
+  /^(?<lead>\s*(?<escape>\\?)(?<quote>['"]))(?<inner>[^'"\\]*)\k<escape>\k<quote>\s*$/u;
+
+function boundLiteral(attribute) {
   if (
-    !isStaticAttribute(attribute) ||
-    (attribute.quote !== '"' && attribute.quote !== "'")
+    attribute.rawName !== `[${attribute.name}]` ||
+    attribute.valueStart === null ||
+    attribute.value === null
   ) {
     return null;
   }
 
-  if (!attribute.value || attribute.value.includes("{{")) {
+  const match = STRING_LITERAL.exec(attribute.value);
+
+  if (!match) {
+    return null;
+  }
+
+  const start = attribute.valueStart + match.groups.lead.length;
+
+  return {
+    end: start + match.groups.inner.length,
+    label: `[${attribute.name}]`,
+    quoted: `'${match.groups.inner}'`,
+    start,
+    value: match.groups.inner,
+  };
+}
+
+/*
+ * The value to check against an input's documented values: a static
+ * attribute value, or a string literal bound to the input.
+ */
+function enumTarget(attribute) {
+  if (!isStaticAttribute(attribute)) {
+    return boundLiteral(attribute);
+  }
+
+  if (attribute.quote !== '"' && attribute.quote !== "'") {
+    return null;
+  }
+
+  return {
+    end: attribute.valueEnd,
+    label: attribute.name,
+    quoted: attribute.value,
+    start: attribute.valueStart,
+    value: attribute.value,
+  };
+}
+
+function enumDiagnostic(attribute, directives) {
+  const target = enumTarget(attribute);
+
+  if (!target?.value || target.value.includes("{{")) {
     return null;
   }
 
@@ -176,7 +227,7 @@ function enumDiagnostic(attribute, directives) {
     inputs.length === 0 ||
     inputs.some((input) =>
       input.values.some(
-        (value) => value.toLowerCase() === attribute.value.toLowerCase(),
+        (value) => value.toLowerCase() === target.value.toLowerCase(),
       ),
     )
   ) {
@@ -185,22 +236,22 @@ function enumDiagnostic(attribute, directives) {
 
   const input = inputs[0];
   const fixes = valueFixes(
-    attribute,
+    target,
     inputs.flatMap((item) => item.values),
   );
 
   return {
     code: INVALID_VALUE_CODE,
-    end: attribute.valueEnd,
+    end: target.end,
     fixes,
     message: translate(
       '{0}="{1}" is not a documented bootstrap-ng value. Expected {2}.',
-      attribute.name,
-      attribute.value,
+      target.label,
+      target.quoted,
       expectedText(input),
     ),
     severity: "warning",
-    start: attribute.valueStart,
+    start: target.start,
   };
 }
 

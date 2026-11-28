@@ -17,6 +17,10 @@ jobs:
     name: Publish to VS Code Marketplace and Open VSX
     runs-on: ubuntu-slim
     timeout-minutes: 15
+    permissions:
+      contents: read
+      # Trusted Publishing: both marketplaces exchange the GitHub OIDC token for a short-lived one.
+      id-token: write
 
     steps:
       - name: Clone repository
@@ -41,11 +45,7 @@ jobs:
         run: npx vsce package --out bootstrap-ng.vsix
 
       - name: Publish to VS Code Marketplace
-        run: npx vsce publish --packagePath bootstrap-ng.vsix
-        env:
-          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        run: npx vsce publish --oidc --packagePath bootstrap-ng.vsix
 
       - name: Publish to Open VSX
-        run: npx --yes ovsx@1.4.0 publish bootstrap-ng.vsix
-        env:
-          OVSX_PAT: ${{ secrets.OVSX_PAT }}
+        run: npx --yes ovsx@1.4.0 publish --trusted-publishing bootstrap-ng.vsix

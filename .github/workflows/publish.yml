@@ -1,0 +1,51 @@
+name: Publish
+
+# Run manually from the Actions tab.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# Never run two publishes at once, and never cancel one halfway through.
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Publish to VS Code Marketplace and Open VSX
+    runs-on: ubuntu-slim
+    timeout-minutes: 15
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: .nvmrc
+          # No dependency cache when publishing, so a poisoned cache can't reach the release.
+          package-manager-cache: false
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Package extension
+        run: npx vsce package --out bootstrap-ng.vsix
+
+      - name: Publish to VS Code Marketplace
+        run: npx vsce publish --packagePath bootstrap-ng.vsix
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+
+      - name: Publish to Open VSX
+        run: npx --yes ovsx@1.4.0 publish bootstrap-ng.vsix
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}

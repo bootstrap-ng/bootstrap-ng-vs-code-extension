@@ -49,6 +49,12 @@ function readValue(text, state) {
     return quotedValue(text, state.index, quote, base);
   }
 
+  const escaped = text[state.index + 1];
+
+  if (quote === "\\" && (escaped === '"' || escaped === "'")) {
+    return escapedValue(text, state.index, escaped, base);
+  }
+
   let valueEnd = state.index;
 
   while (valueEnd < text.length && !/[\s>]/u.test(text[valueEnd])) {
@@ -82,6 +88,34 @@ function quotedValue(text, index, quote, base) {
   return {
     ...base,
     end: closed ? valueEnd + 1 : valueEnd,
+    quote,
+    value: text.slice(valueStart, valueEnd),
+    valueEnd,
+    valueStart,
+  };
+}
+
+/*
+ * A value quoted with escaped quotes, such as class=\"row\" inside a
+ * double-quoted TypeScript template string.
+ */
+function escapedValue(text, index, quote, base) {
+  const valueStart = index + 2;
+  let valueEnd = valueStart;
+
+  while (
+    valueEnd < text.length &&
+    !(text[valueEnd] === "\\" && text[valueEnd + 1] === quote)
+  ) {
+    valueEnd += 1;
+  }
+
+  const closed = valueEnd < text.length;
+
+  return {
+    ...base,
+    end: closed ? valueEnd + 2 : valueEnd,
+    escaped: true,
     quote,
     value: text.slice(valueStart, valueEnd),
     valueEnd,
@@ -654,6 +688,57 @@ function classToggleContext(text, offset, tag, attribute) {
   };
 }
 
+/*
+ * The value of a property binding such as [theme]="'primary'". Values go
+ * inside the string literal under the cursor, or in a new literal when the
+ * expression is empty. Anything else is an expression, not a value.
+ */
+function boundValueContext(text, offset, tag, attribute) {
+  const base = {
+    attribute: publicAttribute(attribute),
+    attributes: tag.attributes.map(publicAttribute),
+    kind: "attribute-value",
+    quote: attribute.quote,
+    tagName: tag.name,
+  };
+  const expression = {
+    ...base,
+    end: attribute.valueEnd,
+    expression: true,
+    prefix: text.slice(attribute.valueStart, offset),
+    start: attribute.valueStart,
+  };
+  const { literal } = scanExpression(text, attribute.valueStart, offset);
+
+  if (literal) {
+    if (
+      literal.quote === "`" &&
+      text.slice(literal.start, offset).includes("${")
+    ) {
+      return expression;
+    }
+
+    return {
+      ...base,
+      end: literalEnd(text, offset, attribute.valueEnd, literal.quote),
+      prefix: text.slice(literal.start, offset),
+      start: literal.start,
+    };
+  }
+
+  if (text.slice(attribute.valueStart, attribute.valueEnd).trim() === "") {
+    return {
+      ...base,
+      end: attribute.valueEnd,
+      insertQuote: attribute.quote === "'" ? '"' : "'",
+      prefix: "",
+      start: attribute.valueStart,
+    };
+  }
+
+  return expression;
+}
+
 function attributeContext(text, offset, tag, attribute) {
   if (
     attribute.valueStart !== null &&
@@ -672,6 +757,10 @@ function attributeContext(text, offset, tag, attribute) {
 
     if (bindingContext) {
       return bindingContext;
+    }
+
+    if (attribute.rawName === `[${attribute.name}]`) {
+      return boundValueContext(text, offset, tag, attribute);
     }
 
     return {

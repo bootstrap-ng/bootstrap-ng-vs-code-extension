@@ -175,6 +175,33 @@ function createIndex(data) {
     );
   }
 
+  /*
+   * Whether adding this symbol's attribute to the element could match its
+   * selector: the tag fits and no static attribute contradicts a value
+   * condition, so `bsCheck` is not offered on `<input type="radio">`. A
+   * missing attribute such as `type` can still be added.
+   */
+  function canHost(symbol, tagName, attributes) {
+    const alternatives = selectors.get(symbol);
+
+    if (!alternatives) {
+      return hostAllows(symbol, tagName);
+    }
+
+    const lookup = attributeLookup(attributes);
+
+    return alternatives.some(
+      (alternative) =>
+        tagAllows(alternative.tag, tagName) &&
+        alternative.conditions.every(
+          (condition) =>
+            condition.value === null ||
+            !lookup.values.has(condition.name.toLowerCase()) ||
+            conditionHolds(condition, lookup),
+        ),
+    );
+  }
+
   function directivesFor(tagName, attributes) {
     const lookup = attributeLookup(attributes);
     const found = new Map();
@@ -201,6 +228,7 @@ function createIndex(data) {
     attribute(name) {
       return byAttribute.get(name) ?? [];
     },
+    canHost,
     directivesFor,
     /*
      * Directives named by an attribute on this element whose selector does not
@@ -250,6 +278,9 @@ function load() {
 const index = {
   attribute(name) {
     return load().attribute(name);
+  },
+  canHost(symbol, tagName, attributes) {
+    return load().canHost(symbol, tagName, attributes);
   },
   directivesFor(tagName, attributeNames) {
     return load().directivesFor(tagName, attributeNames);

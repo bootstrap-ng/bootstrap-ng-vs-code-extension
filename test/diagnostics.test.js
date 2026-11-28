@@ -52,6 +52,51 @@ describe("diagnostics", () => {
     );
   });
 
+  it("warns about a string literal bound to an input", () => {
+    const html = `<button type="button" bsButton [theme]="'primray'"></button>`;
+    const found = diagnose(html, "html");
+
+    assert.equal(found.length, 1);
+    assert.equal(found[0].code, "invalid-value");
+    assert.equal(html.slice(found[0].start, found[0].end), "primray");
+    assert.match(found[0].message, /\[theme\]="'primray'"/u);
+    assert.equal(
+      applyFix(html, found[0].fixes[0]),
+      html.replace("primray", "primary"),
+    );
+
+    const doubled = `<button bsButton [theme]='"primray"'></button>`;
+    const fixed = diagnose(doubled, "html")[0].fixes[0];
+
+    assert.equal(
+      applyFix(doubled, fixed),
+      doubled.replace("primray", "primary"),
+    );
+  });
+
+  it("checks bound literals in quoted inline templates", () => {
+    const source =
+      "@Component({ template: '<div bsAlert [theme]=\"\\'primray\\'\"></div>' }) class A {}";
+    const found = diagnose(source, "typescript", { validateImports: false });
+
+    assert.equal(found.length, 1);
+    assert.equal(source.slice(found[0].start, found[0].end), "primray");
+  });
+
+  it("leaves other binding expressions alone", () => {
+    for (const html of [
+      `<button bsButton [theme]="'primary'"></button>`,
+      `<button bsButton [theme]="'Primary'"></button>`,
+      `<button bsButton [theme]="''"></button>`,
+      `<button bsButton [theme]="dark ? 'inverse' : 'primray'"></button>`,
+      `<button bsButton [theme]="'prim' + 'ray'"></button>`,
+      `<button bsButton [attr.theme]="'primray'"></button>`,
+      `<details bsAccordionItem [(open)]="'x'"></details>`,
+    ]) {
+      assert.deepEqual(diagnose(html, "html"), [], html);
+    }
+  });
+
   it("hints at Bootstrap 5 data attributes", () => {
     const toggle = diagnose(
       '<button data-bs-toggle="tooltip"></button>',

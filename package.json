@@ -89,6 +89,11 @@
           "description": "%setting.validateAttributeValues.description%",
           "type": "boolean"
         },
+        "bootstrap-ng.validateHostElements": {
+          "default": true,
+          "description": "%setting.validateHostElements.description%",
+          "type": "boolean"
+        },
         "bootstrap-ng.validateImports": {
           "default": true,
           "description": "%setting.validateImports.description%",

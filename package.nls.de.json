@@ -3,5 +3,6 @@
   "description": "Autovervollständigung, Hovers, Snippets und Diagnosen für bootstrap-ng in Angular-Templates.",
   "setting.hintBootstrap5DataApi.description": "Hinweis anzeigen, wenn ein Bootstrap 5-Attribut data-bs-toggle oder data-bs-dismiss durch eine bootstrap-ng-Direktive ersetzt werden sollte.",
   "setting.validateAttributeValues.description": "Warnen, wenn ein bootstrap-ng-Attribut einen Wert außerhalb der dokumentierten Werte verwendet.",
+  "setting.validateHostElements.description": "Warnen, wenn eine bootstrap-ng-Direktive auf einem Element steht, das nicht zu ihrem Selektor passt, sodass Angular sie ignoriert.",
   "setting.validateImports.description": "Warnen, wenn eine bootstrap-ng-Direktive im Template einer Standalone-Komponente verwendet, aber nicht importiert wird."
 }

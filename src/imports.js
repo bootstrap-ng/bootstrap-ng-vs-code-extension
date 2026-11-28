@@ -48,9 +48,7 @@ function directiveUsages(html) {
   const usages = [];
 
   for (const tag of parseTags(html)) {
-    const attributeNames = tag.attributes.map((attribute) => attribute.name);
-
-    for (const symbol of index.directivesFor(tag.name, attributeNames)) {
+    for (const symbol of index.directivesFor(tag.name, tag.attributes)) {
       if (symbol.kind === "directive") {
         usages.push({ name: symbol.name, ...usageRange(tag, symbol) });
       }

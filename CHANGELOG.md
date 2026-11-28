@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Warn when a directive is on an element its selector does not match, so Angular ignores it, such as `bsButton` on a `div` or `bsAccordionItem` on anything but `details`. The warning names the selector. Turn it off with `bootstrap-ng.validateHostElements`.
+- Fix directives whose selector needs an attribute value, such as `input[type=checkbox][bsCheck]`, being treated as applied to any input. `<input type="radio" bsCheck>` no longer gets BsCheck hovers, completions or a missing-import warning, and gets the new warning instead.
+
 ## 0.9.4 (2026-11-28)
 
 - Fix false missing-import warnings, and a quick fix that added duplicate names, when a comment sits in an `import { ... }` list or an `imports` array, such as `BsAlert, // alerts` followed by `BsTooltip`.

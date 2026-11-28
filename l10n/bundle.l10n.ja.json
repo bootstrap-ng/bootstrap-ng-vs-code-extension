@@ -13,6 +13,7 @@
   "Supports `[({0})]`.": "`[({0})]` に対応しています。",
   "Update to 6.0.0-alpha.2": "6.0.0-alpha.2 に更新",
   "{0} 6.0.0-alpha.1 is out of date. Update to 6.0.0-alpha.2.": "{0} の 6.0.0-alpha.1 は古くなっています。6.0.0-alpha.2 に更新してください。",
+  "{0} has no effect on <{1}>. It applies to {2}.": "{0} は <{1}> では効果がありません。対象: {2}。",
   "{0} is used in this template but not imported.": "{0} はこのテンプレートで使用されていますが、インポートされていません。",
   "{0}=\"{1}\" is not a documented bootstrap-ng value. Expected {2}.": "{0}=\"{1}\" は bootstrap-ng のドキュメントにある値ではありません。使用できる値: {2}。",
   "bsAlert with dismissible": "dismissible を付けた bsAlert",

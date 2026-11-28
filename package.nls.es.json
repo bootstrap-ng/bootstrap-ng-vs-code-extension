@@ -3,5 +3,6 @@
   "description": "Autocompletado, información al pasar el cursor, fragmentos y diagnósticos para bootstrap-ng en plantillas de Angular.",
   "setting.hintBootstrap5DataApi.description": "Sugerir cuando un atributo data-bs-toggle o data-bs-dismiss de Bootstrap 5 debería ser una directiva de bootstrap-ng.",
   "setting.validateAttributeValues.description": "Advertir cuando un atributo de bootstrap-ng usa un valor fuera de los documentados.",
+  "setting.validateHostElements.description": "Avisar cuando una directiva de bootstrap-ng está en un elemento que no coincide con su selector, por lo que Angular la ignora.",
   "setting.validateImports.description": "Advertir cuando una directiva de bootstrap-ng se usa en la plantilla de un componente standalone pero no se importa."
 }

@@ -13,6 +13,7 @@
   "Supports `[({0})]`.": "Admite `[({0})]`.",
   "Update to 6.0.0-alpha.2": "Actualizar a 6.0.0-alpha.2",
   "{0} 6.0.0-alpha.1 is out of date. Update to 6.0.0-alpha.2.": "{0} 6.0.0-alpha.1 está desactualizado. Actualice a 6.0.0-alpha.2.",
+  "{0} has no effect on <{1}>. It applies to {2}.": "{0} no tiene efecto en <{1}>. Se aplica a: {2}.",
   "{0} is used in this template but not imported.": "{0} se usa en esta plantilla, pero no se importa.",
   "{0}=\"{1}\" is not a documented bootstrap-ng value. Expected {2}.": "{0}=\"{1}\" no es un valor documentado de bootstrap-ng. Se esperaba: {2}.",
   "bsAlert with dismissible": "bsAlert con dismissible",

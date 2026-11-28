@@ -53,6 +53,7 @@ function readOptions() {
   return {
     hintBootstrap5DataApi: config.get("hintBootstrap5DataApi") !== false,
     validateAttributeValues: config.get("validateAttributeValues") !== false,
+    validateHostElements: config.get("validateHostElements") !== false,
     validateImports: config.get("validateImports") !== false,
   };
 }

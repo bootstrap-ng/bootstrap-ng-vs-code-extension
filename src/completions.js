@@ -243,7 +243,7 @@ function attributeCompletions(context) {
   const wrapper = wrapperOf(context.prefix);
   const directives = index.directivesFor(
     context.tagName,
-    namesOf(context.attributes),
+    context.attributes ?? [],
   );
   const items = directiveItems(context, wrapper);
 
@@ -310,7 +310,7 @@ function classCompletions(context) {
 function valueCompletions(context) {
   const directives = index.directivesFor(
     context.tagName,
-    namesOf(context.attributes),
+    context.attributes ?? [],
   );
   const values = new Map();
 

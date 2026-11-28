@@ -3,7 +3,11 @@
 const assert = require("node:assert/strict");
 const { describe, it } = require("node:test");
 
-const { closestValues, diagnose } = require("../src/diagnostics");
+const {
+  closestValues,
+  diagnose,
+  MISPLACED_CODE,
+} = require("../src/diagnostics");
 
 function applyFix(text, fix) {
   return [...fix.edits]
@@ -90,7 +94,7 @@ describe("diagnostics", () => {
       1,
     );
     assert.deepEqual(
-      diagnose('<div class="foo\\"extra" bsButton></div>', "html"),
+      diagnose('<button class="foo\\"extra" bsButton></button>', "html"),
       [],
     );
   });
@@ -282,5 +286,59 @@ export class App {}
 
     assert.equal(found.length, 1);
     assert.match(found[0].message, /theme="nope"/u);
+  });
+
+  it("warns about a directive on an element its selector does not match", () => {
+    const html = '<div bsButton theme="primary"></div>';
+    const found = diagnose(html, "html");
+
+    assert.equal(found.length, 1);
+    assert.equal(found[0].code, MISPLACED_CODE);
+    assert.equal(found[0].severity, "warning");
+    assert.equal(html.slice(found[0].start, found[0].end), "bsButton");
+    assert.match(found[0].message, /button\[bsButton\]/u);
+    assert.deepEqual(
+      diagnose(html, "html", { validateHostElements: false }),
+      [],
+    );
+  });
+
+  it("respects attribute values in selectors", () => {
+    const radio = diagnose('<input type="radio" bsCheck>', "html");
+
+    assert.equal(radio.length, 1);
+    assert.equal(radio[0].code, MISPLACED_CODE);
+    assert.match(radio[0].message, /input\[type=checkbox\]\[bsCheck\]/u);
+    assert.deepEqual(diagnose('<input type="checkbox" bsCheck>', "html"), []);
+    assert.deepEqual(diagnose('<input type="Checkbox" bsSwitch>', "html"), []);
+  });
+
+  it("lists every selector for an attribute shared by several directives", () => {
+    const found = diagnose("<input bsRange>", "html");
+
+    assert.equal(found.length, 1);
+    assert.match(found[0].message, /div\[bsRange\], input\[type=range\]/u);
+  });
+
+  it("accepts directives on hosts their selector allows", () => {
+    for (const html of [
+      "<button bsButton></button>",
+      "<a [bsButton]=\"'outline'\"></a>",
+      "<ng-template bsBreadcrumbLink></ng-template>",
+      '<span [bsTooltip]="tip"></span>',
+      "<motion.div bsRange></motion.div>",
+      "<div bsDialogClose></div>",
+    ]) {
+      assert.deepEqual(diagnose(html, "html"), [], html);
+    }
+  });
+
+  it("warns about misplaced directives in inline templates", () => {
+    const source =
+      "@Component({ template: '<div bsAccordionItem></div>' }) class A {}";
+    const found = diagnose(source, "typescript", { validateImports: false });
+
+    assert.equal(found.length, 1);
+    assert.equal(source.slice(found[0].start, found[0].end), "bsAccordionItem");
   });
 });

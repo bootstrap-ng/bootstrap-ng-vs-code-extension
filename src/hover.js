@@ -5,10 +5,6 @@ const { classByName, documentationForClass } = require("./classes");
 const { analyze } = require("./context");
 const { documentationFor, inputDocumentation } = require("./markdown");
 
-function namesOf(attributes) {
-  return (attributes ?? []).map((attribute) => attribute.name).filter(Boolean);
-}
-
 /*
  * The import context only covers the text before the cursor, for completion,
  * so widen it to the whole name for hovers and the docs command.
@@ -54,13 +50,16 @@ function findMember(directives, name) {
 }
 
 function scopedDirectives(context) {
-  const names = namesOf(context.attributes);
+  const attributes = [...(context.attributes ?? [])];
 
-  if (context.attribute?.name && !names.includes(context.attribute.name)) {
-    names.push(context.attribute.name);
+  if (
+    context.attribute?.name &&
+    !attributes.some((item) => item.name === context.attribute.name)
+  ) {
+    attributes.push(context.attribute);
   }
 
-  return index.directivesFor(context.tagName, names);
+  return index.directivesFor(context.tagName, attributes);
 }
 
 function owns(symbol, name) {

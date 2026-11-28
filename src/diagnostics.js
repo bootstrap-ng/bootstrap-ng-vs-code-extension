@@ -8,6 +8,7 @@ const { translate } = require("./l10n");
 
 const DATA_API_CODE = "bootstrap5-data-api";
 const INVALID_VALUE_CODE = "invalid-value";
+const MISPLACED_CODE = "misplaced-directive";
 const MISSING_IMPORT_CODE = "missing-import";
 
 /*
@@ -64,10 +65,6 @@ const SAME_ELEMENT_FIXES = {
     tooltip: "bsTooltip",
   },
 };
-
-function namesOf(tag) {
-  return tag.attributes.map((attribute) => attribute.name);
-}
 
 function expectedText(input) {
   if (input.values.length > 8) {
@@ -307,9 +304,56 @@ function dataApiDiagnostic(html, tag, attribute) {
   };
 }
 
-function diagnoseTag(html, tag, settings) {
-  const directives = index.directivesFor(tag.name, namesOf(tag));
+function ownsName(directives, name) {
+  return directives.some(
+    (directive) =>
+      directive.attributes.includes(name) ||
+      directive.inputs.some((input) => input.name === name) ||
+      directive.outputs.some((output) => output.name === name),
+  );
+}
+
+/*
+ * A directive attribute on an element its selector does not match, such as
+ * `bsButton` on a `div` or `bsCheck` on a radio input, which Angular silently
+ * ignores.
+ */
+function misplacedDiagnostics(tag, directives) {
   const items = [];
+
+  for (const { attribute, symbols } of index.misplaced(
+    tag.name,
+    tag.attributes,
+  )) {
+    const node = tag.attributes.find((item) => item.name === attribute);
+
+    if (!node || ownsName(directives, attribute)) {
+      continue;
+    }
+
+    items.push({
+      code: MISPLACED_CODE,
+      end: node.nameEnd,
+      fixes: [],
+      message: translate(
+        "{0} has no effect on <{1}>. It applies to {2}.",
+        attribute,
+        tag.name,
+        symbols.map((symbol) => symbol.selector).join(", "),
+      ),
+      severity: "warning",
+      start: node.nameStart,
+    });
+  }
+
+  return items;
+}
+
+function diagnoseTag(html, tag, settings) {
+  const directives = index.directivesFor(tag.name, tag.attributes);
+  const items = settings.validateHostElements
+    ? misplacedDiagnostics(tag, directives)
+    : [];
 
   for (const attribute of tag.attributes) {
     if (settings.validateAttributeValues) {
@@ -378,6 +422,7 @@ function settingsFrom(options) {
   return {
     hintBootstrap5DataApi: options.hintBootstrap5DataApi !== false,
     validateAttributeValues: options.validateAttributeValues !== false,
+    validateHostElements: options.validateHostElements !== false,
     validateImports: options.validateImports !== false,
   };
 }
@@ -425,6 +470,7 @@ function diagnose(text, languageId, options = {}) {
 module.exports = {
   DATA_API_CODE,
   INVALID_VALUE_CODE,
+  MISPLACED_CODE,
   closestValues,
   diagnose,
   MISSING_IMPORT_CODE,
